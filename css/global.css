@@ -1,0 +1,137 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  font-family: "Fira Sans", "Open Sans", "Helvetica Neue", "Helvetica", "sans-serif";
+  /*font-weight: 300;*/
+}
+
+strong {
+  font-weight: 600;
+}
+
+em {
+  font-style: italic;
+}
+
+body {
+  background-color: #ecf0f5;
+}
+
+p {
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
+
+/* react-datepicker shim */
+.datepicker__tether-element {
+  z-index: 3;
+}
+
+
+/* comment stream transitions */
+.profileinfo-enter {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.profileinfo-enter.profileinfo-enter-active {
+  max-height: 600px;
+  transition: all 500ms linear;
+}
+
+.profileinfo-leave {
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.profileinfo-leave.profileinfo-leave-active {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 500ms ease-out;
+}
+
+/* commentTools transition */
+.commentTools-enter {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.commentTools-enter.commentTools-enter-active {
+  max-height: 200px;
+  transition: all 500ms linear;
+}
+
+.commentTools-leave {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.commentTools-leave.commentTools-leave-active {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 500ms ease-out;
+}
+
+/* comment stream transitions */
+.profileinfo-enter {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.profileinfo-enter.profileinfo-enter-active {
+  max-height: 600px;
+  transition: all 500ms linear;
+}
+
+.profileinfo-leave {
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.profileinfo-leave.profileinfo-leave-active {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 500ms ease-out;
+}
+
+/* fade transition */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: all 500ms linear;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0;
+  transition: all 500ms ease-out;
+}
