@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Radium from 'radium';
 
 import CustomizerToggle from './CustomizerToggle';
+
+import {themes} from 'playgroundSettings';
 //import CustomizerSlider from './customizerSlider';
 
 @connect(state => state.playground)
@@ -18,12 +20,12 @@ class CustomizerSettings extends React.Component {
             return (
               <div style={ styles.toggleGroup } key={ gIndex }>
                 <h2 style={ styles.toggleGroupHeader }>{ this.props.togglerGroups[togglerGroupIndex].name }</h2>
-                { 
-                  Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey) => { 
+                {
+                  Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey) => {
                     return (
-                      <CustomizerToggle 
-                        groupIndex={ togglerGroupIndex } 
-                        togglerIndex={ togglerKey } 
+                      <CustomizerToggle
+                        groupIndex={ togglerGroupIndex }
+                        togglerIndex={ togglerKey }
                         toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
                         key={ togglerKey } />
                     );
@@ -52,7 +54,7 @@ var styles = {
     color: '#999',
     textTransform: 'uppercase',
     marginBottom: '20px',
-    fontFamily: 'Fira Sans'
+    fontFamily: themes.default.fontFamily
   },
   clearBoth: {
     'clear': 'both'

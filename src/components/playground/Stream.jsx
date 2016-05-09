@@ -4,6 +4,8 @@ import Radium from 'radium';
 
 import Comment from './Comment';
 
+import { themes } from '../../playgroundSettings';
+
 @connect(state => state.playground)
 @Radium
 class Stream extends React.Component {

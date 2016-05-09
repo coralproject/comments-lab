@@ -7,7 +7,7 @@ import FaSmileO from 'react-icons/lib/fa/smile-o';
 
 import CommentBox from './CommentBox';
 
-import mediaQueries from '../../playgroundSettings';
+import { mediaQueries } from '../../playgroundSettings';
 
 import { likeComment, unLikeComment } from 'playground/PlaygroundActions';
 

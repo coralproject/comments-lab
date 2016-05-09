@@ -4,7 +4,7 @@ import Radium from 'radium';
 
 import { setToggler } from 'playground/PlaygroundActions';
 
-import mediaQueries from '../../playgroundSettings';
+import { themes, mediaQueries } from '../../playgroundSettings';
 
 @connect(state => state.playground)
 @Radium
@@ -56,7 +56,7 @@ export default Wizard;
 
 var styles = {
   question: {
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     fontSize: '20pt',
     color: '#3d3d3d',
     fontWeight: '700'
@@ -66,7 +66,7 @@ var styles = {
     bottom: '30px',
     left: '30px',
     backgroundColor: '#999',
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     color: 'white',
     border: 'none',
     padding: '15px 20px',
@@ -79,7 +79,7 @@ var styles = {
     bottom: '30px',
     right: '30px',
     backgroundColor: '#35BE53',
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     color: 'white',
     border: 'none',
     padding: '15px 20px',

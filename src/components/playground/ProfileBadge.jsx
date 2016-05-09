@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 
-import mediaQueries from '../../playgroundSettings';
+import { mediaQueries } from '../../playgroundSettings';
 
 @connect(state => state.playground)
 @Radium
@@ -14,9 +14,9 @@ class ProfileBadge extends React.Component {
       <div style={[ styles.profileBadge, this.props.style ]} onClick={ this.props.profileClickHandler }>
         <img style={ styles.profilePicture } width="60" height="60" src={ "/img/playground/profile" + this.props.user + ".jpg" } />
         {
-          this.props.togglerGroups['community'].togglers['following'].status ? 
+          this.props.togglerGroups['community'].togglers['following'].status ?
             <button style={ styles.followButton }>FOLLOW</button>
-          : 
+          :
             null
         }
       </div>

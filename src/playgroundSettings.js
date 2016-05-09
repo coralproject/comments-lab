@@ -7,4 +7,10 @@ const mediaQueries = {
   largeDesktop: '@media only screen and (min-width: 1280px)'
 }
 
-export default mediaQueries;
+const themes = {
+  default: {
+    fontFamily: 'Lato'
+  }
+}
+
+export { themes, mediaQueries };

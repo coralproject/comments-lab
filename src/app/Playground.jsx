@@ -11,7 +11,7 @@ import Wizard from 'components/playground/Wizard';
 
 import DocumentTitle from 'react-document-title';
 
-import mediaQueries from 'playgroundSettings';
+import { themes as themes, mediaQueries as mediaQueries } from 'playgroundSettings';
 
 import MdHelpOutline from 'react-icons/lib/md/help-outline';
 
@@ -74,14 +74,16 @@ class Playground extends React.Component {
                     <span style={ styles.aboutTitleSpan }>ABOUT</span>
                   </h2>
 
-                  The playground showcases the various elements you would usually find in commentary sections all over the web.
-                  <br />
-                  Use the controls to tweak the UI and explore how it affects the comment box and the stream. You can also try the features on the comment box and the stream itself. <br />
-                  <br />
-                  Learn about online comments and the issues they are facing, <br />
-                  through the contextual sidebar.<br />
-                  <br />
-                  Share your thoughts on the problems addressed by each solution.
+                  <div style={ styles.playgroundDescription }>
+                    This playground showcases the various elements you would usually find in commentary sections all over the web.
+                    <br /><br />
+                    <ul style={ styles.playgroundBullets }>
+                      <li style={ styles.playgroundBullet }><strong>Use the controls</strong> to tweak the UI and explore how it affects the comment box and the stream. You can also try the features on the comment box and the stream itself.</li>
+                      <li style={ styles.playgroundBullet }><strong>Learn about online comments</strong> and the issues they are facing,
+                      through the contextual sidebar.</li>
+                    <li style={ styles.playgroundBullet }><strong>Share your thoughts</strong> on the problems addressed by each solution.</li>
+                    </ul>
+                  </div>
 
                 </div>
 
@@ -174,7 +176,10 @@ const styles = {
   playGround: {
     margin: 'auto',
     transition: 'filter 1s',
-    fontFamily: 'Fira Sans'
+    fontFamily: themes.default.fontFamily
+  },
+  playgroundDescription: {
+    paddingTop: '20px'
   },
   heading: {
     padding: '40px'
@@ -199,14 +204,14 @@ const styles = {
     lineHeight: '1.2',
     padding: '20px',
     textAlign: 'center',
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     [mediaQueries.tablet]: {
       padding: '0'
     }
   },
   playgroundIntroText: {
     fontSize: '12pt',
-    fontFamily: 'Fira Sans'
+    fontFamily: themes.default.fontFamily
   },
   wizardButton: {
     color: '#F77260',
@@ -215,7 +220,7 @@ const styles = {
     padding: '20px',
     display: 'block',
     margin: '20px auto',
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     fontWeight: 'bold',
     fontSize: '16pt',
     backgroundColor: 'white',
@@ -251,9 +256,17 @@ const styles = {
   },
   aboutTitleSpan: {
     fontSize: '24pt',
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     fontWeight: '300',
     textTransform: 'uppercase'
+  },
+  playgroundBullets: {
+    listStyle: 'disc',
+    paddingLeft: '30px',
+    paddingRight: '30px'
+  },
+  playgroundBullet: {
+    marginBottom: '20px'
   }
 
 };

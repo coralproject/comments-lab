@@ -4,6 +4,8 @@ import Radium from 'radium';
 
 import { setToggler, setTopic } from 'playground/PlaygroundActions';
 
+import {themes} from 'playgroundSettings';
+
 import Switch from '../../components/forms/Switch';
 
 @connect(state => state.playground)
@@ -18,7 +20,7 @@ class CustomizerToggle extends React.Component {
   onTogglerClick() {
     var currentStatus = this.props.toggler.status;
     this.props.dispatch(setToggler(this.props.groupIndex, this.props.togglerIndex, !currentStatus));
-    this.setState({ active: !currentStatus });    
+    this.setState({ active: !currentStatus });
   }
 
   onMouseEnter() {
@@ -78,13 +80,13 @@ var styles = {
   },
   descriptionSpan: {
     fontWeight: 'bold',
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     fontSize: '14pt',
     lineHeight: '30px'
   },
   description: {
     color: '#666',
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     marginTop: '10px'
   },
   checkbox: {
@@ -93,7 +95,7 @@ var styles = {
   switchExtra: {
     'float': 'left',
     margin: '0 10px 0 0',
-    fontFamily: 'Fira Sans'
+    fontFamily: themes.default.fontFamily
   },
   clearfix: {
     clear: 'both'

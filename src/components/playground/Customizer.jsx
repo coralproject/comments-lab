@@ -4,7 +4,7 @@ import Radium from 'radium';
 
 import CustomizerSettings from './CustomizerSettings';
 
-import mediaQueries from '../../playgroundSettings';
+import {themes, mediaQueries} from '../../playgroundSettings';
 
 @connect(state => state.playground)
 @Radium
@@ -67,7 +67,7 @@ var styles = {
   },
   customizeTogglerTitleSpan: {
     fontSize: '24pt',
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     fontWeight: '300',
     textTransform: 'uppercase'
   },

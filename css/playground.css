@@ -1,11 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Josefin+Slab:400,300,600,300italic|Fira+Sans:300,700,400);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900,300);
 
 /*
 body {
   font-family: "Fira Sans";
   font-weight: 400;
   background-color: white;
-  
+
   background-attachment: scroll;
   background: rgba(247,114,96,1);
   background: -moz-linear-gradient(left, rgba(247,114,96,1) 0%, rgba(252,149,70,1) 100%);
@@ -19,8 +20,12 @@ body {
   background-repeat: none;
 }*/
 
+* {
+  font-family: inherit;
+}
+
 p, p span {
-  font-family: 'Fira Sans' !important;
+  font-family: 'Lato' !important;
 }
 
 

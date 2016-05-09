@@ -11,7 +11,7 @@ import FaEllipsisH from 'react-icons/lib/fa/ellipsis-h';
 import MdPlace from 'react-icons/lib/md/place';
 import MdComment from 'react-icons/lib/md/comment';
 
-import mediaQueries from '../../playgroundSettings';
+import { mediaQueries } from '../../playgroundSettings';
 import { blockUser } from 'playground/playgroundActions';
 
 @connect(state => state.playground)

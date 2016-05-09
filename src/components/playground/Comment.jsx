@@ -16,7 +16,7 @@ import CommentTools from './CommentTools';
 import FaCog from 'react-icons/lib/fa/cog';
 import CoralIcon from '../../components/CoralIcon';
 
-import mediaQueries from '../../playgroundSettings';
+import { mediaQueries } from '../../playgroundSettings';
 
 @connect(state => state.playground)
 @Radium

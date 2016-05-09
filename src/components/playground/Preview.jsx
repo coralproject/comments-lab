@@ -7,7 +7,7 @@ import Stream from './Stream';
 
 import MdComment from 'react-icons/lib/md/comment';
 
-import mediaQueries from '../../playgroundSettings';
+import { themes, mediaQueries } from '../../playgroundSettings';
 
 @connect(state => state.playground)
 @Radium
@@ -24,16 +24,16 @@ class Preview extends React.Component {
 
   onHideCommentsClick() {
     console.log("Hide");
-    this.setState({ commentsAreVisible: false }); 
+    this.setState({ commentsAreVisible: false });
   }
 
   render() {
 
 
-    var guidelines = this.props.togglerGroups['community'].togglers['guidelines'].status ? 
+    var guidelines = this.props.togglerGroups['community'].togglers['guidelines'].status ?
         <div style={ styles.guidelines }>
           We aim to create a safe and sustainable environment for discussion. That means:
-          
+
           <ul>
             <li>Be supportive of each other</li>
             <li>Criticize ideas, not people</li>
@@ -44,7 +44,7 @@ class Preview extends React.Component {
           <p>The best contributions will be featured on the site and in our newsletter.</p>
           <a href="#">Click here to read our community guidelines and harassment policy.</a>
         </div>
-      : 
+      :
         null;
 
     return (
@@ -61,8 +61,8 @@ class Preview extends React.Component {
           }
         </div>
 
-        { 
-          !this.props.togglerGroups.layout.togglers.hiddenbydefault.status || 
+        {
+          !this.props.togglerGroups.layout.togglers.hiddenbydefault.status ||
             this.state.commentsAreVisible ?
 
             <div style={ styles.sandBox }>
@@ -72,7 +72,7 @@ class Preview extends React.Component {
               <Stream />
             </div>
 
-          : 
+          :
 
             <div style={ styles.clickToRead } onClick={ this.onClickToReadClick.bind(this) }>
               <MdComment /> Click to see the comments...
@@ -125,7 +125,7 @@ var styles = {
     position: 'relative'
   },
   previewTitleSpan: {
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     fontWeight: '300',
     fontSize: '24pt'
   },

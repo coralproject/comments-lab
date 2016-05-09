@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 
-import mediaQueries from '../../playgroundSettings';
+import { themes, mediaQueries } from '../../playgroundSettings';
 
 import FaTwitter from 'react-icons/lib/fa/twitter';
 import FaChevronUp from 'react-icons/lib/fa/chevron-up';
@@ -131,7 +131,7 @@ var styles = {
     display: 'block',
     fontSize: '10pt',
     padding: '10px 0',
-    fontFamily: 'Fira Sans'
+    fontFamily: themes.default.fontFamily
   },
   twitterIcon: {
     color: '#55acee'
@@ -153,11 +153,11 @@ var styles = {
     }
   },
   twitterTitle: {
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     fontWeight: '700'
   },
   referencesTitle: {
-    fontFamily: 'Fira Sans',
+    fontFamily: themes.default.fontFamily,
     fontWeight: '700',
     marginBottom: '20px'
   },

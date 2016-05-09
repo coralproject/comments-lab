@@ -20,6 +20,8 @@ import MdFormatQuote from 'react-icons/lib/md/format-quote';
 import FaSmileO from 'react-icons/lib/fa/smile-o';
 import FaHeart from 'react-icons/lib/fa/heart';
 
+import { themes } from 'playgroundSettings';
+
 @connect(state => state.playground)
 @Radium
 class CommentBox extends React.Component {
@@ -253,7 +255,7 @@ var styles = {
   commentBoxTitle: {
     fontSize: '11pt',
     paddingBottom: '10px',
-    fontFamily: 'Fira Sans'
+    fontFamily: themes.default.fontFamily
   },
   toolBarButton: {
     cursor: 'pointer',
@@ -284,10 +286,10 @@ var styles = {
   },
   strong: {
     fontWeight: 'bold',
-    fontFamily: 'Fira Sans'
+    fontFamily: themes.default.fontFamily
   },
   postingAs: {
-    fontFamily: 'Fira Sans'
+    fontFamily: themes.default.fontFamily
   },
   emojiPickerStyles: {
     position: 'absolute',
