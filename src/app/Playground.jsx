@@ -79,9 +79,10 @@ class Playground extends React.Component {
                     <br /><br />
                     <ul style={ styles.playgroundBullets }>
                       <li style={ styles.playgroundBullet }><strong>Use the controls</strong> to tweak the UI and explore how it affects the comment box and the stream. You can also try the features on the comment box and the stream itself.</li>
-                      <li style={ styles.playgroundBullet }><strong>Learn about online comments</strong> and the issues they are facing,
-                      through the contextual sidebar.</li>
+                      <li style={ styles.playgroundBullet }><strong>Learn more about online comments</strong>, the issues they are facing, and the purpose and history of the features we see everyday on comment streams,
+                      through the expandable panel below.</li>
                     <li style={ styles.playgroundBullet }><strong>Share your thoughts</strong> on the problems addressed by each solution.</li>
+                    <li style={ styles.playgroundBullet }><strong>Interested in <span style={ styles.experimentsLabel }>experiments?</span></strong> For comments with a twist, check out the "Experimental" section of the customizer down below.</li>
                     </ul>
                   </div>
 
@@ -92,6 +93,10 @@ class Playground extends React.Component {
                 {/*
                 <div style={ styles.footer }>
                   Medal, Trophy and Badge icons by Zlatko Najdenovski from the Noun Project
+
+                  Badge by Mark Shorter from the Noun Project
+
+                  
                 </div>
                 */}
 
@@ -267,6 +272,11 @@ const styles = {
   },
   playgroundBullet: {
     marginBottom: '20px'
+  },
+  experimentsLabel: {
+    backgroundClip: 'text',
+    backgroundImage: 'linear-gradient(red, orange)',
+    animation: 'experimentalLabel 1000ms linear 5'
   }
 
 };

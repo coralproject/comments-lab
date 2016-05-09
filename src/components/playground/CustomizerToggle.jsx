@@ -52,19 +52,17 @@ export default CustomizerToggle;
 
 var styles = {
   base: {
-    padding: '20px',
-    marginBottom: '15px',
-    borderLeft: '1px solid #999',
-    borderRight: '1px solid #999',
+    padding: '20px 40px',
     borderBottom: '1px solid #999',
-    borderTop: '4px solid #999',
+    borderTop: '1px solid #999',
+    marginTop: '-1px',
     minHeight: '100px',
     width: '100%',
     transition: 'background .5s',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    backgroundColor: 'rgba(255,255,255,.35)'
   },
   active: {
-    borderTop: '4px solid #F77260',
     backgroundColor: 'white'
   },
   label: {
@@ -87,7 +85,8 @@ var styles = {
   description: {
     color: '#666',
     fontFamily: themes.default.fontFamily,
-    marginTop: '10px'
+    marginTop: '10px',
+    fontSize: '11pt'
   },
   checkbox: {
     display: 'none'

@@ -53,8 +53,8 @@ var styles = {
     fontSize: '11pt',
     color: '#999',
     textTransform: 'uppercase',
-    marginBottom: '20px',
-    fontFamily: themes.default.fontFamily
+    fontFamily: themes.default.fontFamily,
+    margin: '0 40px 20px 40px'
   },
   clearBoth: {
     'clear': 'both'

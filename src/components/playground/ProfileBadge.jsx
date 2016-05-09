@@ -31,7 +31,7 @@ export default ProfileBadge;
 var styles = {
   profileBadge: {
     position: 'absolute',
-    top: '20px',
+    top: '25px',
     left: '0px',
     textAlign: 'center',
     cursor: 'pointer',

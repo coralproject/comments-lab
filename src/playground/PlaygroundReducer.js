@@ -41,9 +41,9 @@ const initialState = {
       upvoteBalance: 89,
       badges: [
         {
-          name: 'Verified identity',
-          icon: 'badge',
-          color: '#090'
+          name: 'Author',
+          icon: 'author',
+          color: '#777'
         }
       ]
     },
@@ -59,14 +59,14 @@ const initialState = {
       upvoteBalance: 42,
       badges: [
         {
-          name: 'Top 5% contributors',
-          icon: 'trophy',
-          color: '#a90'
+          name: 'Author',
+          icon: 'author',
+          color: '#777'
         },
         {
           name: 'Expert moderator',
-          icon: 'medal',
-          color: '#09a'
+          icon: 'moderator',
+          color: '#777'
         }
       ]
     },
@@ -83,8 +83,8 @@ const initialState = {
       badges: [
         {
           name: 'Expert moderator',
-          icon: 'medal',
-          color: '#09a'
+          icon: 'moderator',
+          color: '#777'
         }
       ]
     },
@@ -101,8 +101,8 @@ const initialState = {
       badges: [
         {
           name: 'Expert moderator',
-          icon: 'medal',
-          color: '#09a'
+          icon: 'moderator',
+          color: '#777'
         }
       ]
     }

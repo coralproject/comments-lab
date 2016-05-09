@@ -14,9 +14,11 @@ import Upvoter from './Upvoter';
 import CommentTools from './CommentTools';
 
 import FaCog from 'react-icons/lib/fa/cog';
-import CoralIcon from '../../components/CoralIcon';
 
 import { mediaQueries } from '../../playgroundSettings';
+
+import CoralIcon from '../../components/CoralIcon';
+
 
 @connect(state => state.playground)
 @Radium
@@ -53,60 +55,71 @@ class Comment extends React.Component {
           this.props.depth > 0 ? { borderLeft: '1px solid #ddd' } : null
         ]
       }>
-        <h4 style={ [
-              styles.userName,
-              this.props.togglerGroups['reputation'].togglers['badges'].status &&
-              pulsateName ? styles.colorPulse : null
-           ] }
-           onClick={ this.onProfileClick.bind(this) }>
+        <div style={ styles.nameAndBadges }>
 
-          {
-            this.props.togglerGroups['privacy'].togglers['anonymity'].status ?
-            this.props.users[this.props.user].nickName :
-            this.props.users[this.props.user].realName
-          }
-
-          <ReactCSSTransitionGroup transitionName="fade" transitionAppear={ false }>
-            <span style={ styles.badgesHolder }>
-              {
-                this.props.togglerGroups['experimental'].togglers['topicrelevant'].status ?
-                  <span>
-                    {
-                      user.party ?
-                        <img src={ 'img/playground/' + user.party + '.png' } width="24" align="absmiddle" style={ styles.userParty } alt={ user.party } />
-                      :
-                        null
-                    }
-                  </span>
-                : ''
-              }
-
+          <div style={ styles.nameAndDate }>
+            <h4 style={ [
+                  styles.userName,
+                  this.props.togglerGroups['reputation'].togglers['badges'].status &&
+                  pulsateName ? styles.colorPulse : null
+               ] }
+               onClick={ this.onProfileClick.bind(this) }>
 
               {
-                this.props.togglerGroups['reputation'].togglers['badges'].status ?
-                  <span>
-                    {
-                      user.badges.map((badge, i) => {
-                        return (
-                          <CoralIcon style={ styles.badgeIcon } size="medium" name={ badge.icon } color={ badge.color } />
-                        );
-                      })
-                    }
-                  </span>
-                : ''
+                this.props.togglerGroups['privacy'].togglers['anonymity'].status ?
+                this.props.users[this.props.user].nickName :
+                this.props.users[this.props.user].realName
               }
-            </span>
-          </ReactCSSTransitionGroup>
 
-          {
-            !this.props.togglerGroups['layout'].togglers['profilepictures'].status &&
-            this.props.togglerGroups['community'].togglers['following'].status ?
-              <button style={ styles.followButton }>FOLLOW</button>
-            :
-              null
-          }
-        </h4>
-        <div style={ styles.date }>{ moment().fromNow() }</div>
+              {
+                !this.props.togglerGroups['layout'].togglers['profilepictures'].status &&
+                this.props.togglerGroups['community'].togglers['following'].status ?
+                  <button style={ styles.followButton }>FOLLOW</button>
+                :
+                  null
+              }
+            </h4>
+            <div style={ styles.date }>{ moment().fromNow() }</div>
+          </div>
+
+          <div style={ styles.badgesHolderWrapper }>
+
+            <ReactCSSTransitionGroup transitionName="fade" transitionAppear={ false }>
+              <span style={ styles.badgesHolder }>
+                {
+                  this.props.togglerGroups['experimental'].togglers['topicrelevant'].status ?
+                    <span>
+                      {
+                        user.party ?
+                          <img src={ 'img/playground/' + user.party + '.png' } height="24" align="absmiddle" style={ styles.userParty } alt={ user.party } />
+                        :
+                          null
+                      }
+                    </span>
+                  : ''
+                }
+
+
+                {
+                  this.props.togglerGroups['reputation'].togglers['badges'].status ?
+                    <span>
+                      {
+                        user.badges.map((badge, i) => {
+                          console.log("Icono", badge.icon);
+                          return (
+                            <CoralIcon style={ styles.badgeIcon } size="medium" name={ badge.icon } color={ badge.color } />
+                          );
+                        })
+                      }
+                    </span>
+                  : ''
+                }
+              </span>
+            </ReactCSSTransitionGroup>
+
+          </div>
+
+        </div>
         <ReactCSSTransitionGroup transitionName="profileinfo" transitionAppear={ false }>
           { profileInfoSection }
         </ReactCSSTransitionGroup>
@@ -154,12 +167,11 @@ var styles = {
   },
   userName: {
     fontSize: '12pt',
-    lineHeight: '30px',
     fontWeight: '600',
     color: '#333',
-    marginBottom: '5px',
     cursor: 'pointer',
-    position: 'relative'
+    position: 'relative',
+    marginBottom: '3px'
   },
   commentContent: {
     cursor: 'pointer',
@@ -175,8 +187,11 @@ var styles = {
     paddingLeft: '0px'
   },
   badgeIcon: {
-    height: '30px',
-    lineHeight: '24px',
+    display: 'inline-block',
+    height: '45px',
+    fontSize: '40px'
+    //height: '30px',
+    //lineHeight: '24px',
   },
   date: {
     fontSize: '10pt',
@@ -213,9 +228,22 @@ var styles = {
     cursor: 'pointer'
   },
   badgesHolder: {
-    lineHeight: '30px',
+    lineHeight: '40px',
+    height: '40px'
   },
   userParty: {
     marginLeft: '10px'
+  },
+  nameAndBadges: {
+    display: 'flex'
+  },
+  badgesHolderWrapper: {
+    position: 'relative',
+    width: '50%'
+  },
+  badgesHolder: {
+    position: 'absolute',
+    width: '50%',
+    padding: '5px 10px'
   }
 };

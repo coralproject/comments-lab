@@ -38,7 +38,7 @@ export default Customizer;
 
 var styles = {
   customizer: {
-    padding: '40px 40px 200px 40px',
+    padding: '40px 0px 200px 0px',
     background: '#F1EBE0',
     color: '#3d3d3d',
     [mediaQueries.tablet]: {
@@ -52,6 +52,7 @@ var styles = {
   customizeToggler: {
     borderBottom: '1px solid #ccc',
     paddingBottom: '10px',
+    margin: '0 40px',
     position: 'relative',
     fontSize: '16pt',
     cursor: 'pointer'

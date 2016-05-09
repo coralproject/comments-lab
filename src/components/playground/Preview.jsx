@@ -113,9 +113,9 @@ var styles = {
   },
   sandBoxIntro: {
     padding: '20px',
-    color: '#999',
+    color: '#AAA',
     textAlign: 'center',
-    fontSize: '9pt'
+    fontSize: '11pt'
   },
   previewBar: {
     borderBottom: '1px solid #ccc',

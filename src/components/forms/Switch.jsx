@@ -54,7 +54,7 @@ export default class Switch extends React.Component {
       },
       sideLabels: {
         width: '40px',
-        fontSize: '17px',
+        fontSize: '15px',
         textAlign: 'center',
         height: '30px',
         lineHeight: '30px',
@@ -100,7 +100,7 @@ export default class Switch extends React.Component {
           this.state.checked && switchStyles.checked,
           this.state.active && switchStyles.active,
           this.props.extraStyles
-        ]} 
+        ]}
         onClick={this.clickHandler.bind(this)}
         onMouseDown={this.activeHandler.bind(this)}
         onMouseUp={this.activeHandler.bind(this)}>

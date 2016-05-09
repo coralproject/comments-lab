@@ -144,35 +144,41 @@ class CommentBox extends React.Component {
       : '';
 
     return (
-      <div style={ [ styles.commentBox, this.props.replyMode ? styles.replyMode : '' ] }>
+      <div>
         {
           !this.props.replyMode ?
             <h3 style={ styles.commentBoxTitle }><span style={ styles.postingAs }>Posting as </span><strong style={ styles.strong }>{ this.props.togglerGroups['privacy'].togglers['anonymity'].status ? 'bogususer123' : 'Bogus Jones' }</strong></h3>
           :
             null
         }
-        <ReactCSSTransitionGroup transitionName="fade" transitionAppear={ false }>
-          { toolBar }
-        </ReactCSSTransitionGroup>
-        <div style={ styles.draftJsEditor }>
-          { this.emojiPicker() }
-          <Editor ref="draftJsEditor" editorState={editorState} onChange={this.onChange} />
-        </div>
-        <div style={ styles.commentBoxActions }>
+        <div style={ [ styles.commentBox, this.props.replyMode ? styles.replyMode : '' ] }>
+          <ReactCSSTransitionGroup transitionName="fade" transitionAppear={ false }>
+            { toolBar }
+          </ReactCSSTransitionGroup>
+          <div style={ styles.draftJsEditor }>
+            { this.emojiPicker() }
+            <Editor ref="draftJsEditor" editorState={editorState} onChange={this.onChange} />
+          </div>
+          <div style={ styles.commentBoxActions }>
+            {
+              this.props.replyMode && this.props.togglerGroups['experimental'].togglers['replyrating'].status ?
+                <div style={ styles.replyRating }>
+                  <span onClick={ this.onRatingClick.bind(this, 'agree') } style={ [ styles.replyAgree, this.state.selectedRating == 'agree' ? styles.activeRating : '' ] }>Agree</span>
+                  <span onClick={ this.onRatingClick.bind(this, 'neutral') } style={ [ styles.replyNeutral, this.state.selectedRating == 'neutral' ? styles.activeRating : '' ] }>Neutral</span>
+                  <span onClick={ this.onRatingClick.bind(this, 'disagree') } style={ [ styles.replyDisagree, this.state.selectedRating == 'disagree' ? styles.activeRating : '' ] }>Disagree</span>
+                </div>
+              :
+                null
+            }
+            <button style={ styles.sendButton } onClick={ this.onSendClick.bind(this) }>Post</button>
+          </div>
           {
-            this.props.replyMode && this.props.togglerGroups['experimental'].togglers['replyrating'].status ?
-              <div style={ styles.replyRating }>
-                <span onClick={ this.onRatingClick.bind(this, 'agree') } style={ [ styles.replyAgree, this.state.selectedRating == 'agree' ? styles.activeRating : '' ] }>Agree</span>
-                <span onClick={ this.onRatingClick.bind(this, 'neutral') } style={ [ styles.replyNeutral, this.state.selectedRating == 'neutral' ? styles.activeRating : '' ] }>Neutral</span>
-                <span onClick={ this.onRatingClick.bind(this, 'disagree') } style={ [ styles.replyDisagree, this.state.selectedRating == 'disagree' ? styles.activeRating : '' ] }>Disagree</span>
+            !this.props.replyMode ?
+              <div style={ styles.safetyTips }>
+                <span style={ styles.heart }><FaHeart /></span> Dont engage in personal attacks! Remember you can always use the report tools.
               </div>
-            :
-              null
+            : null
           }
-          <button style={ styles.sendButton } onClick={ this.onSendClick.bind(this) }>Post</button>
-        </div>
-        <div style={ styles.safetyTips }>
-          <span style={ styles.heart }><FaHeart /></span> Dont engage in personal attacks! Remember you can always use the report tools.
         </div>
       </div>
     );
@@ -194,13 +200,11 @@ var styles = {
     borderBottom: '1px solid #ddd'
   },
   commentBox: {
-    backgroundColor: '#f0f0f0',
-    border: '1px solid #aaa',
-    padding: '20px',
-    borderRadius: '8px'
+    border: '1px solid #ddd',
   },
   replyMode: {
-    padding: '4px'
+    padding: '4px',
+    boxShadow: '0 0 8px #CCC'
   },
   commentBoxActions: {
     padding: '20px',
@@ -265,7 +269,8 @@ var styles = {
     borderLeft: '0',
     borderBottom: '0',
     background: 'white',
-    fontSize: '12pt'
+    fontSize: '12pt',
+    outline: 'none'
   },
   toolBarActive: {
     background: '#F77260',
