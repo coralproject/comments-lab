@@ -36,7 +36,7 @@ class ProfileInfo extends React.Component {
             <div style={ styles.profileLeftPane }>
               <h3 style={ styles.userName }>
                 {
-                  this.props.togglerGroups['privacy'].togglers['anonymity'].status ?
+                  this.props.togglerGroups['privacy'].togglers['pseudonyms'].status ?
                   user.nickName :
                   user.realName
                 }
@@ -235,7 +235,7 @@ var styles = {
   },
   badge: {
     position: 'relative',
-    paddingLeft: '30px',
+    paddingLeft: '40px',
     height: '40px',
     marginBottom: '5px',
     lineHeight: '40px',
@@ -243,8 +243,8 @@ var styles = {
   },
   badgeIcon: {
     position: 'absolute',
-    left: '0px',
-    top: '5px',
+    left: '10px',
+    top: '12px',
     height: '40px',
     width: '40px',
     lineHeight: '40px',

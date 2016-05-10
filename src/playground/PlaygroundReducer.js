@@ -74,6 +74,7 @@ const initialState = {
       nickName: 'satanicverses',
       realName: 'Salmon Rushdie',
       party: 'democrat',
+      anonymous: true,
       comments: 110,
       points: 244,
       membershipAge: '1 year',

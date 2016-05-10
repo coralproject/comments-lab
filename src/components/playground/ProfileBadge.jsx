@@ -12,8 +12,17 @@ class ProfileBadge extends React.Component {
 
     return (
       <div style={[ styles.profileBadge, this.props.style ]} onClick={ this.props.profileClickHandler }>
-        <img style={ styles.profilePicture } width="60" height="60" src={ "/img/playground/profile" + this.props.user + ".jpg" } />
         {
+          this.props.togglerGroups.privacy.togglers.anonymity.status &&
+          this.props.users[this.props.user].anonymous ?
+            <img style={ styles.profilePicture } width="60" height="60" src={ "/img/playground/anonymous.png" } />
+          :
+            <img style={ styles.profilePicture } width="60" height="60" src={ "/img/playground/profile" + this.props.user + ".jpg" } />
+        }
+
+        {
+          (this.props.togglerGroups.privacy.togglers.anonymity.status &&
+          !this.props.users[this.props.user].anonymous) &&
           this.props.togglerGroups['community'].togglers['following'].status ?
             <button style={ styles.followButton }>FOLLOW</button>
           :

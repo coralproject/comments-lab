@@ -13,7 +13,7 @@ import ActionsBar from './ActionsBar';
 import Upvoter from './Upvoter';
 import CommentTools from './CommentTools';
 
-import FaCog from 'react-icons/lib/fa/cog';
+import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow_down';
 
 import { mediaQueries } from '../../playgroundSettings';
 
@@ -35,7 +35,9 @@ class Comment extends React.Component {
   render() {
 
     var commentTools = this.state.toolsExpanded ? <CommentTools {...this.props} /> : null;
-    var profileInfoSection = this.state.profileExpanded ? <ProfileInfo user={ this.props.user } /> : null;
+    var profileInfoSection = this.state.profileExpanded &&
+      (!this.props.users[this.props.user].anonymous || !this.props.togglerGroups.privacy.togglers.anonymity.status)
+      ? <ProfileInfo user={ this.props.user } /> : null;
 
     var leftPadding = 0;
     if (this.props.togglerGroups.layout.togglers.profilepictures.status) leftPadding += 75;
@@ -45,6 +47,10 @@ class Comment extends React.Component {
 
     var pulsateTools = this.props.pulseAnimation && this.props.pulseTarget == "commentTools";
     var pulsateName = this.props.pulseAnimation && this.props.pulseTarget == "commentName";
+
+    var userName = this.props.togglerGroups.privacy.togglers.pseudonyms.status ?
+      this.props.users[this.props.user].nickName :
+      this.props.users[this.props.user].realName;
 
     return (
 
@@ -65,11 +71,13 @@ class Comment extends React.Component {
                ] }
                onClick={ this.onProfileClick.bind(this) }>
 
-              {
-                this.props.togglerGroups['privacy'].togglers['anonymity'].status ?
-                this.props.users[this.props.user].nickName :
-                this.props.users[this.props.user].realName
-              }
+               {
+                 this.props.togglerGroups.privacy.togglers.anonymity.status &&
+                 !!this.props.users[this.props.user].anonymous ?
+                  "anonymous"
+                 :
+                  userName
+               }
 
               {
                 !this.props.togglerGroups['layout'].togglers['profilepictures'].status &&
@@ -82,42 +90,49 @@ class Comment extends React.Component {
             <div style={ styles.date }>{ moment().fromNow() }</div>
           </div>
 
-          <div style={ styles.badgesHolderWrapper }>
+          {
 
-            <ReactCSSTransitionGroup transitionName="fade" transitionAppear={ false }>
-              <span style={ styles.badgesHolder }>
-                {
-                  this.props.togglerGroups['experimental'].togglers['topicrelevant'].status ?
-                    <span>
-                      {
-                        user.party ?
-                          <img src={ 'img/playground/' + user.party + '.png' } height="24" align="absmiddle" style={ styles.userParty } alt={ user.party } />
-                        :
-                          null
-                      }
-                    </span>
-                  : ''
-                }
+            !this.props.togglerGroups.privacy.togglers.anonymity.status || 
+            !this.props.users[this.props.user].anonymous ?
+
+              <div style={ styles.badgesHolderWrapper }>
+
+                <ReactCSSTransitionGroup transitionName="fade" transitionAppear={ false }>
+                  <span style={ styles.badgesHolder }>
+                    {
+                      this.props.togglerGroups['experimental'].togglers['topicrelevant'].status ?
+                        <span style={ styles.topicRelevantBadges }>
+                          {
+                            user.party ?
+                              <img src={ 'img/playground/' + user.party + '.png' } height="24" align="absmiddle" style={ styles.userParty } alt={ user.party } />
+                            :
+                              null
+                          }
+                        </span>
+                      : ''
+                    }
 
 
-                {
-                  this.props.togglerGroups['reputation'].togglers['badges'].status ?
-                    <span>
-                      {
-                        user.badges.map((badge, i) => {
-                          console.log("Icono", badge.icon);
-                          return (
-                            <CoralIcon style={ styles.badgeIcon } size="medium" name={ badge.icon } color={ badge.color } />
-                          );
-                        })
-                      }
-                    </span>
-                  : ''
-                }
-              </span>
-            </ReactCSSTransitionGroup>
+                    {
+                      this.props.togglerGroups['reputation'].togglers['badges'].status ?
+                        <span style={ [ styles.reputationBadges, this.props.togglerGroups['experimental'].togglers['topicrelevant'].status ? styles.withPartyBadges : '' ] }>
+                          {
+                            user.badges.map((badge, i) => {
+                              return (
+                                <CoralIcon style={ [ styles.badgeIcon, { left: (i * 35) + 'px' } ] } size="medium" name={ badge.icon } color={ badge.color } />
+                              );
+                            })
+                          }
+                        </span>
+                      : ''
+                    }
+                  </span>
+                </ReactCSSTransitionGroup>
 
-          </div>
+              </div>
+            :
+              null
+          }
 
         </div>
         <ReactCSSTransitionGroup transitionName="profileinfo" transitionAppear={ false }>
@@ -140,7 +155,7 @@ class Comment extends React.Component {
         </div>
         <ActionsBar { ...this.props } />
 
-        <div style={ [ styles.moreTools, pulsateTools ? styles.zoomPulse : null ] } onClick={ this.onToolsClick.bind(this) }><FaCog /></div>
+        <div style={ [ styles.moreTools, pulsateTools ? styles.zoomPulse : null ] } onClick={ this.onToolsClick.bind(this) }><MdKeyboardArrowDown /></div>
 
         <ReactCSSTransitionGroup transitionName="commentTools" transitionAppear={ false }>
           { commentTools }
@@ -232,7 +247,8 @@ var styles = {
     height: '40px'
   },
   userParty: {
-    marginLeft: '10px'
+    position: 'absolute',
+    top: '2px'
   },
   nameAndBadges: {
     display: 'flex'
@@ -245,5 +261,11 @@ var styles = {
     position: 'absolute',
     width: '50%',
     padding: '5px 10px'
+  },
+  topicRelevantBadges: {
+
+  },
+  withPartyBadges: {
+    paddingLeft: '35px'
   }
 };

@@ -147,7 +147,7 @@ class CommentBox extends React.Component {
       <div>
         {
           !this.props.replyMode ?
-            <h3 style={ styles.commentBoxTitle }><span style={ styles.postingAs }>Posting as </span><strong style={ styles.strong }>{ this.props.togglerGroups['privacy'].togglers['anonymity'].status ? 'bogususer123' : 'Bogus Jones' }</strong></h3>
+            <h3 style={ styles.commentBoxTitle }><span style={ styles.postingAs }>Posting as </span><strong style={ styles.strong }>{ this.props.togglerGroups['privacy'].togglers['pseudonyms'].status ? 'bogususer123' : 'Bogus Jones' }</strong></h3>
           :
             null
         }

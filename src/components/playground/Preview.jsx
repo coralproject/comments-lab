@@ -75,7 +75,7 @@ class Preview extends React.Component {
           :
 
             <div style={ styles.clickToRead } onClick={ this.onClickToReadClick.bind(this) }>
-              <MdComment /> Click to see the comments...
+              <MdComment /> Click here to <strong>read the comments.</strong>
             </div>
         }
       </div>
