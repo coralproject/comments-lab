@@ -12,7 +12,7 @@ import MdPlace from 'react-icons/lib/md/place';
 import MdComment from 'react-icons/lib/md/comment';
 
 import { mediaQueries } from '../../playgroundSettings';
-import { blockUser } from 'playground/playgroundActions';
+import { blockUser } from 'playground/PlaygroundActions';
 
 @connect(state => state.playground)
 @Radium

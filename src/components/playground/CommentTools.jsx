@@ -6,7 +6,7 @@ import ReportingTool from './ReportingTool';
 import ReactionTools from './ReactionTools';
 
 import { mediaQueries } from '../../playgroundSettings';
-import { deleteComment, blockUser } from 'playground/playgroundActions';
+import { deleteComment, blockUser } from 'playground/PlaygroundActions';
 
 @connect(state => state.playground)
 @Radium
@@ -26,11 +26,11 @@ class CommentTools extends React.Component {
 
   onOptionClick(optionKey) {
     switch (optionKey) {
-   
+
     case 'report':
       this.setState({ reportingExpanded: !this.state.reportingExpanded, position: this.getTopOffset() });
       break;
-    
+
     case 'react':
       this.setState({ reactionsExpanded: !this.state.reactionsExpanded });
       break;
@@ -49,7 +49,7 @@ class CommentTools extends React.Component {
 
     default:
       break;
-    } 
+    }
   }
 
   blockClickHandler(user) {
@@ -62,9 +62,9 @@ class CommentTools extends React.Component {
 
   render() {
 
-    var reportingToolRender = this.state.reportingExpanded ? 
+    var reportingToolRender = this.state.reportingExpanded ?
       <div style={ styles.reportingToolOverlay } onClick={ this.onOverlayClick.bind(this, 'report') }>
-        <ReportingTool position={ this.state.position } /> 
+        <ReportingTool position={ this.state.position } />
       </div>
       : null;
 
@@ -75,13 +75,13 @@ class CommentTools extends React.Component {
     return (
       <div>
         <div style={ styles.commentTools } ref={(c) => this._commentTools = c}>
-          { 
-            this.props.togglerGroups['moderation'].togglers['muting'].status ? 
+          {
+            this.props.togglerGroups['moderation'].togglers['muting'].status ?
               <div key="block" style={ styles.commentToolsOption } onClick={ this.blockClickHandler.bind(this, this.props.user) }>
                 Block User
               </div>
-            : 
-              null 
+            :
+              null
           }
           <div key="report" style={ styles.commentToolsOption } onClick={ this.onOptionClick.bind(this, 'report') }>
             Report
@@ -91,7 +91,7 @@ class CommentTools extends React.Component {
               <div key="delete" style={ styles.commentToolsOption } onClick={ this.deleteClickHandler.bind(this, this.props.index, this.props.parents) }>
                 Delete
               </div>
-            : 
+            :
               null
           }
           <div key="share" style={ styles.commentToolsOption } onClick={ this.onOptionClick.bind(this, 'share') }>
