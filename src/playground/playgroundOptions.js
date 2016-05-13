@@ -214,13 +214,6 @@ const togglerGroups = {
         description: 'TBD',
         status: false,
         topic: 'topicrelevant'
-      },
-      'streamheat': {
-        label: 'Stream Heat is ON',
-        offLabel: 'Stream Heat is OFF',
-        description: 'TBD',
-        status: false,
-        topic: 'streamheat'
       }
     }
   }

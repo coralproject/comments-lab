@@ -43,7 +43,7 @@ class Stream extends React.Component {
   }
 
   componentDidUpdate() {
-    if (this.props.togglerGroups.experimental.togglers.streamheat.status) {
+    /*if (this.props.togglerGroups.experimental.togglers.streamheat.status) {
       console.log("Drawing stream heatmap", this.canvas);
 
       this.commentCount = 0;
@@ -52,7 +52,7 @@ class Stream extends React.Component {
 
       this.drawStreamHeat(this.props.comments);
 
-    }
+    }*/
   }
 
   drawStreamHeat(comments, depth = 0, parentIndex = false, parents = []) {
@@ -93,7 +93,7 @@ class Stream extends React.Component {
     var comments = this.getComments(this.props.comments);
 
     return (
-      <div style={ [ styles.stream, this.props.togglerGroups.experimental.togglers.streamheat.status ? styles.withStreamHeat : '' ]}>
+      <div style={ [ styles.stream ]}>
         <div style={ styles.streamHeat }>
           <canvas ref={(c) => { this.canvas = c }}  width="100" height="200" style={ styles.streamHeatCanvas }></canvas>
         </div>
