@@ -7,13 +7,10 @@ import Radium from 'radium';
 import Sidebar from 'components/playground/Sidebar';
 import Customizer from 'components/playground/Customizer';
 import Preview from 'components/playground/Preview';
-import Wizard from 'components/playground/Wizard';
 
 import DocumentTitle from 'react-document-title';
 
 import { themes as themes, mediaQueries as mediaQueries } from 'playgroundSettings';
-
-import MdHelpOutline from 'react-icons/lib/md/help-outline';
 
 // Playground CSS
 require('../../css/playground.css');
@@ -22,29 +19,14 @@ require('../../fonts/playground/coral-icon-font.css');
 @connect(state => state.tags)
 @Radium
 class Playground extends React.Component {
-
-  onWizardClick() {
-    this.setState({ wizardIsOpen: !this.state.wizardIsOpen });
-  }
-
-  hideWizard() {
-    this.setState({ wizardIsOpen: false });
-  }
-
   render() {
-
-    var wizard = this.state.wizardIsOpen ?
-      <div style={ styles.wizardOverlay } onClick={ this.hideWizard.bind(this) }>
-        <Wizard hideWizard={ this.hideWizard.bind(this) } />
-      </div>
-      : null;
 
     return (
       <DocumentTitle title="Coral Playground">
 
         <div>
 
-          <div style={ [ styles.playgroundContainer, , this.state.wizardIsOpen ? styles.blurred : '' ] }>
+          <div style={ [ styles.playgroundContainer ] }>
 
             <div style={ styles.playgroundLeftPane }>
 
@@ -61,9 +43,6 @@ class Playground extends React.Component {
                     <p style={ styles.playgroundIntroText }>
                       An interactive catalog<br />of commenting tools
                     </p>
-
-                    <button style={ styles.wizardButton } onClick={ this.onWizardClick.bind(this) }>Use the Wizard</button>
-
                   </div>
 
                 </div>
@@ -113,8 +92,6 @@ class Playground extends React.Component {
             <Sidebar />
 
           </div>
-
-          { wizard }
 
         </div>
 
