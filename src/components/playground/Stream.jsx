@@ -93,7 +93,7 @@ class Stream extends React.Component {
     var comments = this.getComments(this.props.comments);
 
     return (
-      <div style={ [ styles.stream ]}>
+      <div key="0" style={ [ styles.stream ]}>
         <div style={ styles.streamHeat }>
           <canvas ref={(c) => { this.canvas = c }}  width="100" height="200" style={ styles.streamHeatCanvas }></canvas>
         </div>
