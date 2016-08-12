@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 
-import { setToggler } from 'playground/PlaygroundActions';
+import { setToggler } from 'playground/OldPlaygroundActions';
 
 import { themes, mediaQueries } from '../../playgroundSettings';
 

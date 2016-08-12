@@ -1,4 +1,4 @@
-import * as types from 'playground/PlaygroundActions';
+import * as types from 'playground/OldPlaygroundActions';
 
 // These files could be moved somewhere else, as config files.
 import togglerGroups from 'playground/playgroundOptions';

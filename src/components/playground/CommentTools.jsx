@@ -6,7 +6,7 @@ import ReportingTool from './ReportingTool';
 import ReactionTools from './ReactionTools';
 
 import { mediaQueries } from '../../playgroundSettings';
-import { deleteComment, blockUser } from 'playground/PlaygroundActions';
+import { deleteComment, blockUser } from 'playground/OldPlaygroundActions';
 
 @connect(state => state.playground)
 @Radium
