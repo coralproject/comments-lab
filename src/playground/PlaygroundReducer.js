@@ -12,6 +12,7 @@ const initialState = {
   pulseTarget: '',
   followedUsers: [],
   blockedUsers: [],
+  playground:{},
   wizardSteps: [
     {
       content: 'Do you think users should be able to remain anonymous (using a nickname)?',
