@@ -37,7 +37,6 @@ class CommentContainer extends Component {
   }
 
   render() {
-    console.log(this.props);
     return <div>{
       this.props.config.map(this.mapConfig.bind(this))
     }

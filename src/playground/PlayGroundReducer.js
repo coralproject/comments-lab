@@ -1,10 +1,11 @@
 import * as types from './PlaygroundActions';
-import comments from './PlaygroundComments';
+import comments from './playgroundComments';
+import users from './playgroundUsers';
 
 const initialState = {
   items:{
     comments:comments,
-    users:[]
+    users:users
   },
   config:
     {
@@ -14,7 +15,8 @@ const initialState = {
           component:'DefaultComment'
         }
       ]
-    }
+    },
+  stream:['a','b','c','d','e','f','g','h']
 };
 
 const playground = (state = initialState, action) => {

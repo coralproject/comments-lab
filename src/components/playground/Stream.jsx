@@ -7,8 +7,7 @@ import Comment from '../comments/CommentContainer';
 import { themes } from '../../playgroundSettings';
 
 @connect(state => {
-  console.log(state);
-  return {comments:state.newPlayground.items.comments};
+  return {commentStream:state.newPlayground.stream};
 })
 @Radium
 class Stream extends React.Component {
@@ -115,9 +114,9 @@ class Stream extends React.Component {
           //   </div>
           // :
             <div>
-              <p style={ styles.commentCount }>{ this.props.comments.length } comments</p>
-              {this.props.comments.map((comment) => {
-                return <Comment id={comment.id}/>;
+              <p style={ styles.commentCount }>{ this.props.commentStream.length } comments</p>
+              {this.props.commentStream.map((id) => {
+                return <Comment id={id}/>;
               })}
             </div>
         }
