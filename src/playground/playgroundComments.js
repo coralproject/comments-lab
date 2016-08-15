@@ -2,7 +2,7 @@ const comments = {
   a:{
     user: 1,
     id:'a',
-    content: "{community.mentions} Hello, @coolcat. {/community.mentions}Clinton is a smart guy, but I only started to trust or like him was when he was no longer running. And here he is running for his wife, Hillary. For him to lecture Sanders, or the public about Sanders, on the subject of honesty or integrity, is too much. I don't buy it. {content.emoji}:smile:{/content.emoji}",
+    content: "Hello, @coolcat. Clinton is a smart guy, but I only started to trust or like him was when he was no longer running. And here he is running for his wife, Hillary. For him to lecture Sanders, or the public about Sanders, on the subject of honesty or integrity, is too much. I don't buy it. :smile:",
     likes: 28,
     liked: false,
     reactions: ['heart', 'ok_woman'],

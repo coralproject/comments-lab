@@ -11,7 +11,7 @@ const initialState = {
     {
       comments:[
         {
-          dataTypes:['content'],
+          propTypes:['content'],
           component:'DefaultComment'
         }
       ]
