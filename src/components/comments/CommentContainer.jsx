@@ -28,17 +28,21 @@ import components from './';
 
 /*
 * Iterate through each component in config
-* and pass it props listed in item
+* and pass it the appropriate props from items
 */
 class CommentContainer extends Component {
-  mapConfig(config) {
-    let Component = components[this.props.config[0].component];
-    return <Component {...this.props.items[this.props.id]} />;
+  mapComponentFromConfig(config) {
+    let Component = components[config.component];
+    let props = {};
+    for (var i = 0; i < config.propTypes.length; i++) {
+      props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
+    }
+    return <Component {...props} />;
   }
 
   render() {
     return <div>{
-      this.props.config.map(this.mapConfig.bind(this))
+      this.props.config.map(this.mapComponentFromConfig.bind(this))
     }
     </div>;
   }
