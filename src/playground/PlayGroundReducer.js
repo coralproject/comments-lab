@@ -1,23 +1,20 @@
 import * as types from './PlaygroundActions';
+import comments from './PlaygroundComments';
 
 const initialState = {
   items:{
-    comments:[],
+    comments:comments,
     users:[]
   },
-  config:[
+  config:
     {
       comments:[
         {
-          dataTypes:['text'],
-          component:{
-            name:'comment',
-            path:'./comment'
-          }
+          dataTypes:['content'],
+          component:'DefaultComment'
         }
       ]
     }
-  ]
 };
 
 const playground = (state = initialState, action) => {

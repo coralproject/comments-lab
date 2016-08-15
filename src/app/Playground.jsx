@@ -16,7 +16,7 @@ import { themes as themes, mediaQueries as mediaQueries } from 'playgroundSettin
 require('../../css/playground.css');
 require('../../fonts/playground/coral-icon-font.css');
 
-@connect(state => state.tags)
+@connect(state => state)
 @Radium
 class Playground extends React.Component {
   render() {
