@@ -7,7 +7,7 @@ let config = {
   ],
   authors:[
     {
-      propTypes:['realName'],
+      propTypes:['nickName'],
       component:'DefaultAuthor'
     }
   ]

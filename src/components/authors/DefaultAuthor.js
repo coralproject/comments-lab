@@ -29,5 +29,5 @@ let defaultStyles =   {
     cursor: 'pointer',
     position: 'relative',
     marginBottom: '3px'
-  },
+  }
 };
