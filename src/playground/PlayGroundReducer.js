@@ -1,27 +1,14 @@
 import * as types from './PlaygroundActions';
 import comments from './playgroundComments';
 import users from './playgroundUsers';
+import config from './playgroundConfig';
 
 const initialState = {
   items:{
     comments:comments,
     users:users
   },
-  config:
-    {
-      comments:[
-        {
-          propTypes:['content'],
-          component:'DefaultComment'
-        }
-      ],
-      authors:[
-        {
-          propTypes:['nickName'],
-          component:'DefaultAuthor'
-        }
-      ]
-    },
+  config:config,    
   stream:['a','b','c','d','e','f','g','h']
 };
 
