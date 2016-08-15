@@ -15,8 +15,9 @@ import components from './';
 @connect(
   (state) => {
     return {
-      config: state.newPlayground.config.comments,
-      items: state.newPlayground.items.comments
+      config: state.newPlayground.config.authors,
+      authors: state.newPlayground.items.users,
+      comments: state.newPlayground.items.comments
     };
   },
   (dispatch) => {
@@ -30,14 +31,19 @@ import components from './';
 * Iterate through each component in config
 * and pass it the appropriate props from items
 */
-class CommentContainer extends Component {
+class AuthorContainer extends Component {
+  getItem() {
+    let authorId = this.props.comments[this.props.commentId].user;
+    return this.props.authors[authorId];
+  }
+
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {};
     for (var i = 0; i < config.propTypes.length; i++) {
-      props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
+      props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
     }
-    return <Component {...props} key={config.component}/>;
+    return <Component {...props} key={config.component} />;
   }
 
   render() {
@@ -48,8 +54,8 @@ class CommentContainer extends Component {
   }
 }
 
-CommentContainer.propTypes = {
-  id:PropTypes.string.isRequired
+AuthorContainer.propTypes = {
+  commentId:PropTypes.string.isRequired
 };
 
-export default CommentContainer;
+export default AuthorContainer;

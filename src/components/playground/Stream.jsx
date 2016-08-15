@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Radium from 'radium';
 
 import Comment from '../comments/CommentContainer';
+import Author from '../authors/AuthorContainer';
 
 import { themes } from '../../playgroundSettings';
 
@@ -116,7 +117,10 @@ class Stream extends React.Component {
             <div>
               <p style={ styles.commentCount }>{ this.props.commentStream.length } comments</p>
               {this.props.commentStream.map((id) => {
-                return <Comment id={id}/>;
+                return <div key={id}>
+                    <Author commentId={id}/>
+                    <Comment id={id}/>
+                  </div>;
               })}
             </div>
         }

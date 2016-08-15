@@ -14,6 +14,12 @@ const initialState = {
           propTypes:['content'],
           component:'DefaultComment'
         }
+      ],
+      authors:[
+        {
+          propTypes:['nickName'],
+          component:'DefaultAuthor'
+        }
       ]
     },
   stream:['a','b','c','d','e','f','g','h']
