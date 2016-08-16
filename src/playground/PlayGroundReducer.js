@@ -40,6 +40,24 @@ const removeComponent = (action, state) => {
   return Object.assign({}, state, {config:newConfig});
 };
 
+const updateComponent = (action, state) => {
+  if(!state.config[action.itemType]) {
+    return state;
+  }
+  let itemConfig = state.config[action.itemType];
+  let newItemConfig = itemConfig.slice();
+  for(let i=0; i < itemConfig.length; i++) {
+    if (itemConfig[i].component == action.component) {
+      let newComponentConfig = Object.assign({},itemConfig[i],{propTypes:action.propTypes});
+      newItemConfig = itemConfig.slice();
+      newItemConfig[i] = newComponentConfig;
+      break;
+    }
+  }
+  let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
+  return Object.assign({}, state, {config:newConfig});
+};
+
 const playground = (state = initialState, action) => {
 
   switch (action.type) {
@@ -47,6 +65,8 @@ const playground = (state = initialState, action) => {
     return addComponent(action, state);
   case types.REMOVE_COMPONENT:
     return removeComponent(action, state);
+  case types.UPDATE_COMPONENT:
+    return updateComponent(action, state);
   default:
     console.log('Not a Playground action:', action.type);
     return state;

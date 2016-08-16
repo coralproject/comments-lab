@@ -42,4 +42,24 @@ describe('PlaygroundActions', () => {
         .and.to.equal('SillyComponent');
     });
   });
+
+  describe('UPDATE_COMPONENT', ()=> {
+    it('should dispatch an UPDATE_COMPONENT action', () => {
+      let store = mockStore({});
+      actions.updateComponent(
+        'comments',
+        'UpdateMe',
+        ['content']
+        )(store.dispatch, store.getState);
+      let action = store.getActions()[0];
+      expect(action).to.have.property('type')
+        .and.to.equal(actions.UPDATE_COMPONENT);
+      expect(action).to.have.property('itemType')
+        .and.to.equal('comments');
+      expect(action).to.have.property('component')
+        .and.to.equal('UpdateMe');
+      expect(action).to.have.property('propTypes')
+        .and.to.deep.equal(['content']);
+    });
+  });
 });

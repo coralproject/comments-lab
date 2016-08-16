@@ -22,3 +22,14 @@ export function removeComponent(itemType, component) {
     });
   };
 }
+
+export function updateComponent(itemType, component, propTypes) {
+  return (dispatch) => {
+    dispatch({
+      type: UPDATE_COMPONENT,
+      itemType,
+      component,
+      propTypes
+    });
+  };
+}

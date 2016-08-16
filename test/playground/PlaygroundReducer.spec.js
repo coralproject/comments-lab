@@ -103,7 +103,7 @@ describe('PlaygroundReducer', () => {
         .and.to.deep.equal([]);
     });
 
-    it('should take no action if the itemType does note exist',() => {
+    it('should take no action if the itemType does not exist',() => {
       let state = {
         config:{
           authors:[
@@ -117,7 +117,80 @@ describe('PlaygroundReducer', () => {
       let newState = PlaygroundReducer(state, action);
       expect(newState).to.deep.equal(state);
     });
-    it('should take no action if the component does note exist',() => {
+    it('should take no action if the component does not exist',() => {
+      let state = {
+        config:{
+          authors:[
+            {
+              component:'KeepMeComponent',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal(state);
+    });
+  });
+
+  describe('UPDATE_COMPONENT', () => {
+    let action;
+    beforeEach(() => {
+      action = {
+        type: 'UPDATE_COMPONENT',
+        itemType:'comments',
+        component: 'UpdateMe',
+        propTypes: ['changed']
+      };
+    });
+
+    it('should not morph state', () => {
+      let state = {
+        config:{},
+        donot:'changeme'
+      };
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        config:{},
+        donot:'changeme'
+      });
+    });
+
+    it('should update the appropriate component', () => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config).to.have.property('comments')
+        .and.to.deep.equal([
+          {
+            component:'UpdateMe',
+            propTypes:['changed']
+          }]);
+    });
+
+    it('should take no action if the itemType does not exist',() => {
+      let state = {
+        config:{
+          authors:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal(state);
+    });
+    it('should take no action if the component does not exist',() => {
       let state = {
         config:{
           authors:[
