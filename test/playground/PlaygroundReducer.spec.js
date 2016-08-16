@@ -31,7 +31,7 @@ describe('PlaygroundReducer', () => {
       });
     });
 
-    it('should add a component to config', () => {
+    it('should add a component to config if the itemType does not yet exist', () => {
       let state = {config:{}};
       let newState = PlaygroundReducer(state, action);
       expect(newState.config).to.have.property('comments')
@@ -39,6 +39,97 @@ describe('PlaygroundReducer', () => {
           propTypes:['content'],
           component:'NYTContent'
         }]);
+    });
+
+    it('should add a component to config if the itemType already exists', () => {
+      let state = {
+        config:{
+          comments:[{
+            component:'FancyDate',
+            propTypes:['pubdate']
+          }]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config).to.have.property('comments')
+        .and.to.deep.equal([
+          {
+            component:'FancyDate',
+            propTypes:['pubdate']
+          },
+          {
+            propTypes:['content'],
+            component:'NYTContent'
+          }]);
+    });
+
+  });
+
+  describe('REMOVE_COMPONENT', () => {
+    let action;
+    beforeEach(() => {
+      action = {
+        type: 'REMOVE_COMPONENT',
+        itemType:'comments',
+        component: 'SillyComponent'
+      };
+    });
+
+    it('should not morph state', () => {
+      let state = {
+        config:{},
+        donot:'changeme'
+      };
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        config:{},
+        donot:'changeme'
+      });
+    });
+
+    it('should remove a component from config', () => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'SillyComponent',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config).to.have.property('comments')
+        .and.to.deep.equal([]);
+    });
+
+    it('should take no action if the itemType does note exist',() => {
+      let state = {
+        config:{
+          authors:[
+            {
+              component:'SillyComponent',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal(state);
+    });
+    it('should take no action if the component does note exist',() => {
+      let state = {
+        config:{
+          authors:[
+            {
+              component:'KeepMeComponent',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal(state);
     });
   });
 });
