@@ -12,3 +12,13 @@ export function addComponent(itemType, component, propTypes) {
     });
   };
 }
+
+export function removeComponent(itemType, component) {
+  return (dispatch) => {
+    dispatch({
+      type: REMOVE_COMPONENT,
+      itemType,
+      component
+    });
+  };
+}
