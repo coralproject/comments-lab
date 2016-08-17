@@ -1,3 +1,5 @@
+import {addComponent, removeComponent, updateComponent} from './PlaygroundActions';
+
 const togglerGroups = {
   'content': {
     name: 'Content',
@@ -74,7 +76,9 @@ const togglerGroups = {
         description: 'This means pseudonyms (nicknames) are allowed.',
         status: false,
         topic: 'pseudonyms',
-        pulseTarget: 'commentName'
+        pulseTarget: 'commentName',
+        onFunction: updateComponent('authors','DefaultAuthor',['nickName']),
+        offFunction: updateComponent('authors','DefaultAuthor',['realName'])
       },
       'public_profile': {
         label: 'Public Profile is ON',
