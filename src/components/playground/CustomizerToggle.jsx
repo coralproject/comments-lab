@@ -19,7 +19,9 @@ class CustomizerToggle extends React.Component {
 
   onTogglerClick() {
     var currentStatus = this.props.toggler.status;
-    this.props.dispatch(currentStatus ? this.props.toggler.offFunction : this.props.toggler.onFunction);
+    if (this.props.toggler.offFunction && this.props.toggler.onFunction) {
+      this.props.dispatch(currentStatus ? this.props.toggler.offFunction : this.props.toggler.onFunction);
+    }
     this.props.dispatch(setToggler(this.props.groupIndex, this.props.togglerIndex, !currentStatus));
     this.setState({ active: !currentStatus });
   }
