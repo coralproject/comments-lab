@@ -205,4 +205,54 @@ describe('PlaygroundReducer', () => {
       expect(newState).to.deep.equal(state);
     });
   });
+
+  describe('SEND_COMMENT', () => {
+    let action;
+    beforeEach(() => {
+      action = {
+        type: 'SEND_COMMENT',
+        comment:{content:'comment'},
+        id: '123'
+      };
+    });
+
+    it('should not morph state', () => {
+      let state = {
+        items:{
+          comments:{}
+        },
+        donot:'changeme',
+        stream:['a']
+      };
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        items:{
+          comments:{}
+        },
+        donot:'changeme',
+        stream:['a']
+      });
+    });
+
+    it('should add a comment to items', () => {
+      let state = {items:{
+        comments:{}
+      }};
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.items.comments).to.have.property('123')
+        .and.to.deep.equal({content:'comment'});
+    });
+
+    it('should add a comment to the front of the stream', () => {
+      let state = {
+        items:{
+          comments:{}
+        },
+        stream:['a']
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.stream).to.deep.equal(['123','a']);
+    });
+
+  });
 });
