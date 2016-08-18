@@ -5,9 +5,7 @@ class ProfilePicture extends Component {
 
   render() {
     let styles = this.props.styles || defaultStyles;
-    return <div className="profilePicPan" style={ styles.profilePicPane }>
-      <img className="profilePicture" style={ styles.profilePicture } width="180" height="180" src={ '/img/playground/profile' + this.props.id + '.jpg' } /><br />
-    </div>;
+    return <img className="profilePicture" style={ styles.profilePicture } src={ '/img/playground/profile' + this.props.id + '.jpg' } />;
   }
 }
 
@@ -22,9 +20,15 @@ const defaultStyles = {
     }
   },
   profilePicture: {
+    width:60,
+    height:60,
+    borderRadius:30,
+    float:'left',
+    marginRight:20,
     [mediaQueries.mobile]: {
       width: '120px',
-      height: '120px'
+      height: '120px',
+      borderRadius:25
     }
   }
 };

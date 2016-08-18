@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import { mediaQueries } from '../../playgroundSettings';
 
 class DefaultAuthor extends Component {
   render() {
@@ -28,6 +29,7 @@ let defaultStyles =   {
     color: '#333',
     cursor: 'pointer',
     position: 'relative',
-    marginBottom: '3px'
-  }
+    marginBottom: '3px',
+    verticalAlign:top,
+  },
 };
