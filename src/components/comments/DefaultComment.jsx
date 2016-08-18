@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import moment from 'moment';
+import ReactEmoji from 'react-emoji'
 
 class DefaultComment extends Component {
 

@@ -33,7 +33,7 @@ import components from './';
 class CommentContainer extends Component {
   mapComponentFromConfig(config) {
     let Component = components[config.component];
-    let props = {};
+    let props = {...config.configProps};
     for (var i = 0; i < config.propTypes.length; i++) {
       props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
     }

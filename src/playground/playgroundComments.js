@@ -12,7 +12,7 @@ const comments = {
     replies: [
       {
         user: 2,
-        content: "This is a reply from another user.",
+        content: 'This is a reply from another user.',
         likes: 9,
         liked: false,
         reactions: ['heart', 'ok_woman'],
@@ -21,7 +21,7 @@ const comments = {
         replies: [
           {
             user: 1,
-            content: "This is a SECOND reply from another user.",
+            content: 'This is a SECOND reply from another user.',
             likes: 9,
             liked: false,
             reactions: ['heart', 'ok_woman'],
@@ -35,7 +35,7 @@ const comments = {
   b:{
     user: 1,
     id:'b',
-    content: 'Testing some emojis. :ok_woman: :heart: :bowtie: :hankey:  :horse_racing:',
+    content: 'Testing some emojis. :ok_woman: :heart: :hankey:  :horse_racing:',
     likes: 11,
     liked: false,
     reactions: ['heart', 'ok_woman'],

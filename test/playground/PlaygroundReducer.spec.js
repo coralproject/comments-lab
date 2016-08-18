@@ -204,6 +204,44 @@ describe('PlaygroundReducer', () => {
       let newState = PlaygroundReducer(state, action);
       expect(newState).to.deep.equal(state);
     });
+
+    it('should update configProps if no propTypes are sent', () => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      action.propTypes = null,
+      action.configProps = {test:true};
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config.comments[0]).to.have.property('propTypes')
+        .and.to.deep.equal(['content']);
+      expect(newState.config.comments[0]).to.have.property('configProps')
+        .and.to.deep.equal({test:true});
+    });
+    it('should update configProps if propTypes are sent', () => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      action.configProps = {test:true};
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config.comments[0]).to.have.property('propTypes')
+        .and.to.deep.equal(['changed']);
+      expect(newState.config.comments[0]).to.have.property('configProps')
+        .and.to.deep.equal({test:true});
+    });
   });
 
   describe('SEND_COMMENT', () => {

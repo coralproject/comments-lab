@@ -25,12 +25,13 @@ export function removeComponent(itemType, component) {
   };
 }
 
-export function updateComponent(itemType, component, propTypes) {
+export function updateComponent(itemType, component, propTypes, configProps) {
   return {
     type: UPDATE_COMPONENT,
     itemType,
     component,
-    propTypes
+    propTypes,
+    configProps
   };
 }
 

@@ -51,9 +51,16 @@ const updateComponent = (action, state) => {
   }
   let itemConfig = state.config[action.itemType];
   let newItemConfig = itemConfig.slice();
+  let newComponentConfig = {};
   for(let i=0; i < itemConfig.length; i++) {
     if (itemConfig[i].component == action.component) {
-      let newComponentConfig = Object.assign({},itemConfig[i],{propTypes:action.propTypes});
+      if (action.propTypes) {
+        newComponentConfig = Object.assign({},itemConfig[i],{propTypes:action.propTypes});
+      }
+      if (action.configProps) {
+        let newConfigProps = Object.assign({}, itemConfig[i].configProps, action.configProps);
+        newComponentConfig = Object.assign({}, itemConfig[i],newComponentConfig, {configProps:newConfigProps});
+      }
       newItemConfig = itemConfig.slice();
       newItemConfig[i] = newComponentConfig;
       break;
