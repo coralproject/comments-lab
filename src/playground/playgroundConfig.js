@@ -8,7 +8,8 @@ let config = {
   authors:[
     {
       propTypes:['realName'],
-      component:'DefaultAuthor'
+      component:'DefaultAuthor',
+      order:10
     }
   ]
 };

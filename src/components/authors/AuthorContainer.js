@@ -46,9 +46,20 @@ class AuthorContainer extends Component {
     return <Component {...props} key={config.component} />;
   }
 
+  sortConfig(a,b) {
+    if (a.order > b.order) {
+      return 1;
+    }
+    if (a.order < b.order) {
+      return -1;
+    }
+    return 0;
+  }
+
   render() {
+    let sortedConfig = this.props.config.sort(this.sortConfig);
     return <div>{
-      this.props.config.map(this.mapComponentFromConfig.bind(this))
+      sortedConfig.map(this.mapComponentFromConfig.bind(this))
     }
     </div>;
   }

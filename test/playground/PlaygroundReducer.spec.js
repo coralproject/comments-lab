@@ -37,7 +37,9 @@ describe('PlaygroundReducer', () => {
       expect(newState.config).to.have.property('comments')
         .and.to.deep.equal([{
           propTypes:['content'],
-          component:'NYTContent'
+          component:'NYTContent',
+          configProps:undefined,
+          order:undefined
         }]);
     });
 
@@ -59,8 +61,23 @@ describe('PlaygroundReducer', () => {
           },
           {
             propTypes:['content'],
-            component:'NYTContent'
+            component:'NYTContent',
+            configProps:undefined,
+            order:undefined
           }]);
+    });
+
+    it('should add an order attribute if one is specified', () => {
+      let state = {
+        config:{
+          comments:[]
+        }
+      };
+
+      action.order=0;
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config.comments[0]).to.have.property('order')
+        .and.to.equal(0);
     });
 
   });
@@ -224,6 +241,7 @@ describe('PlaygroundReducer', () => {
       expect(newState.config.comments[0]).to.have.property('configProps')
         .and.to.deep.equal({test:true});
     });
+
     it('should update configProps if propTypes are sent', () => {
       let state = {
         config:{
@@ -241,6 +259,23 @@ describe('PlaygroundReducer', () => {
         .and.to.deep.equal(['changed']);
       expect(newState.config.comments[0]).to.have.property('configProps')
         .and.to.deep.equal({test:true});
+    });
+
+    it('should update order if order is sent', () => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      action.order=0;
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config.comments[0]).to.have.property('order')
+        .and.to.equal(0);
     });
   });
 

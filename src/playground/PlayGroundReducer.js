@@ -21,9 +21,19 @@ const addComponent = (action, state) => {
   let newItemConfig;
   if(state.config[action.itemType]) {
     newItemConfig = state.config[action.itemType].slice();
-    newItemConfig.push({component:action.component, propTypes:action.propTypes});
+    newItemConfig.push({
+      component: action.component,
+      propTypes: action.propTypes,
+      configProps: action.configProps,
+      order: action.order
+    });
   } else {
-    newItemConfig = [{component:action.component, propTypes:action.propTypes}];
+    newItemConfig = [{
+      component: action.component,
+      propTypes: action.propTypes,
+      configProps: action.configProps,
+      order: action.order
+    }];
   }
   let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
   return Object.assign({}, state, {config:newConfig});
@@ -60,6 +70,9 @@ const updateComponent = (action, state) => {
       if (action.configProps) {
         let newConfigProps = Object.assign({}, itemConfig[i].configProps, action.configProps);
         newComponentConfig = Object.assign({}, itemConfig[i],newComponentConfig, {configProps:newConfigProps});
+      }
+      if (action.order != undefined && action.order != null) {
+        newComponentConfig = Object.assign({}, itemConfig[i], newComponentConfig, {order:action.order});     
       }
       newItemConfig = itemConfig.slice();
       newItemConfig[i] = newComponentConfig;

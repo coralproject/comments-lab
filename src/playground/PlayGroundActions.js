@@ -8,12 +8,13 @@ export const SET_TOPIC = 'SET_TOPIC';
 export const SEND_COMMENT = 'SEND_COMMENT';
 export const REPLY_COMMENT = 'REPLY_COMMENT';
 
-export function addComponent(itemType, component, propTypes) {
+export function addComponent(itemType, component, propTypes, order) {
   return {
     type: ADD_COMPONENT,
     itemType,
     component,
-    propTypes
+    propTypes,
+    order
   };
 }
 
@@ -25,13 +26,14 @@ export function removeComponent(itemType, component) {
   };
 }
 
-export function updateComponent(itemType, component, propTypes, configProps) {
+export function updateComponent(itemType, component, propTypes, configProps, order) {
   return {
     type: UPDATE_COMPONENT,
     itemType,
     component,
     propTypes,
-    configProps
+    configProps,
+    order
   };
 }
 

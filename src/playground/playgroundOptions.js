@@ -38,8 +38,8 @@ const togglerGroups = {
         description: 'Whether to show profile pictures or not.',
         status: false,
         topic: 'profilepictures',
-        onFunction:addComponent('authors','ProfilePicture',['id'], null, 0),
-        offFunction:removeComponent('comments','ProfilePicture')
+        onFunction:addComponent('authors','ProfilePicture',['id'], null, 5),
+        offFunction:removeComponent('authors','ProfilePicture')
       }
     }
   },
