@@ -37,9 +37,11 @@ const togglerGroups = {
         offLabel: 'Profile pictures are OFF',
         description: 'Whether to show profile pictures or not.',
         status: false,
-        topic: 'profilepictures'
+        topic: 'profilepictures',
+        onFunction:addComponent('authors','ProfilePicture',['id'], null, 0),
+        offFunction:removeComponent('comments','ProfilePicture')
       }
-    },
+    }
   },
   'moderation': {
     name: 'Moderation',

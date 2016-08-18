@@ -55,7 +55,7 @@ export const sendComment = (content) => {
   return {
     type: SEND_COMMENT,
     comment: {
-      user: 1,
+      user: 0,
       content: content,
       likes: 0,
       liked: false,
@@ -71,7 +71,7 @@ export const replyComment = (content, parents) => {
   return {
     type: REPLY_COMMENT,
     comment: {
-      user: 1,
+      user: 0,
       content: content,
       likes: 0,
       liked: false,

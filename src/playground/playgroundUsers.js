@@ -1,5 +1,6 @@
 export default { 
-  1: {
+  0: {
+    id:0,
     nickName: 'bogususer123',
     realName: 'Bogus Jones',
     party: 'republican',
@@ -17,7 +18,8 @@ export default {
       }
     ]
   },
-  2: {
+  1: {
+    id:1,
     nickName: 'republicantrout',
     realName: 'Donald Trout',
     party: 'republican',
@@ -40,7 +42,8 @@ export default {
       }
     ]
   },
-  3: {
+  2: {
+    id:2,
     nickName: 'satanicverses',
     realName: 'Salmon Rushdie',
     party: 'democrat',
@@ -59,7 +62,8 @@ export default {
       }
     ]
   },
-  4: {
+  3: {
+    id:3,
     nickName: 'nobeyonce',
     realName: 'Tuna Turner',
     comments: 124,
@@ -77,4 +81,4 @@ export default {
       }
     ]
   }
-}
+};
