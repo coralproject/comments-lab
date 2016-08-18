@@ -54,7 +54,7 @@ class CommentBox extends React.Component {
     };
 
     var contentState = this.state.editorState.getCurrentContent();
-    var htmlContent = backdraft(convertToRaw(contentState), markup).join("<br />");
+    var htmlContent = backdraft(convertToRaw(contentState), markup).join('<br />');
 
     if (this.props.replyMode) {
       this.props.dispatch(replyComment(htmlContent, this.props.parents));
