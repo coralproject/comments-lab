@@ -8,8 +8,10 @@ export const SET_TOPIC = 'SET_TOPIC';
 export const SEND_COMMENT = 'SEND_COMMENT';
 export const REPLY_COMMENT = 'REPLY_COMMENT';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
+export const SET_STREAM = 'SET_STREAM';
 
 export function addComponent(itemType, component, propTypes, order, configProps) {
+  console.log("Adding component")
   return {
     type: ADD_COMPONENT,
     itemType,
@@ -96,4 +98,11 @@ export const updateItem = (id, itemType, propType, propVal) => {
     propType,
     propVal
   };
+};
+
+export const setStream = (stream) => {
+  return {
+    type: SET_STREAM,
+    stream
+  }
 };

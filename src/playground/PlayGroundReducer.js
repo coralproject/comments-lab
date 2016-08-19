@@ -152,8 +152,10 @@ const playground = (state = initialState, action) => {
     return sendComment(action, state);
   case types.UPDATE_ITEM:
     return updateItem(action,state);
+  case types.SET_STREAM:
+    return Object.assign({}, state, {stream:action.stream});
   default:
-    console.log('Not a Playground action:', JSON.stringify(action));
+    console.log('Not a Playground action:', action.type);
     return state;
   }
 

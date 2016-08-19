@@ -15,6 +15,7 @@ import components from './';
 @connect(
   (state) => {
     return {
+      items: state.newPlayground.items,
       config: state.newPlayground.config.stream,
       stream: state.newPlayground.stream
     };
@@ -41,7 +42,7 @@ class StreamContainer extends Component {
         props[config.propTypes[i]] = this.props[config.propTypes[i]];
       }
     }
-    return <Component {...props} key={config.component} />;
+    return <Component {...props} dispatch={this.props.dispatch} key={config.component} />;
   }
 
   sortConfig(a,b) {

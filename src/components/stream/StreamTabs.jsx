@@ -1,21 +1,19 @@
 import React, {Component, PropTypes} from 'react';
+import {addComponent, removeComponent} from '../../playground/PlaygroundActions';
 
 class StreamTabs extends Component {
 
   static propTypes = {
-    activeTab:PropTypes.string.isRequired
+    activeTab:PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired
   }
 
   onStaffClick() {
-    return () => {
-
-    };
+    this.props.dispatch(addComponent('stream','StaffFilter',['stream','items']));
   }
 
   onAllClick() {
-    return () => {
-
-    };
+    this.props.dispatch(removeComponent('stream','StaffFilter'));
   }
 
   render() {
@@ -50,7 +48,7 @@ const defaultStyles = {
     borderTop: '3px solid red',
     borderBottom: '1px solid white',
     background: 'white'
-  },
-}
+  }
+};
 
 export default StreamTabs;

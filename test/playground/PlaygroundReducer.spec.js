@@ -379,4 +379,32 @@ describe('PlaygroundReducer', () => {
       expect(newState).to.deep.equal(state);
     });
   });
+
+  describe('SET_STREAM', () => {
+    let action;
+    let state;
+    beforeEach(() => {
+      action = {
+        type: 'SET_STREAM',
+        stream:['a','b']
+      };
+      state = {
+        stream:[]
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        stream:[]
+      });
+    });
+
+    it('should update the stream', () =>{
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal({
+        stream:['a','b']
+      });
+    });
+  }) ;
 });
