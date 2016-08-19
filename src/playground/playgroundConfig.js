@@ -2,7 +2,12 @@ let config = {
   comments:[
     {
       propTypes:['content'],
-      component:'DefaultComment'
+      component:'DefaultComment',
+      order: 0
+    },
+    {
+      component:'CommentDivider',
+      order:1000
     }
   ],
   authors:[

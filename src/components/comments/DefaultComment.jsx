@@ -76,6 +76,6 @@ let defaultStyles =   {
   },
   commentContent: {
     fontSize: '12pt',
-    marginBottom: '40px'
+    marginBottom: '20px'
   }
 };

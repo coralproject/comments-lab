@@ -34,8 +34,10 @@ class CommentContainer extends Component {
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
-    for (var i = 0; i < config.propTypes.length; i++) {
-      props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
+    if (config.propTypes) {
+      for (var i = 0; i < config.propTypes.length; i++) {
+        props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
+      }      
     }
     return <Component {...props} dispatch={this.props.dispatch} key={config.component}/>;
   }
