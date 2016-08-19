@@ -1,3 +1,5 @@
+import {addComponent, removeComponent, updateComponent} from './PlaygroundActions';
+
 const togglerGroups = {
   'content': {
     name: 'Content',
@@ -14,7 +16,9 @@ const togglerGroups = {
         offLabel: 'Emojis are OFF',
         description: 'Emojis and other types of emoticons are widely used to convey emotion.',
         status: false,
-        topic: 'emoji'
+        topic: 'emoji',
+        onFunction:addComponent('comments','EmojiFilter',['id','content']),
+        offFunction:removeComponent('comments','EmojiFilter')
       }
     }
   },
@@ -33,9 +37,11 @@ const togglerGroups = {
         offLabel: 'Profile pictures are OFF',
         description: 'Whether to show profile pictures or not.',
         status: false,
-        topic: 'profilepictures'
+        topic: 'profilepictures',
+        onFunction:addComponent('authors','ProfilePicture',['id'], null, 5),
+        offFunction:removeComponent('authors','ProfilePicture')
       }
-    },
+    }
   },
   'moderation': {
     name: 'Moderation',
@@ -45,7 +51,9 @@ const togglerGroups = {
         offLabel: 'Staff Picks is OFF',
         description: 'Shows a tab separating staff picks from other comments.',
         status: false,
-        topic: 'staffpicks'
+        topic: 'staffpicks',
+        onFunction:addComponent('stream','StreamTabs',null,-10,{activeTab:'all'}),
+        offFunction:removeComponent('stream','StreamTabs')
       },
       'muting': {
         label: 'Block/mute is ON',
@@ -74,7 +82,9 @@ const togglerGroups = {
         description: 'This means pseudonyms (nicknames) are allowed.',
         status: false,
         topic: 'pseudonyms',
-        pulseTarget: 'commentName'
+        pulseTarget: 'commentName',
+        onFunction: updateComponent('authors','DefaultAuthor',['nickName']),
+        offFunction: updateComponent('authors','DefaultAuthor',['realName'])
       },
       'public_profile': {
         label: 'Public Profile is ON',

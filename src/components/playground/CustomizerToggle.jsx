@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 
-import { setToggler, setTopic } from 'playground/PlaygroundActions';
+import { setToggler, setTopic } from 'playground/OldPlaygroundActions';
 
 import {themes} from 'playgroundSettings';
 
@@ -19,6 +19,9 @@ class CustomizerToggle extends React.Component {
 
   onTogglerClick() {
     var currentStatus = this.props.toggler.status;
+    if (this.props.toggler.offFunction && this.props.toggler.onFunction) {
+      this.props.dispatch(currentStatus ? this.props.toggler.offFunction : this.props.toggler.onFunction);
+    }
     this.props.dispatch(setToggler(this.props.groupIndex, this.props.togglerIndex, !currentStatus));
     this.setState({ active: !currentStatus });
   }

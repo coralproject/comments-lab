@@ -1,4 +1,4 @@
-import * as types from 'playground/PlaygroundActions';
+import * as types from 'playground/OldPlaygroundActions';
 
 // These files could be moved somewhere else, as config files.
 import togglerGroups from 'playground/playgroundOptions';
@@ -223,8 +223,8 @@ const playground = (state = initialState, action) => {
     return Object.assign({}, state, { comments: commentsCopy });
 
   case types.SEND_COMMENT:
-    var commentsCopy = state.comments.slice();
-    return Object.assign({}, state, { comments: [ action.comment, ...commentsCopy ] });
+    // var commentsCopy = state.comments.slice();
+    // return Object.assign({}, state, { comments: [ action.comment, ...commentsCopy ] });
 
   case types.START_PULSATING:
     return Object.assign({}, state, { pulseAnimation: true, pulseTarget: action.target });

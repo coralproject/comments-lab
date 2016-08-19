@@ -54,23 +54,15 @@ class CommentBox extends React.Component {
     };
 
     var contentState = this.state.editorState.getCurrentContent();
-    var htmlContent = backdraft(convertToRaw(contentState), markup).join("<br />");
-
-    var preparedComment = {
-      user: 0,
-      content: htmlContent,
-      likes: 0,
-      liked: false,
-      reactions: [],
-      upvoted: false,
-      upvotes: 0
-    };
+    var htmlContent = backdraft(convertToRaw(contentState), markup).join('<br />');
 
     if (this.props.replyMode) {
-      this.props.dispatch(replyComment(preparedComment, this.props.parents));
+      this.props.dispatch(replyComment(htmlContent, this.props.parents));
     } else {
-      this.props.dispatch(sendComment(preparedComment));
+      this.props.dispatch(sendComment(htmlContent));
     }
+
+    this.setState({editorState: EditorState.createEmpty()});
 
   }
 
@@ -97,7 +89,7 @@ class CommentBox extends React.Component {
           style={styles.emojiPickerStyles} onSelect={this.onSelectEmoji.bind(this)}
           query={this.state.emoji}
         />
-      )
+      );
     }
   }
 

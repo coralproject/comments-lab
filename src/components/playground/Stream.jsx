@@ -2,120 +2,125 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 
-import Comment from './Comment';
+import Comment from '../comments/CommentContainer';
+import Author from '../authors/AuthorContainer';
 
 import { themes } from '../../playgroundSettings';
 
-@connect(state => state.playground)
+@connect(state => {
+  return {
+    commentStream:state.newPlayground.stream,
+    togglerGroups:state.newPlayground.togglerGroups
+  };
+})
 @Radium
 class Stream extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { activeTab: 'all', commentCount: 0 };
-    this.commentCounter = 0;
-    console.log(this.props.blockedUsers);
+    this.state = { activeTab: 'all'};
   }
 
-  getComments(comments, depth = 0, parentIndex = false, parents = []) {
-    var parents = parents;
-    return comments.map((comment, i) => {
-      if (
-            this.props.blockedUsers.indexOf(comment.user) == -1 &&
-            (this.state.activeTab == 'all' || (this.state.activeTab == 'staff' && comment.staffPick))
-         )
-      {
-        this.commentCounter++;
+  // getComments(comments, depth = 0, parentIndex = false, parents = []) {
+  //   var parents = parents;
+  //   return comments.map((comment, i) => {
+  //     if (
+  //           this.props.blockedUsers.indexOf(comment.user) == -1 &&
+  //           (this.state.activeTab == 'all' || (this.state.activeTab == 'staff' && comment.staffPick))
+  //        )
+  //     {
+  //       this.commentCounter++;
 
-        return (
-          <div style={ depth > 0 ? { marginLeft: '25px' } : null }>
-            <Comment {...comment} key={ i } index={ i } depth={ depth } parents={ parents.concat([i]) } />
-            {
-              this.props.togglerGroups.stream.togglers.replies.status && comment.replies ?
-                this.getComments(comment.replies, depth + 1, i, parents.concat([i]))
-              :
-                null
-            }
-          </div>
-        );
-      }
-    });
-  }
+  //       return (
+  //         <div style={ depth > 0 ? { marginLeft: '25px' } : null }>
+  //           <Comment {...comment} key={ i } index={ i } depth={ depth } parents={ parents.concat([i]) } />
+  //           {
+  //             this.props.togglerGroups.stream.togglers.replies.status && comment.replies ?
+  //               this.getComments(comment.replies, depth + 1, i, parents.concat([i]))
+  //             :
+  //               null
+  //           }
+  //         </div>
+  //       );
+  //     }
+  //   });
+  // }
 
-  componentDidUpdate() {
-    /*if (this.props.togglerGroups.experimental.togglers.streamheat.status) {
-      console.log("Drawing stream heatmap", this.canvas);
+  // componentDidUpdate() {
+  //   if (this.props.togglerGroups.experimental.togglers.streamheat.status) {
+  //     console.log("Drawing stream heatmap", this.canvas);
 
-      this.commentCount = 0;
-      this.ctx = this.canvas.getContext('2d');
-      this.ctx.clearRect(0, 0, 100, 200);
+  //     this.commentCount = 0;
+  //     this.ctx = this.canvas.getContext('2d');
+  //     this.ctx.clearRect(0, 0, 100, 200);
 
-      this.drawStreamHeat(this.props.comments);
+  //     this.drawStreamHeat(this.props.comments);
 
-    }*/
-  }
+  //   }
+  // }
 
-  drawStreamHeat(comments, depth = 0, parentIndex = false, parents = []) {
-    var parents = parents;
-    return comments.map((comment, i) => {
-      if (
-            this.props.blockedUsers.indexOf(comment.user) == -1 &&
-            (this.state.activeTab == 'all' || (this.state.activeTab == 'staff' && comment.staffPick))
-         )
-      {
-        this.commentCount++;
-        this.ctx.fillStyle = '#222';
-        this.ctx.fillRect(5 + (depth * 10), (this.commentCount * 18), 30, 3);
+  // drawStreamHeat(comments, depth = 0, parentIndex = false, parents = []) {
+  //   var parents = parents;
+  //   return comments.map((comment, i) => {
+  //     if (
+  //           this.props.blockedUsers.indexOf(comment.user) == -1 &&
+  //           (this.state.activeTab == 'all' || (this.state.activeTab == 'staff' && comment.staffPick))
+  //        )
+  //     {
+  //       this.commentCount++;
+  //       this.ctx.fillStyle = '#222';
+  //       this.ctx.fillRect(5 + (depth * 10), (this.commentCount * 18), 30, 3);
 
-        this.ctx.fillStyle = '#ccc';
-        this.ctx.fillRect(5 + (depth * 10), 6 + (this.commentCount * 18), 60, 3);
-        this.ctx.fillRect(5 + (depth * 10), 12 + (this.commentCount * 18), 60, 3);
+  //       this.ctx.fillStyle = '#ccc';
+  //       this.ctx.fillRect(5 + (depth * 10), 6 + (this.commentCount * 18), 60, 3);
+  //       this.ctx.fillRect(5 + (depth * 10), 12 + (this.commentCount * 18), 60, 3);
 
-        return (
-            this.props.togglerGroups.stream.togglers.replies.status && comment.replies ?
-              this.drawStreamHeat(comment.replies, depth + 1, i, parents.concat([i]))
-            :
-              null
-        );
-      }
-    });
-  }
+  //       return (
+  //           this.props.togglerGroups.stream.togglers.replies.status && comment.replies ?
+  //             this.drawStreamHeat(comment.replies, depth + 1, i, parents.concat([i]))
+  //           :
+  //             null
+  //       );
+  //     }
+  //   });
+  // }
 
 
 
   onTabClick(tab, e) {
-    this.setState({ activeTab: tab })
+    this.setState({ activeTab: tab });
   }
 
   render() {
 
-    this.commentCounter = 0;
-    var comments = this.getComments(this.props.comments);
-
+    // this.commentCounter = 0;
+    // var comments = this.getComments(this.props.comments);
+            console.log(this.props.togglerGroups.moderation.togglers.staffpicks)
     return (
-      <div style={ [ styles.stream ]}>
+      <div key="0" style={ [ styles.stream ]}>
         <div style={ styles.streamHeat }>
           <canvas ref={(c) => { this.canvas = c }}  width="100" height="200" style={ styles.streamHeatCanvas }></canvas>
         </div>
-        {
-          this.props.togglerGroups.moderation.togglers.staffpicks.status ?
-            <div>
-              <div style={ styles.streamTabs }>
-                <button style={ [ styles.streamTab, this.state.activeTab == 'all' ? styles.activeTab : null ] } onClick={ this.onTabClick.bind(this, 'all') }>All</button>
-                <button style={ [ styles.streamTab, this.state.activeTab == 'staff' ? styles.activeTab : null ] } onClick={ this.onTabClick.bind(this, 'staff') }>Staff Picks</button>
-              </div>
-              <div>
-                <p style={ styles.commentCount }>{ this.commentCounter } comments</p>
-                { comments }
-              </div>
-
-            </div>
-          :
-            <div>
-              <p style={ styles.commentCount }>{ this.commentCounter } comments</p>
-              { comments }
-            </div>
-        }
+        <div>
+          {
+            this.props.togglerGroups.moderation.togglers.staffpicks.status ?
+                <div style={ styles.streamTabs }>
+                  <button style={ [ styles.streamTab, this.state.activeTab == 'all' ? styles.activeTab : null ] } onClick={ this.onTabClick.bind(this, 'all') }>All</button>
+                  <button style={ [ styles.streamTab, this.state.activeTab == 'staff' ? styles.activeTab : null ] } onClick={ this.onTabClick.bind(this, 'staff') }>Staff Picks</button>
+                </div> : null
+          }
+        </div>
+        <p style={ styles.commentCount }>{ this.props.commentStream.length } comments</p>
+        <div>
+          {
+            this.props.commentStream.map((id) => {
+            return <div key={id}>
+                <Author commentId={id}/>
+                <Comment id={id}/>
+              </div>;
+            })
+          }
+         </div> 
       </div>
     );
 
