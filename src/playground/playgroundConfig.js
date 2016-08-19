@@ -11,6 +11,13 @@ let config = {
       component:'DefaultAuthor',
       order:10
     }
+  ],
+  stream:[
+    {
+      propTypes:['stream'],
+      component:'CommentStream',
+      order:0
+    }
   ]
 };
 

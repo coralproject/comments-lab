@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Radium from 'radium';
 
 import CommentBox from './CommentBox';
-import Stream from './Stream';
+import Stream from '../stream/StreamContainer';
 
 import MdComment from 'react-icons/lib/md/comment';
 

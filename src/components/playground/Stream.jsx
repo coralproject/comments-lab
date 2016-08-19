@@ -8,17 +8,18 @@ import Author from '../authors/AuthorContainer';
 import { themes } from '../../playgroundSettings';
 
 @connect(state => {
-  return {commentStream:state.newPlayground.stream};
+  return {
+    commentStream:state.newPlayground.stream,
+    togglerGroups:state.newPlayground.togglerGroups
+  };
 })
 @Radium
 class Stream extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.state = { activeTab: 'all', commentCount: 0 };
-  //   this.commentCounter = 0;
-  //   console.log(this.props.blockedUsers);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = { activeTab: 'all'};
+  }
 
   // getComments(comments, depth = 0, parentIndex = false, parents = []) {
   //   var parents = parents;
@@ -86,44 +87,40 @@ class Stream extends React.Component {
 
 
 
-  // onTabClick(tab, e) {
-  //   this.setState({ activeTab: tab })
-  // }
+  onTabClick(tab, e) {
+    this.setState({ activeTab: tab });
+  }
 
   render() {
 
     // this.commentCounter = 0;
     // var comments = this.getComments(this.props.comments);
-
+            console.log(this.props.togglerGroups.moderation.togglers.staffpicks)
     return (
       <div key="0" style={ [ styles.stream ]}>
         <div style={ styles.streamHeat }>
           <canvas ref={(c) => { this.canvas = c }}  width="100" height="200" style={ styles.streamHeatCanvas }></canvas>
         </div>
-        {
-          // this.props.togglerGroups.moderation.togglers.staffpicks.status ?
-          //   <div>
-          //     <div style={ styles.streamTabs }>
-          //       <button style={ [ styles.streamTab, this.state.activeTab == 'all' ? styles.activeTab : null ] } onClick={ this.onTabClick.bind(this, 'all') }>All</button>
-          //       <button style={ [ styles.streamTab, this.state.activeTab == 'staff' ? styles.activeTab : null ] } onClick={ this.onTabClick.bind(this, 'staff') }>Staff Picks</button>
-          //     </div>
-          //     <div>
-          //       <p style={ styles.commentCount }>{ this.commentCounter } comments</p>
-          //       { comments }
-          //     </div>
-
-          //   </div>
-          // :
-            <div>
-              <p style={ styles.commentCount }>{ this.props.commentStream.length } comments</p>
-              {this.props.commentStream.map((id) => {
-                return <div key={id}>
-                    <Author commentId={id}/>
-                    <Comment id={id}/>
-                  </div>;
-              })}
-            </div>
-        }
+        <div>
+          {
+            this.props.togglerGroups.moderation.togglers.staffpicks.status ?
+                <div style={ styles.streamTabs }>
+                  <button style={ [ styles.streamTab, this.state.activeTab == 'all' ? styles.activeTab : null ] } onClick={ this.onTabClick.bind(this, 'all') }>All</button>
+                  <button style={ [ styles.streamTab, this.state.activeTab == 'staff' ? styles.activeTab : null ] } onClick={ this.onTabClick.bind(this, 'staff') }>Staff Picks</button>
+                </div> : null
+          }
+        </div>
+        <p style={ styles.commentCount }>{ this.props.commentStream.length } comments</p>
+        <div>
+          {
+            this.props.commentStream.map((id) => {
+            return <div key={id}>
+                <Author commentId={id}/>
+                <Comment id={id}/>
+              </div>;
+            })
+          }
+         </div> 
       </div>
     );
 
