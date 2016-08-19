@@ -10,7 +10,8 @@
     "start": "node dev-server.js",
     "lint": "eslint src",
     "storybook": "start-storybook -p 9001",
-    "test": "NODE_ENV=production ./node_modules/.bin/mocha --compilers js:babel-core/register --recursive"
+    "test": "NODE_ENV=production ./node_modules/.bin/mocha --compilers js:babel-core/register --recursive",
+    "test-dev": "npm test -- -w"
   },
   "author": "Pablo Cubico",
   "license": "MIT",
