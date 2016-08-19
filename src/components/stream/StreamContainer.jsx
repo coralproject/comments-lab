@@ -33,6 +33,13 @@ import components from './';
 */
 class StreamContainer extends Component {
 
+  static propTypes = {
+    items:PropTypes.object.isRequired,
+    config:PropTypes.object.isRequired,
+    stream:PropTypes.object.isRequired,
+    dispatch:PropTypes.func.isRequired
+  }
+
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
