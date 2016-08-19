@@ -30,6 +30,6 @@ let defaultStyles =   {
     cursor: 'pointer',
     position: 'relative',
     marginBottom: '3px',
-    verticalAlign:top,
-  },
+    verticalAlign:top
+  }
 };
