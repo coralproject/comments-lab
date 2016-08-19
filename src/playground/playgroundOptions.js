@@ -17,8 +17,8 @@ const togglerGroups = {
         description: 'Emojis and other types of emoticons are widely used to convey emotion.',
         status: false,
         topic: 'emoji',
-        onFunction:updateComponent('comments','DefaultComment',null,{showEmoji:true}),
-        offFunction:updateComponent('comments','DefaultComment',null,{showEmoji:false})
+        onFunction:addComponent('comments','EmojiFilter',['id','content']),
+        offFunction:removeComponent('comments','EmojiFilter')
       }
     }
   },

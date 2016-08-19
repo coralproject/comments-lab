@@ -37,7 +37,7 @@ class CommentContainer extends Component {
     for (var i = 0; i < config.propTypes.length; i++) {
       props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
     }
-    return <Component {...props} key={config.component}/>;
+    return <Component {...props} dispatch={this.props.dispatch} key={config.component}/>;
   }
 
   render() {
