@@ -33,11 +33,13 @@ import components from './';
 class StreamContainer extends Component {
 
   mapComponentFromConfig(config) {
-    console.log(components)
     let Component = components[config.component];
     let props = {...config.configProps};
-    for (var i = 0; i < config.propTypes.length; i++) {
-      props[config.propTypes[i]] = this.props[config.propTypes[i]];
+
+    if (config.propTypes) {
+      for (var i = 0; i < config.propTypes.length; i++) {
+        props[config.propTypes[i]] = this.props[config.propTypes[i]];
+      }
     }
     return <Component {...props} key={config.component} />;
   }

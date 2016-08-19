@@ -9,13 +9,14 @@ export const SEND_COMMENT = 'SEND_COMMENT';
 export const REPLY_COMMENT = 'REPLY_COMMENT';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 
-export function addComponent(itemType, component, propTypes, order) {
+export function addComponent(itemType, component, propTypes, order, configProps) {
   return {
     type: ADD_COMPONENT,
     itemType,
     component,
     propTypes,
-    order
+    order,
+    configProps
   };
 }
 

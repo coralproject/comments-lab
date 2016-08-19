@@ -11,6 +11,6 @@ let defaultStyles = {
   commentDivider:{
     marginBottom:20
   }
-}
+};
 
 export default CommentDivider;
