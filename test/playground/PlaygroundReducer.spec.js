@@ -328,4 +328,55 @@ describe('PlaygroundReducer', () => {
     });
 
   });
+
+  describe('UPDATE_ITEM', () => {
+    let action;
+    let state;
+    beforeEach(() => {
+      action = {
+        type: 'UPDATE_ITEM',
+        itemType:'comments',
+        id: '123',
+        propType: 'content',
+        propVal: 'NewContent'
+      };
+      state = {
+        items:{
+          comments:{
+            '123':{
+              content:'OldContent'
+            }
+          }
+        }
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        items:{
+          comments:{
+            '123':{
+              content:'OldContent'
+            }
+          }
+        }
+      });
+    });
+
+    it('should update the appropriate item', () => {
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.items.comments['123'].content).to.equal('NewContent');
+    });
+    it('should take no action if the itemType does not exist',() => {
+      action.itemType='authors';
+      let newState = PlaygroundReducer(state,action);
+      expect(newState).to.deep.equal(state);
+    });
+    it('should take no action if the id does not exist', () => {
+      action.id='456';
+      let newState = PlaygroundReducer(state,action);
+      expect(newState).to.deep.equal(state);
+    });
+  });
 });

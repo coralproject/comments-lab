@@ -122,6 +122,16 @@ function sendComment(action, state) {
   return Object.assign({}, state, {items:newItems, stream:newStream});
 }
 
+function updateItem(action, state) {
+  if (!state.items[action.itemType] || !state.items[action.itemType][action.id]) {
+    return state;
+  }
+  let newItem = Object.assign({}, state.items[action.itemType][action.id],{[action.propType]:action.propVal});
+  let newItemType = Object.assign({}, state.items[action.itemType],{[action.id]:newItem});
+  let newItems = Object.assign({}, state.items, {[action.itemType]:newItemType});
+  return Object.assign({}, state, {items:newItems});
+}
+
 
 const playground = (state = initialState, action) => {
 
@@ -140,8 +150,10 @@ const playground = (state = initialState, action) => {
     return replyComment(action, state);
   case types.SEND_COMMENT:
     return sendComment(action, state);
+  case types.UPDATE_ITEM:
+    return updateItem(action,state);
   default:
-    console.log('Not a Playground action:', action.type);
+    console.log('Not a Playground action:', JSON.stringify(action));
     return state;
   }
 

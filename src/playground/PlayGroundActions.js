@@ -7,6 +7,7 @@ export const SET_TOGGLER = 'SET_TOGGLER';
 export const SET_TOPIC = 'SET_TOPIC';
 export const SEND_COMMENT = 'SEND_COMMENT';
 export const REPLY_COMMENT = 'REPLY_COMMENT';
+export const UPDATE_ITEM = 'UPDATE_ITEM';
 
 export function addComponent(itemType, component, propTypes, order) {
   return {
@@ -83,5 +84,15 @@ export const replyComment = (content, parents) => {
     },
     id:uuid.v4(),
     parents: parents
+  };
+};
+
+export const updateItem = (id, itemType, propType, propVal) => {
+  return {
+    type: UPDATE_ITEM,
+    id,
+    itemType,
+    propType,
+    propVal
   };
 };
