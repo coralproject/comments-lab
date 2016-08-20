@@ -97,21 +97,10 @@ const setToggler = (action, state) => {
   return Object.assign({}, state, { togglerGroups: newTogglerGroups, pulseAnimation: animate, pulseTarget: target });
 };
 
-const urlFromToggler = (action,state) => {
-  let togglerObj = {};
-  for (let group in state.togglerGroups) {
-    let toggleGroup = state.togglerGroups[group];
-    for (let toggle in toggleGroup.togglers) {
-      if(toggleGroup.togglers[toggle].status) {
-        togglerObj[toggle]=toggleGroup.togglers[toggle].status;
-      }
-    }
-  }
-  let togglerUrl = encodeURIComponent(JSON.stringify(togglerObj));
-  return Object.assign({},state,{urlParams:togglerUrl});
-}; 
-
 const togglerFromURL = (action, state) => {
+  if (!action.url) {
+    return state;
+  }
   let togglerObj = JSON.parse(decodeURIComponent(action.url));
   let newTogglerGroups = JSON.parse(JSON.stringify(state.togglerGroups));
   for (let group in newTogglerGroups) {

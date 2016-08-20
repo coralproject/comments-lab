@@ -6,21 +6,13 @@ import CustomizerSettings from './CustomizerSettings';
 
 import {themes, mediaQueries} from '../../playgroundSettings';
 
-@connect(state => state.playground)
 @Radium
 class Customizer extends React.Component {
 
-  onCustomizerTogglerClick() {
-    this.setState({ settingsExpanded: !this.state.settingsExpanded });
-  }
-
   render() {
-
-    var customizerSettings = this.state.settingsExpanded ? <CustomizerSettings /> : null;
-
     return (
       <div style={ styles.customizer }>
-        <div style={ styles.customizeToggler } onClick={ this.onCustomizerTogglerClick.bind(this) }>
+        <div style={ styles.customizeToggler }>
           <h2 style={ styles.customizeTogglerTitle }>
             <span style={ styles.customizeTogglerTitleSpan }>Customize</span>
           </h2>

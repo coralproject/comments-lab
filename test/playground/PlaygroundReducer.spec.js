@@ -530,6 +530,12 @@ describe('PlaygroundReducer', () => {
       });
     });
 
+    it('should take no action if URL params are blank', () => {
+      action.url=null;
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal(state);
+    });
+
     it('should set toggles based on a formatted URL', () =>{
       let newState = PlaygroundReducer(state, action);
       expect(newState.togglerGroups.content.togglers.emoji.status).to.be.true;    

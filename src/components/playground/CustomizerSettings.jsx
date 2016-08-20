@@ -3,13 +3,32 @@ import { connect } from 'react-redux';
 import Radium from 'radium';
 
 import CustomizerToggle from './CustomizerToggle';
-
+import {togglerFromURL} from '../../playground/PlaygroundActions';
 import {themes} from 'playgroundSettings';
 //import CustomizerSlider from './customizerSlider';
 
-@connect(state => state.playground)
+@connect(state => state.newPlayground)
 @Radium
 class CustomizerSettings extends React.Component {
+
+  componentWillMount() {
+    console.log("Retreiving URL:" + document.location.hash);
+    this.props.dispatch(togglerFromURL(document.location.hash.slice(1)));
+  }
+
+  setURL() {
+    let togglerObj = {};
+    for (let group in this.props.togglerGroups) {
+      let toggleGroup = this.props.togglerGroups[group];
+      for (let toggle in toggleGroup.togglers) {
+        if(toggleGroup.togglers[toggle].status) {
+          togglerObj[toggle]=toggleGroup.togglers[toggle].status;
+        }
+      }
+    }
+    console.log("Setting url:" + encodeURIComponent(JSON.stringify(togglerObj)));
+    document.location.hash = encodeURIComponent(JSON.stringify(togglerObj));
+  }
 
   render() {
 
@@ -27,6 +46,7 @@ class CustomizerSettings extends React.Component {
                         groupIndex={ togglerGroupIndex }
                         togglerIndex={ togglerKey }
                         toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
+                        setURL={this.setURL}
                         key={ togglerKey } />
                     );
                   })

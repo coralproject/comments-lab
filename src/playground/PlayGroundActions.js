@@ -105,5 +105,12 @@ export const setStream = (stream) => {
   return {
     type: SET_STREAM,
     stream
-  }
+  };
+};
+
+export const togglerFromURL = (url) => {
+  return {
+    type:TOGGLER_FROM_URL,
+    url
+  };
 };
