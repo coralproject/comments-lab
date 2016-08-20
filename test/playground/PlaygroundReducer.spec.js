@@ -493,4 +493,46 @@ describe('PlaygroundReducer', () => {
         .and.to.deep.equal('%7B%22emoji%22%3Atrue%7D');
     });
   });
+
+  describe('TOGGLER_FROM_URL', () => {
+    let action;
+    let state;
+    beforeEach(() => {
+      action = {
+        type: 'TOGGLER_FROM_URL',
+        url: '%7B%22emoji%22%3Atrue%7D'
+      };
+      state = {
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:false
+              }              
+            }
+          }
+        }
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:false
+              }              
+            }
+          }
+        }
+      });
+    });
+
+    it('should set toggles based on a formatted URL', () =>{
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.togglerGroups.content.togglers.emoji.status).to.be.true;    
+    });
+  });
 });
