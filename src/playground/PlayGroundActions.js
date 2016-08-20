@@ -9,6 +9,7 @@ export const SEND_COMMENT = 'SEND_COMMENT';
 export const REPLY_COMMENT = 'REPLY_COMMENT';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const SET_STREAM = 'SET_STREAM';
+export const URL_FROM_TOGGLER = 'URL_FROM_TOGGLER';
 
 export function addComponent(itemType, component, propTypes, order, configProps) {
   return {

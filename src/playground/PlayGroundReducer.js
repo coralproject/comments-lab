@@ -97,6 +97,20 @@ const setToggler = (action, state) => {
   return Object.assign({}, state, { togglerGroups: newTogglerGroups, pulseAnimation: animate, pulseTarget: target });
 };
 
+const urlFromToggler = (action,state) => {
+  let togglerObj = {};
+  for (let group in state.togglerGroups) {
+    let toggleGroup = state.togglerGroups[group];
+    for (let toggle in toggleGroup.togglers) {
+      if(toggleGroup.togglers[toggle].status) {
+        togglerObj[toggle]=toggleGroup.togglers[toggle].status;
+      }
+    }
+  }
+  let togglerUrl = encodeURIComponent(JSON.stringify(togglerObj));
+  return Object.assign({},state,{urlParams:togglerUrl});
+}; 
+
 
 
 const replyComment = (action, state) => {
@@ -155,6 +169,8 @@ const playground = (state = initialState, action) => {
     return updateItem(action,state);
   case types.SET_STREAM:
     return Object.assign({}, state, {stream:action.stream});
+  case types.URL_FROM_TOGGLER:
+    return urlFromToggler(action, state);
   default:
     console.log('Not a Playground action:', action.type);
     return state;
