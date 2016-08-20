@@ -84,19 +84,37 @@ const updateComponent = (action, state) => {
 };
 
 const setToggler = (action, state) => {
-  let toggleGroupsUpdater = {};
-  toggleGroupsUpdater[action.groupIndex] = { togglers: state.togglerGroups[action.groupIndex].togglers };
-  toggleGroupsUpdater[action.groupIndex].togglers[action.togglerIndex].status = action.status;
+  let newTogglerGroups = JSON.parse(JSON.stringify(state.togglerGroups));
+  newTogglerGroups[action.groupIndex].togglers[action.togglerIndex].status = action.status;
 
   let animate = false;
   let target = '';
-  if (action.status && state.togglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget) {
+  if (action.status && newTogglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget) {
     animate = true,
-    target = state.togglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget;
+    target = newTogglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget;
   }
 
-  return Object.assign({}, state, { toggleGroups: toggleGroupsUpdater, pulseAnimation: animate, pulseTarget: target });
+  return Object.assign({}, state, { togglerGroups: newTogglerGroups, pulseAnimation: animate, pulseTarget: target });
 };
+
+const togglerFromURL = (action, state) => {
+  if (!action.url) {
+    return state;
+  }
+  let togglerObj = JSON.parse(decodeURIComponent(action.url));
+  let newTogglerGroups = JSON.parse(JSON.stringify(state.togglerGroups));
+  for (let group in newTogglerGroups) {
+    let toggleGroup = newTogglerGroups[group];
+    for (let toggle in toggleGroup.togglers) {
+      if (togglerObj[toggle]) {
+        toggleGroup.togglers[toggle].status = togglerObj[toggle];
+      }
+    }
+  }
+  return Object.assign({}, state, { togglerGroups: newTogglerGroups});
+};
+
+
 
 const replyComment = (action, state) => {
   let commentsCopy = state.items.comments.slice();
@@ -154,6 +172,10 @@ const playground = (state = initialState, action) => {
     return updateItem(action,state);
   case types.SET_STREAM:
     return Object.assign({}, state, {stream:action.stream});
+  case types.URL_FROM_TOGGLER:
+    return urlFromToggler(action, state);
+  case types.TOGGLER_FROM_URL:
+    return togglerFromURL(action, state);
   default:
     console.log('Not a Playground action:', action.type);
     return state;

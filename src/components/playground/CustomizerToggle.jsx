@@ -2,28 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 
-import { setToggler, setTopic } from 'playground/OldPlaygroundActions';
+import { setToggler, setTopic, URLFromToggler} from 'playground/PlaygroundActions';
 
 import {themes} from 'playgroundSettings';
 
 import Switch from '../../components/forms/Switch';
 
-@connect(state => state.playground)
 @Radium
 class CustomizerToggle extends React.Component {
 
-  componentWillMount() {
-    var initialStatus = this.props.toggler.status;
-    this.setState({ active: initialStatus });
-  }
-
   onTogglerClick() {
-    var currentStatus = this.props.toggler.status;
+    let currentStatus = this.props.toggler.status;
     if (this.props.toggler.offFunction && this.props.toggler.onFunction) {
       this.props.dispatch(currentStatus ? this.props.toggler.offFunction : this.props.toggler.onFunction);
     }
     this.props.dispatch(setToggler(this.props.groupIndex, this.props.togglerIndex, !currentStatus));
     this.setState({ active: !currentStatus });
+    this.props.setURL(this.props.togglerIndex, !currentStatus);
   }
 
   onMouseEnter() {
@@ -36,9 +31,9 @@ class CustomizerToggle extends React.Component {
 
     return (
 
-      <div style={ [ styles.base, this.state.active ? styles.active : null ] } onMouseEnter={ this.onMouseEnter.bind(this) } >
-        <Switch color={ '#F77260' } checked={ this.state.active } check={ true } clickHandler={ this.onTogglerClick.bind(this) } extraStyles={ styles.switchExtra } />
-        <span style={ styles.descriptionSpan }>{ this.state.active ? this.props.toggler.label : this.props.toggler.offLabel }</span>
+      <div style={ [ styles.base, this.props.toggler.status ? styles.active : null ] } onMouseEnter={ this.onMouseEnter.bind(this) } >
+        <Switch color={ '#F77260' } checked={ this.props.toggler.status } check={ true } clickHandler={ this.onTogglerClick.bind(this) } extraStyles={ styles.switchExtra } />
+        <span style={ styles.descriptionSpan }>{ this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }</span>
         <div style={ styles.clearfix }></div>
         <p style={ styles.description }>
           { this.props.toggler.description }

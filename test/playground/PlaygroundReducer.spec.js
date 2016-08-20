@@ -407,4 +407,138 @@ describe('PlaygroundReducer', () => {
       });
     });
   }) ;
+
+  describe('SET_TOGGLER', () => {
+    let action;
+    let state;
+    beforeEach(()=> {
+      action={
+        type:'SET_TOGGLER',
+        groupIndex:'content',
+        togglerIndex:'emoji',
+        status:false
+      };
+      state={
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:true
+              }              
+            }
+          }
+        }
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        togglerGroups:{
+          content:{
+            togglers: {
+              emoji:{
+                status:true
+              }
+            }
+          }
+        }
+      });
+    });
+
+    it('should toggle the appropriate option',() => {
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.togglerGroups.content.togglers.emoji.status).to.be.false;
+    });
+  });
+
+  describe('URL_FROM_TOGGLER', () => {
+    let action;
+    let state;
+    beforeEach(() => {
+      action = {
+        type: 'URL_FROM_TOGGLER'
+      };
+      state = {
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:true
+              }              
+            }
+          }
+        }
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:true
+              }              
+            }
+          }
+        }
+      });
+    });
+
+    it('should save a properly formatted URL param to state', () =>{
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.have.property('urlParams')
+        .and.to.deep.equal('%7B%22emoji%22%3Atrue%7D');
+    });
+  });
+
+  describe('TOGGLER_FROM_URL', () => {
+    let action;
+    let state;
+    beforeEach(() => {
+      action = {
+        type: 'TOGGLER_FROM_URL',
+        url: '%7B%22emoji%22%3Atrue%7D'
+      };
+      state = {
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:false
+              }              
+            }
+          }
+        }
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:false
+              }              
+            }
+          }
+        }
+      });
+    });
+
+    it('should take no action if URL params are blank', () => {
+      action.url=null;
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal(state);
+    });
+
+    it('should set toggles based on a formatted URL', () =>{
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.togglerGroups.content.togglers.emoji.status).to.be.true;    
+    });
+  });
 });

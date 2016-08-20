@@ -3,13 +3,57 @@ import { connect } from 'react-redux';
 import Radium from 'radium';
 
 import CustomizerToggle from './CustomizerToggle';
-
+import {togglerFromURL} from '../../playground/PlaygroundActions';
 import {themes} from 'playgroundSettings';
 //import CustomizerSlider from './customizerSlider';
 
-@connect(state => state.playground)
+@connect(state => state.newPlayground)
 @Radium
 class CustomizerSettings extends React.Component {
+
+  componentWillMount() {
+    console.log("Retreiving URL:" + document.location.hash);
+    let urlHash = document.location.hash.slice(1);
+    this.props.dispatch(togglerFromURL(urlHash, this.props.togglerGroups));
+    this.setPreviewFromUrl(urlHash);
+  }
+
+  setPreviewFromUrl(urlHash) {
+    if (!urlHash) return
+    let settings = JSON.parse(decodeURIComponent(urlHash));
+    for (let group in this.props.togglerGroups) {
+      let togglerGroup = this.props.togglerGroups[group];
+      for (let toggle in togglerGroup.togglers) {
+        if(settings[toggle]) {
+          console.log("dispatching " + toggle);
+          if(togglerGroup.togglers[toggle].onFunction) {
+            this.props.dispatch(togglerGroup.togglers[toggle].onFunction);
+          }
+        }
+      }
+    }
+  }
+
+  setURL(toggler, status) {
+
+    let settings = {};
+    let urlHash = document.location.hash.slice(1);
+    if (urlHash) {
+      settings = JSON.parse(decodeURIComponent(urlHash));
+    }
+    if (status) {
+      settings[toggler] = status;
+    } else {
+      delete settings[toggler];
+    }
+
+    if(Object.keys(settings).length > 0) {
+      document.location.hash = encodeURIComponent(JSON.stringify(settings));
+    } else {
+      document.location.hash = '';
+    }
+
+  }
 
   render() {
 
@@ -27,6 +71,8 @@ class CustomizerSettings extends React.Component {
                         groupIndex={ togglerGroupIndex }
                         togglerIndex={ togglerKey }
                         toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
+                        setURL={this.setURL.bind(this)}
+                        dispatch={this.props.dispatch}
                         key={ togglerKey } />
                     );
                   })

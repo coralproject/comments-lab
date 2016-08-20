@@ -22,7 +22,7 @@ import FaHeart from 'react-icons/lib/fa/heart';
 
 import { themes } from 'playgroundSettings';
 
-@connect(state => state.playground)
+@connect(state => state.newPlayground)
 @Radium
 class CommentBox extends React.Component {
 
