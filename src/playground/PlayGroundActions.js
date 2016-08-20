@@ -11,7 +11,6 @@ export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const SET_STREAM = 'SET_STREAM';
 
 export function addComponent(itemType, component, propTypes, order, configProps) {
-  console.log("Adding component")
   return {
     type: ADD_COMPONENT,
     itemType,

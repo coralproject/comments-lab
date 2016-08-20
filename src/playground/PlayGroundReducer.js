@@ -84,19 +84,20 @@ const updateComponent = (action, state) => {
 };
 
 const setToggler = (action, state) => {
-  let toggleGroupsUpdater = {};
-  toggleGroupsUpdater[action.groupIndex] = { togglers: state.togglerGroups[action.groupIndex].togglers };
-  toggleGroupsUpdater[action.groupIndex].togglers[action.togglerIndex].status = action.status;
+  let newTogglerGroups = JSON.parse(JSON.stringify(state.togglerGroups));
+  newTogglerGroups[action.groupIndex].togglers[action.togglerIndex].status = action.status;
 
   let animate = false;
   let target = '';
-  if (action.status && state.togglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget) {
+  if (action.status && newTogglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget) {
     animate = true,
-    target = state.togglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget;
+    target = newTogglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget;
   }
 
-  return Object.assign({}, state, { toggleGroups: toggleGroupsUpdater, pulseAnimation: animate, pulseTarget: target });
+  return Object.assign({}, state, { togglerGroups: newTogglerGroups, pulseAnimation: animate, pulseTarget: target });
 };
+
+
 
 const replyComment = (action, state) => {
   let commentsCopy = state.items.comments.slice();

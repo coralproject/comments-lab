@@ -407,4 +407,48 @@ describe('PlaygroundReducer', () => {
       });
     });
   }) ;
+
+  describe('SET_TOGGLER', () => {
+    let action;
+    let state;
+    beforeEach(()=> {
+      action={
+        type:'SET_TOGGLER',
+        groupIndex:'content',
+        togglerIndex:'emoji',
+        status:false
+      };
+      state={
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:true
+              }              
+            }
+          }
+        }
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        togglerGroups:{
+          content:{
+            togglers: {
+              emoji:{
+                status:true
+              }
+            }
+          }
+        }
+      });
+    });
+
+    it('should toggle the appropriate option',() => {
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.togglerGroups.content.togglers.emoji.status).to.be.false;
+    });
+  });
 });
