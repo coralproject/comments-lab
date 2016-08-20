@@ -13,21 +13,46 @@ class CustomizerSettings extends React.Component {
 
   componentWillMount() {
     console.log("Retreiving URL:" + document.location.hash);
-    this.props.dispatch(togglerFromURL(document.location.hash.slice(1)));
+    let urlHash = document.location.hash.slice(1);
+    this.props.dispatch(togglerFromURL(urlHash, this.props.togglerGroups));
+    this.setPreviewFromUrl(urlHash);
   }
 
-  setURL() {
-    let togglerObj = {};
+  setPreviewFromUrl(urlHash) {
+    if (!urlHash) return
+    let settings = JSON.parse(decodeURIComponent(urlHash));
     for (let group in this.props.togglerGroups) {
-      let toggleGroup = this.props.togglerGroups[group];
-      for (let toggle in toggleGroup.togglers) {
-        if(toggleGroup.togglers[toggle].status) {
-          togglerObj[toggle]=toggleGroup.togglers[toggle].status;
+      let togglerGroup = this.props.togglerGroups[group];
+      for (let toggle in togglerGroup.togglers) {
+        if(settings[toggle]) {
+          console.log("dispatching " + toggle);
+          if(togglerGroup.togglers[toggle].onFunction) {
+            this.props.dispatch(togglerGroup.togglers[toggle].onFunction);
+          }
         }
       }
     }
-    console.log("Setting url:" + encodeURIComponent(JSON.stringify(togglerObj)));
-    document.location.hash = encodeURIComponent(JSON.stringify(togglerObj));
+  }
+
+  setURL(toggler, status) {
+
+    let settings = {};
+    let urlHash = document.location.hash.slice(1);
+    if (urlHash) {
+      settings = JSON.parse(decodeURIComponent(urlHash));
+    }
+    if (status) {
+      settings[toggler] = status;
+    } else {
+      delete settings[toggler];
+    }
+
+    if(Object.keys(settings).length > 0) {
+      document.location.hash = encodeURIComponent(JSON.stringify(settings));
+    } else {
+      document.location.hash = '';
+    }
+
   }
 
   render() {
@@ -46,7 +71,8 @@ class CustomizerSettings extends React.Component {
                         groupIndex={ togglerGroupIndex }
                         togglerIndex={ togglerKey }
                         toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
-                        setURL={this.setURL}
+                        setURL={this.setURL.bind(this)}
+                        dispatch={this.props.dispatch}
                         key={ togglerKey } />
                     );
                   })

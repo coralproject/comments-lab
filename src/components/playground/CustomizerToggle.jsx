@@ -17,9 +17,8 @@ class CustomizerToggle extends React.Component {
       this.props.dispatch(currentStatus ? this.props.toggler.offFunction : this.props.toggler.onFunction);
     }
     this.props.dispatch(setToggler(this.props.groupIndex, this.props.togglerIndex, !currentStatus));
-    this.props.dispatch(URLFromToggler());
     this.setState({ active: !currentStatus });
-    this.props.setURL();
+    this.props.setURL(this.props.togglerIndex, !currentStatus);
   }
 
   onMouseEnter() {
