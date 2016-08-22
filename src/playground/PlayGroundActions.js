@@ -11,6 +11,7 @@ export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const SET_STREAM = 'SET_STREAM';
 export const URL_FROM_TOGGLER = 'URL_FROM_TOGGLER';
 export const TOGGLER_FROM_URL = 'TOGGLER_FROM_URL';
+export const SET_TOGGLER_GROUP = 'SET_TOGGLER_GROUP';
 
 export function addComponent(itemType, component, propTypes, order, configProps) {
   return {
@@ -112,5 +113,12 @@ export const togglerFromURL = (url) => {
   return {
     type:TOGGLER_FROM_URL,
     url
+  };
+};
+
+export const setTogglerGroup = (group) => {
+  return {
+    type:SET_TOGGLER_GROUP,
+    group
   };
 };

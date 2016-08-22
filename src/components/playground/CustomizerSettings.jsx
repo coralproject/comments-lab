@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Radium from 'radium';
 
 import CustomizerToggle from './CustomizerToggle';
-import {togglerFromURL} from '../../playground/PlaygroundActions';
+import {togglerFromURL, setTogglerGroup} from '../../playground/PlaygroundActions';
 import {themes} from 'playgroundSettings';
 import {Card, CardTitle, CardText} from 'react-mdl';
 //import CustomizerSlider from './customizerSlider';
@@ -52,7 +52,13 @@ class CustomizerSettings extends React.Component {
     } else {
       document.location.hash = '';
     }
+  }
 
+  onTogglerGroupClick(group) {
+    return (e) => {
+      e.preventDefault();
+      this.props.dispatch(setTogglerGroup(group));
+    };
   }
 
   render() {

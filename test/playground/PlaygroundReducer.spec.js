@@ -541,4 +541,32 @@ describe('PlaygroundReducer', () => {
       expect(newState.togglerGroups.content.togglers.emoji.status).to.be.true;    
     });
   });
+
+  describe('SET_TOGGLER_GROUP', () => {
+    let action;
+    let state;
+    beforeEach(() => {
+      action = {
+        type: 'SET_TOGGLER_GROUP',
+        group:'moderation'
+      };
+      state = {
+        selectedTogglerGroup:'content'
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        selectedTogglerGroup:'content'
+      });
+    })
+
+    it('should switch the selectedTogglerGroup', () => {
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal({
+        selectedTogglerGroup:'moderation'
+      });
+    });
+  });
 });
