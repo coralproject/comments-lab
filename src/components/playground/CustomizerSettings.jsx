@@ -57,7 +57,11 @@ class CustomizerSettings extends React.Component {
   onTogglerGroupClick(group) {
     return (e) => {
       e.preventDefault();
-      this.props.dispatch(setTogglerGroup(group));
+      if (this.props.selectedTogglerGroup == group) {
+        this.props.dispatch(setTogglerGroup());        
+      } else {
+        this.props.dispatch(setTogglerGroup(group));
+      }
     };
   }
 
@@ -66,16 +70,19 @@ class CustomizerSettings extends React.Component {
     return (
       <div>
         {
-          Object.keys(this.props.togglerGroups).map((togglerGroupIndex, gIndex) => {
+          Object.keys(this.props.togglerGroups).map((togglerGroupIndex) => {
             return (
               <Card shadow={1} style={styles.card}>
-                <CardTitle style={styles.cardTitle}>{ this.props.togglerGroups[togglerGroupIndex].name }</CardTitle>
-                <CardText style={styles.cardText}>
+                <CardTitle style={styles.cardTitle}
+                  onClick={this.onTogglerGroupClick(togglerGroupIndex).bind(this)}>
+                  { this.props.togglerGroups[togglerGroupIndex].name }
+                </CardTitle>
                 {
+                  this.props.selectedTogglerGroup == togglerGroupIndex && 
                   Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey, tIndex) => {
                     return (
-                      <div>
-                        {tIndex != 0 && <hr/>}
+                      <CardText style={styles.cardText}>
+                        {tIndex != 0 && <hr style={styles.line}/>}
                         <CustomizerToggle
                           groupIndex={ togglerGroupIndex }
                           togglerIndex={ togglerKey }
@@ -83,11 +90,10 @@ class CustomizerSettings extends React.Component {
                           setURL={this.setURL.bind(this)}
                           dispatch={this.props.dispatch}
                           key={ togglerKey } />
-                      </div>
+                      </CardText>
                     );
                   })
                 }
-                </CardText>
               </Card>
             );
           })
@@ -103,27 +109,20 @@ export default CustomizerSettings;
 var styles = {
   card: {
     width: '90%',
-    margin:20
+    margin:20,
+    minHeight:0
   },
   cardText: {
     width:'100%',
-    color:'black'
+    color:'black',
+    paddingTop:5,
+    paddingBottom:5
   },
   cardTitle: {
     color: 'white',
     background:'rgba(247,114,96,1)'
   },
-  toggleGroup: {
-    padding: '30px 0'
-  },
-  toggleGroupHeader: {
-    fontSize: '11pt',
-    color: '#999',
-    textTransform: 'uppercase',
-    fontFamily: themes.default.fontFamily,
-    margin: '0 40px 20px 40px'
-  },
-  clearBoth: {
-    'clear': 'both'
+  line: {
+    margin:0
   }
 };

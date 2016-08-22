@@ -39,7 +39,7 @@ class CustomizerToggle extends React.Component {
              <Switch ripple color={ '#F77260' } checked={ this.props.toggler.status } onChange={this.onTogglerClick.bind(this)} />
            </Cell>
           </Grid>
-          <Grid>
+          <Grid style={styles.togglerGrid}>
             <Cell col={12}>
               <p style={ styles.description }>
                 { this.props.toggler.description }
