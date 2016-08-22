@@ -6,7 +6,7 @@ import { setToggler, setTopic, URLFromToggler} from 'playground/PlaygroundAction
 
 import {themes} from 'playgroundSettings';
 
-import Switch from '../../components/forms/Switch';
+import {Grid, Cell, Switch} from 'react-mdl';
 
 @Radium
 class CustomizerToggle extends React.Component {
@@ -32,12 +32,21 @@ class CustomizerToggle extends React.Component {
     return (
 
       <div style={ [ styles.base, this.props.toggler.status ? styles.active : null ] } onMouseEnter={ this.onMouseEnter.bind(this) } >
-        <Switch color={ '#F77260' } checked={ this.props.toggler.status } check={ true } clickHandler={ this.onTogglerClick.bind(this) } extraStyles={ styles.switchExtra } />
-        <span style={ styles.descriptionSpan }>{ this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }</span>
-        <div style={ styles.clearfix }></div>
-        <p style={ styles.description }>
-          { this.props.toggler.description }
-        </p>
+        <Grid>
+          <Cell col={10}>
+            <div style={ styles.descriptionSpan }>{ this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }</div>
+         </Cell>
+         <Cell col={2}>
+           <Switch ripple color={ '#F77260' } checked={ this.props.toggler.status } onChange={this.onTogglerClick.bind(this)} />
+         </Cell>
+        </Grid>
+        <Grid>
+          <Cell col={12}>
+            <p style={ styles.description }>
+              { this.props.toggler.description }
+            </p>
+          </Cell>
+        </Grid>
       </div>
 
     );
@@ -83,7 +92,6 @@ var styles = {
   description: {
     color: '#666',
     fontFamily: themes.default.fontFamily,
-    marginTop: '10px',
     fontSize: '11pt'
   },
   checkbox: {
@@ -93,8 +101,5 @@ var styles = {
     'float': 'left',
     margin: '0 10px 0 0',
     fontFamily: themes.default.fontFamily
-  },
-  clearfix: {
-    clear: 'both'
   }
 };
