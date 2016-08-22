@@ -127,7 +127,8 @@ var styles = {
   },
   cardTitle: {
     color: 'white',
-    background:'rgba(247,114,96,1)'
+    background:'rgba(247,114,96,1)',
+    cursor:'pointer'
   },
   line: {
     margin:0

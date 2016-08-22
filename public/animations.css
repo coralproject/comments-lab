@@ -8,10 +8,6 @@
   animation-timing-function:linear;
 }
 
-.togglerGroup-leave {
-  /*max-height:0px;*/
-}
-
 .togglerGroup-leave-active {
   animation-duration: 250ms;
   animation-name: slide_out;
