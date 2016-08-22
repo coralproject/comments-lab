@@ -6,7 +6,7 @@ import { setToggler, setTopic, URLFromToggler} from 'playground/PlaygroundAction
 
 import {themes} from 'playgroundSettings';
 
-import {Grid, Cell, Switch} from 'react-mdl';
+import {Card, Grid, Cell, Switch, CardTitle, CardText} from 'react-mdl';
 
 @Radium
 class CustomizerToggle extends React.Component {
@@ -30,25 +30,23 @@ class CustomizerToggle extends React.Component {
   render() {
 
     return (
-
-      <div style={ [ styles.base, this.props.toggler.status ? styles.active : null ] } onMouseEnter={ this.onMouseEnter.bind(this) } >
-        <Grid>
-          <Cell col={10}>
-            <div style={ styles.descriptionSpan }>{ this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }</div>
-         </Cell>
-         <Cell col={2}>
-           <Switch ripple color={ '#F77260' } checked={ this.props.toggler.status } onChange={this.onTogglerClick.bind(this)} />
-         </Cell>
-        </Grid>
-        <Grid>
-          <Cell col={12}>
-            <p style={ styles.description }>
-              { this.props.toggler.description }
-            </p>
-          </Cell>
-        </Grid>
-      </div>
-
+        <div>
+          <Grid style={styles.togglerGrid}>
+            <Cell col={10}>
+              <div style={ styles.descriptionSpan }>{ this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }</div>
+           </Cell>
+           <Cell col={2}>
+             <Switch ripple color={ '#F77260' } checked={ this.props.toggler.status } onChange={this.onTogglerClick.bind(this)} />
+           </Cell>
+          </Grid>
+          <Grid>
+            <Cell col={12}>
+              <p style={ styles.description }>
+                { this.props.toggler.description }
+              </p>
+            </Cell>
+          </Grid>
+        </div>
     );
 
   }
@@ -58,6 +56,9 @@ class CustomizerToggle extends React.Component {
 export default CustomizerToggle;
 
 var styles = {
+  togglerGrid:{
+    padding:0
+  },
   base: {
     padding: '20px 40px',
     borderBottom: '1px solid #999',

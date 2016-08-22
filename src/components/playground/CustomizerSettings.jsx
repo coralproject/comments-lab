@@ -5,6 +5,7 @@ import Radium from 'radium';
 import CustomizerToggle from './CustomizerToggle';
 import {togglerFromURL} from '../../playground/PlaygroundActions';
 import {themes} from 'playgroundSettings';
+import {Card, CardTitle, CardText} from 'react-mdl';
 //import CustomizerSlider from './customizerSlider';
 
 @connect(state => state.newPlayground)
@@ -12,20 +13,19 @@ import {themes} from 'playgroundSettings';
 class CustomizerSettings extends React.Component {
 
   componentWillMount() {
-    console.log("Retreiving URL:" + document.location.hash);
+    console.log('Retreiving URL:' + document.location.hash);
     let urlHash = document.location.hash.slice(1);
     this.props.dispatch(togglerFromURL(urlHash, this.props.togglerGroups));
     this.setPreviewFromUrl(urlHash);
   }
 
   setPreviewFromUrl(urlHash) {
-    if (!urlHash) return
+    if (!urlHash) return;
     let settings = JSON.parse(decodeURIComponent(urlHash));
     for (let group in this.props.togglerGroups) {
       let togglerGroup = this.props.togglerGroups[group];
       for (let toggle in togglerGroup.togglers) {
         if(settings[toggle]) {
-          console.log("dispatching " + toggle);
           if(togglerGroup.togglers[toggle].onFunction) {
             this.props.dispatch(togglerGroup.togglers[toggle].onFunction);
           }
@@ -62,27 +62,30 @@ class CustomizerSettings extends React.Component {
         {
           Object.keys(this.props.togglerGroups).map((togglerGroupIndex, gIndex) => {
             return (
-              <div style={ styles.toggleGroup } key={ gIndex }>
-                <h2 style={ styles.toggleGroupHeader }>{ this.props.togglerGroups[togglerGroupIndex].name }</h2>
+              <Card shadow={1} style={styles.card}>
+                <CardTitle>{ this.props.togglerGroups[togglerGroupIndex].name }</CardTitle>
+                <CardText style={styles.cardText}>
                 {
-                  Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey) => {
+                  Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey, tIndex) => {
                     return (
-                      <CustomizerToggle
-                        groupIndex={ togglerGroupIndex }
-                        togglerIndex={ togglerKey }
-                        toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
-                        setURL={this.setURL.bind(this)}
-                        dispatch={this.props.dispatch}
-                        key={ togglerKey } />
+                      <div>
+                        {tIndex != 0 && <hr/>}
+                        <CustomizerToggle
+                          groupIndex={ togglerGroupIndex }
+                          togglerIndex={ togglerKey }
+                          toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
+                          setURL={this.setURL.bind(this)}
+                          dispatch={this.props.dispatch}
+                          key={ togglerKey } />
+                      </div>
                     );
                   })
                 }
-                <div style={ styles.clearBoth }></div>
-              </div>
+                </CardText>
+              </Card>
             );
           })
         }
-        <div style={ styles.clearBoth }></div>
       </div>
       );
   }
@@ -92,6 +95,14 @@ class CustomizerSettings extends React.Component {
 export default CustomizerSettings;
 
 var styles = {
+  card: {
+    width: '90%',
+    margin:20
+  },
+  cardText: {
+    width:'100%',
+    color:'black'
+  },
   toggleGroup: {
     padding: '30px 0'
   },
