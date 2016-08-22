@@ -3,29 +3,29 @@ import { connect } from 'react-redux';
 import Radium from 'radium';
 
 import CustomizerToggle from './CustomizerToggle';
-import {togglerFromURL} from '../../playground/PlaygroundActions';
-import {themes} from 'playgroundSettings';
-//import CustomizerSlider from './customizerSlider';
+import {togglerFromURL, setTogglerGroup} from '../../playground/PlaygroundActions';
+import {Card, CardTitle, CardText} from 'react-mdl';
+
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 @connect(state => state.newPlayground)
 @Radium
 class CustomizerSettings extends React.Component {
 
   componentWillMount() {
-    console.log("Retreiving URL:" + document.location.hash);
+    console.log('Retreiving URL:' + document.location.hash);
     let urlHash = document.location.hash.slice(1);
     this.props.dispatch(togglerFromURL(urlHash, this.props.togglerGroups));
     this.setPreviewFromUrl(urlHash);
   }
 
   setPreviewFromUrl(urlHash) {
-    if (!urlHash) return
+    if (!urlHash) return;
     let settings = JSON.parse(decodeURIComponent(urlHash));
     for (let group in this.props.togglerGroups) {
       let togglerGroup = this.props.togglerGroups[group];
       for (let toggle in togglerGroup.togglers) {
         if(settings[toggle]) {
-          console.log("dispatching " + toggle);
           if(togglerGroup.togglers[toggle].onFunction) {
             this.props.dispatch(togglerGroup.togglers[toggle].onFunction);
           }
@@ -52,7 +52,17 @@ class CustomizerSettings extends React.Component {
     } else {
       document.location.hash = '';
     }
+  }
 
+  onTogglerGroupClick(group) {
+    return (e) => {
+      e.preventDefault();
+      if (this.props.selectedTogglerGroup == group) {
+        this.props.dispatch(setTogglerGroup());        
+      } else {
+        this.props.dispatch(setTogglerGroup(group));
+      }
+    };
   }
 
   render() {
@@ -62,27 +72,39 @@ class CustomizerSettings extends React.Component {
         {
           Object.keys(this.props.togglerGroups).map((togglerGroupIndex, gIndex) => {
             return (
-              <div style={ styles.toggleGroup } key={ gIndex }>
-                <h2 style={ styles.toggleGroupHeader }>{ this.props.togglerGroups[togglerGroupIndex].name }</h2>
+              <Card shadow={1} style={styles.card} key={gIndex}>
+                <CardTitle style={styles.cardTitle}
+                  onClick={this.onTogglerGroupClick(togglerGroupIndex).bind(this)}>
+                  { this.props.togglerGroups[togglerGroupIndex].name }
+                </CardTitle>
+                <ReactCSSTransitionGroup
+                  transitionName='togglerGroup'
+                  transitionEnterTimeout={250}
+                  transitionLeaveTimeout={250}>
                 {
-                  Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey) => {
-                    return (
-                      <CustomizerToggle
-                        groupIndex={ togglerGroupIndex }
-                        togglerIndex={ togglerKey }
-                        toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
-                        setURL={this.setURL.bind(this)}
-                        dispatch={this.props.dispatch}
-                        key={ togglerKey } />
-                    );
-                  })
-                }
-                <div style={ styles.clearBoth }></div>
-              </div>
+                    Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey, tIndex) => {
+                      if (this.props.selectedTogglerGroup != togglerGroupIndex) {
+                        return null;
+                      }
+                      return (
+                          <CardText style={styles.cardText} key={tIndex}>
+                            {tIndex != 0 && <hr style={styles.line}/>}
+                            <CustomizerToggle
+                              groupIndex={ togglerGroupIndex }
+                              togglerIndex={ togglerKey }
+                              toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
+                              setURL={this.setURL.bind(this)}
+                              dispatch={this.props.dispatch}
+                              key={ togglerKey } />
+                          </CardText>
+                      );
+                    })
+                  }
+              </ReactCSSTransitionGroup>
+              </Card>
             );
           })
         }
-        <div style={ styles.clearBoth }></div>
       </div>
       );
   }
@@ -92,17 +114,23 @@ class CustomizerSettings extends React.Component {
 export default CustomizerSettings;
 
 var styles = {
-  toggleGroup: {
-    padding: '30px 0'
+  card: {
+    width: '90%',
+    margin:20,
+    minHeight:0
   },
-  toggleGroupHeader: {
-    fontSize: '11pt',
-    color: '#999',
-    textTransform: 'uppercase',
-    fontFamily: themes.default.fontFamily,
-    margin: '0 40px 20px 40px'
+  cardText: {
+    width:'100%',
+    color:'black',
+    paddingTop:5,
+    paddingBottom:5
   },
-  clearBoth: {
-    'clear': 'both'
+  cardTitle: {
+    color: 'white',
+    background:'rgba(247,114,96,1)',
+    cursor:'pointer'
+  },
+  line: {
+    margin:0
   }
 };

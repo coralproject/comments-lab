@@ -1,0 +1,18 @@
+.togglerGroup-enter {
+  max-height:0px;
+}
+
+.togglerGroup-enter.togglerGroup-enter-active {
+  animation-duration: 250ms;
+  animation-name: slide_in;
+  animation-timing-function:linear;
+}
+
+.togglerGroup-leave-active {
+  animation-duration: 250ms;
+  animation-name: slide_out;
+  animation-timing-function:linear;
+}
+
+@keyframes slide_in { from { max-height:0px; } to { max-height:100px; }  }
+@keyframes slide_out { from { max-height:100px; } to { max-height:0px; }  }

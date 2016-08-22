@@ -176,6 +176,8 @@ const playground = (state = initialState, action) => {
     return urlFromToggler(action, state);
   case types.TOGGLER_FROM_URL:
     return togglerFromURL(action, state);
+  case types.SET_TOGGLER_GROUP:
+    return Object.assign({}, state, {selectedTogglerGroup:action.group});
   default:
     console.log('Not a Playground action:', action.type);
     return state;
