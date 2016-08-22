@@ -63,7 +63,7 @@ class CustomizerSettings extends React.Component {
           Object.keys(this.props.togglerGroups).map((togglerGroupIndex, gIndex) => {
             return (
               <Card shadow={1} style={styles.card}>
-                <CardTitle>{ this.props.togglerGroups[togglerGroupIndex].name }</CardTitle>
+                <CardTitle style={styles.cardTitle}>{ this.props.togglerGroups[togglerGroupIndex].name }</CardTitle>
                 <CardText style={styles.cardText}>
                 {
                   Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey, tIndex) => {
@@ -102,6 +102,10 @@ var styles = {
   cardText: {
     width:'100%',
     color:'black'
+  },
+  cardTitle: {
+    color: 'white',
+    background:'rgba(247,114,96,1)'
   },
   toggleGroup: {
     padding: '30px 0'
