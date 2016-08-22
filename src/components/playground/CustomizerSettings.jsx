@@ -4,9 +4,9 @@ import Radium from 'radium';
 
 import CustomizerToggle from './CustomizerToggle';
 import {togglerFromURL, setTogglerGroup} from '../../playground/PlaygroundActions';
-import {themes} from 'playgroundSettings';
 import {Card, CardTitle, CardText} from 'react-mdl';
-//import CustomizerSlider from './customizerSlider';
+
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 @connect(state => state.newPlayground)
 @Radium
@@ -70,30 +70,37 @@ class CustomizerSettings extends React.Component {
     return (
       <div>
         {
-          Object.keys(this.props.togglerGroups).map((togglerGroupIndex) => {
+          Object.keys(this.props.togglerGroups).map((togglerGroupIndex, gIndex) => {
             return (
-              <Card shadow={1} style={styles.card}>
+              <Card shadow={1} style={styles.card} key={gIndex}>
                 <CardTitle style={styles.cardTitle}
                   onClick={this.onTogglerGroupClick(togglerGroupIndex).bind(this)}>
                   { this.props.togglerGroups[togglerGroupIndex].name }
                 </CardTitle>
+                <ReactCSSTransitionGroup
+                  transitionName='togglerGroup'
+                  transitionEnterTimeout={250}
+                  transitionLeaveTimeout={250}>
                 {
-                  this.props.selectedTogglerGroup == togglerGroupIndex && 
-                  Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey, tIndex) => {
-                    return (
-                      <CardText style={styles.cardText}>
-                        {tIndex != 0 && <hr style={styles.line}/>}
-                        <CustomizerToggle
-                          groupIndex={ togglerGroupIndex }
-                          togglerIndex={ togglerKey }
-                          toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
-                          setURL={this.setURL.bind(this)}
-                          dispatch={this.props.dispatch}
-                          key={ togglerKey } />
-                      </CardText>
-                    );
-                  })
-                }
+                    Object.keys(this.props.togglerGroups[togglerGroupIndex].togglers).map((togglerKey, tIndex) => {
+                      if (this.props.selectedTogglerGroup != togglerGroupIndex) {
+                        return null;
+                      }
+                      return (
+                          <CardText style={styles.cardText} key={tIndex}>
+                            {tIndex != 0 && <hr style={styles.line}/>}
+                            <CustomizerToggle
+                              groupIndex={ togglerGroupIndex }
+                              togglerIndex={ togglerKey }
+                              toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
+                              setURL={this.setURL.bind(this)}
+                              dispatch={this.props.dispatch}
+                              key={ togglerKey } />
+                          </CardText>
+                      );
+                    })
+                  }
+              </ReactCSSTransitionGroup>
               </Card>
             );
           })
