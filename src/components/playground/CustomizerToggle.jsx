@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 
-import { setToggler, setTopic, URLFromToggler} from 'playground/PlaygroundActions';
+import { setToggler, setTopic} from 'playground/PlaygroundActions';
 
 import {themes} from 'playgroundSettings';
 
-import {Card, Grid, Cell, Switch, CardTitle, CardText} from 'react-mdl';
+import {Grid, Cell, Switch} from 'react-mdl';
 
 @Radium
 class CustomizerToggle extends React.Component {
