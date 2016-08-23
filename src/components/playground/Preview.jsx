@@ -48,11 +48,8 @@ class Preview extends React.Component {
         null;
 
     return (
-      <div style={ styles.preview }>
+      <div style={ styles.preview } id="preview">
         <div style={ styles.previewBar }>
-          <h2 style={ styles.previewBarTitle }>
-            <span style={ styles.previewTitleSpan }>PREVIEW</span>
-          </h2>
           {
             this.props.togglerGroups.layout.togglers.hiddenbydefault.status &&
             this.state.commentsAreVisible ?
@@ -92,8 +89,13 @@ var styles = {
     padding: '40px',
     color: '#3d3d3d',
     minHeight: '500px',
-    position: 'relative',
+    width:'65%',
+    display:'inline-block',
+    overflowY: 'auto',
     [mediaQueries.tablet]: {
+      'float': 'none',
+      width: '100%',
+      height: 'auto',
       padding: '20px 20px 120px 20px'
     }
   },
@@ -118,11 +120,9 @@ var styles = {
     fontSize: '11pt'
   },
   previewBar: {
-    borderBottom: '1px solid #ccc',
     position: 'relative',
     fontSize: '16pt',
-    paddingBottom: '10px',
-    position: 'relative'
+    paddingBottom: '10px'
   },
   previewTitleSpan: {
     fontFamily: themes.default.fontFamily,
