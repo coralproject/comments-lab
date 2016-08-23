@@ -87,6 +87,7 @@ var styles = {
   preview: {
     background: 'white',
     padding: '40px',
+    paddingTop:0,
     color: '#3d3d3d',
     minHeight: '500px',
     width:'65%',

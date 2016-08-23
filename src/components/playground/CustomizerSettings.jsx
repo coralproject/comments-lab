@@ -125,7 +125,8 @@ var styles = {
   },
   card: {
     width: '90%',
-    margin:20,
+    margin:10,
+    marginLeft:20,
     minHeight:0
   },
   cardText: {
@@ -136,8 +137,9 @@ var styles = {
   },
   cardTitle: {
     color: 'white',
-    background:'rgba(247,114,96,1)',
-    cursor:'pointer'
+    background:'#f36451',
+    cursor:'pointer',
+    fontSize:16
   },
   line: {
     margin:0

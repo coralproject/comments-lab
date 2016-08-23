@@ -27,6 +27,6 @@ const defaultStyles = {
     position:'relative'
   },
   header: {
-    background: 'linear-gradient(to right, rgba(247,114,96,1) 0%, rgba(252,149,70,1) 100%)'
+    background: 'rgba(247,114,96,1)'
   }
 };
