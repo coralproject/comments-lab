@@ -20,6 +20,8 @@ import MdFormatQuote from 'react-icons/lib/md/format-quote';
 import FaSmileO from 'react-icons/lib/fa/smile-o';
 import FaHeart from 'react-icons/lib/fa/heart';
 
+import {Button} from 'react-mdl'
+
 import { themes } from 'playgroundSettings';
 
 @connect(state => state.newPlayground)
@@ -162,14 +164,14 @@ class CommentBox extends React.Component {
               :
                 null
             }
-            <button style={ styles.sendButton } onClick={ this.onSendClick.bind(this) }>Post</button>
+            <Button raised colored ripple onClick={ this.onSendClick.bind(this) }>Post</Button>
           </div>
           {
-            !this.props.replyMode ?
-              <div style={ styles.safetyTips }>
-                <span style={ styles.heart }><FaHeart /></span> Dont engage in personal attacks! Remember you can always use the report tools.
-              </div>
-            : null
+            // !this.props.replyMode ?
+            //   <div style={ styles.safetyTips }>
+            //     <span style={ styles.heart }><FaHeart /></span> Dont engage in personal attacks! Remember you can always use the report tools.
+            //   </div>
+            // : null
           }
         </div>
       </div>

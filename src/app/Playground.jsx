@@ -56,4 +56,5 @@ const styles = {
       height: 'auto',
       overflowY: 'auto'
     }
+  }
 };
