@@ -36,7 +36,7 @@ class CustomizerToggle extends React.Component {
               <div style={ styles.descriptionSpan }>{ this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }</div>
            </Cell>
            <Cell col={2}>
-             <Switch ripple color={ '#F77260' } checked={ this.props.toggler.status } onChange={this.onTogglerClick.bind(this)} />
+             <Switch ripple checked={ this.props.toggler.status } onChange={this.onTogglerClick.bind(this)} />
            </Cell>
           </Grid>
           <Grid style={styles.togglerGrid}>
@@ -87,13 +87,13 @@ var styles = {
   descriptionSpan: {
     fontWeight: 'bold',
     fontFamily: themes.default.fontFamily,
-    fontSize: '14pt',
+    fontSize: '14px',
     lineHeight: '30px'
   },
   description: {
     color: '#666',
     fontFamily: themes.default.fontFamily,
-    fontSize: '11pt'
+    fontSize: '14px'
   },
   checkbox: {
     display: 'none'

@@ -86,7 +86,7 @@ export default Preview;
 var styles = {
   preview: {
     background: 'white',
-    padding: '40px',
+    padding: '0px 40px 40px 40px',
     color: '#3d3d3d',
     minHeight: '500px',
     width:'65%',
