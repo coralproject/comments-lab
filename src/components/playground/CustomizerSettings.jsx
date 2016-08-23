@@ -68,7 +68,8 @@ class CustomizerSettings extends React.Component {
   render() {
 
     return (
-      <div>
+      <div id="customizer" style={styles.customizer}>
+        <div style={styles.customizerScroll}>
         {
           Object.keys(this.props.togglerGroups).map((togglerGroupIndex, gIndex) => {
             return (
@@ -105,6 +106,7 @@ class CustomizerSettings extends React.Component {
             );
           })
         }
+        </div>
       </div>
       );
   }
@@ -114,6 +116,13 @@ class CustomizerSettings extends React.Component {
 export default CustomizerSettings;
 
 var styles = {
+  customizer: {
+    background: 'white',
+    display:'inline-block',
+    verticalAlign:'top',
+    width:'35%',
+    overflow:'auto'
+  },
   card: {
     width: '90%',
     margin:20,
