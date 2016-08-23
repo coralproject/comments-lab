@@ -1,0 +1,86 @@
+/* Primary Color as Background */
+
+.mdl-color--primary,
+.mdl-button.mdl-button--colored,
+.mdl-button--raised.mdl-button--colored,
+.mdl-button--raised.mdl-button--colored:hover,
+.mdl-button--raised.mdl-button--colored:active,
+.mdl-button--raised.mdl-button--colored:focus:not(:active),
+.mdl-button--primary.mdl-button--primary,
+.mdl-button--primary.mdl-button--primary.mdl-button--raised,
+.mdl-button--primary.mdl-button--primary.mdl-button--fab,
+.mdl-checkbox.is-checked .mdl-checkbox__box-outline,
+.mdl-checkbox.is-checked .mdl-checkbox__tick-outline,
+.mdl-checkbox__ripple-container .mdl-ripple,
+.mdl-icon-toggle.is-checked .mdl-icon-toggle__label,
+.mdl-progress > .progressbar,
+.mdl-progress.mdl-progress--indeterminate > .bar1,
+.mdl-progress.mdl-progress__indeterminate > .bar1,
+.mdl-progress.mdl-progress--indeterminate > .bar3,
+.mdl-progress.mdl-progress__indeterminate > .bar3,
+.mdl-layout__header,
+.mdl-layout__tab-bar,
+.mdl-layout__tab-bar-button,
+.mdl-radio__inner-circle,
+.mdl-radio__ripple-container .mdl-ripple,
+.mdl-slider.is-upgraded,
+.mdl-switch.is-checked .mdl-switch__thumb,
+.mdl-switch__ripple-container .mdl-ripple,
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after,
+.mdl-tabs__tab .mdl-tabs__ripple-container .mdl-ripple,
+.mdl-textfield__label:after
+{
+  background:rgba(247,114,96,1);
+}
+
+
+/*Alt browser sliders*/
+.mdl-slider.is-upgraded::-webkit-slider-thumb,
+.mdl-slider.is-upgraded::-moz-range-thumb,
+.mdl-slider.is-upgraded:active::-webkit-slider-thumb,
+.mdl-slider.is-upgraded:active::-moz-range-thumb,
+.mdl-slider.is-upgraded:active::-ms-thumb {
+  background:rgba(247,114,96,1);
+}
+/*Primary Color as Color*/
+.mdl-textfield--floating-label.has-placeholder .mdl-textfield__label,
+.mdl-color-text--primary {
+  color: rgba(247,114,96,1);
+}
+
+/*Secondary Color*/
+.mdl-switch.is-checked .mdl-switch__track {
+  background: rgb(252,149,70);
+}
+
+/*Tertiary Color box-shadow*/
+.mdl-switch.is-focused.is-checked .mdl-switch__focus-helper, 
+.mdl-checkbox.is-focused.is-checked .mdl-checkbox__focus-helper,
+.mdl-slider.is-upgraded:focus:not(:active)::-webkit-slider-thumb,
+.mdl-slider.is-upgraded:focus:not(:active)::-moz-range-thumb
+ {
+  box-shadow: 0 0 0px 20px rgba(252,149,70,1);
+}
+
+/*Tertiary Color*/
+.mdl-icon-toggle.is-focused.is-checked .mdl-icon-toggle__label,
+.mdl-switch.is-focused.is-checked .mdl-switch__focus-helper, 
+.mdl-checkbox.is-focused.is-checked .mdl-checkbox__focus-helper {
+ {
+  background-color: rgba(252,149,70,1); 
+}
+
+/*Slider Gradients*/
+.mdl-slider.is-upgraded:focus:not(:active)::-ms-thumb {
+  background: radial-gradient(circle closest-side, rgb(252,149,70) 0%, rgb(252,149,70) 37.5%, rgb(252,149,70) 37.5%, rgb(252,149,70) 100%);
+}
+
+.mdl-slider.is-upgraded::-ms-fill-lower {
+  background: linear-gradient(to right, transparent, transparent 16px, rgb(252,149,70) 16px, rgb(252,149,70) 0); 
+}
+
+
+/*Radio Button*/
+.mdl-radio.is-checked .mdl-radio__outer-circle {
+    border: 2px solid rgb(252,149,70) ; 
+}
