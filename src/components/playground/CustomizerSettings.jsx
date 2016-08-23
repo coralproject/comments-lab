@@ -4,7 +4,7 @@ import Radium from 'radium';
 
 import CustomizerToggle from './CustomizerToggle';
 import {togglerFromURL, setTogglerGroup} from '../../playground/PlaygroundActions';
-import {Card, CardTitle, CardText} from 'react-mdl';
+import {Card, CardText} from 'react-mdl';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -74,10 +74,10 @@ class CustomizerSettings extends React.Component {
           Object.keys(this.props.togglerGroups).map((togglerGroupIndex, gIndex) => {
             return (
               <Card shadow={1} style={styles.card} key={gIndex}>
-                <CardTitle style={styles.cardTitle}
+                <div style={styles.cardTitle}
                   onClick={this.onTogglerGroupClick(togglerGroupIndex).bind(this)}>
                   { this.props.togglerGroups[togglerGroupIndex].name }
-                </CardTitle>
+                </div>
                 <ReactCSSTransitionGroup
                   transitionName='togglerGroup'
                   transitionEnterTimeout={250}
@@ -139,7 +139,8 @@ var styles = {
     color: 'white',
     background:'#f36451',
     cursor:'pointer',
-    fontSize:16
+    fontSize:16,
+    padding:16
   },
   line: {
     margin:0
