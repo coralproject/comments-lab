@@ -1,6 +1,5 @@
 // Framework tools
 import React from 'react';
-import { connect } from 'react-redux';
 import Radium from 'radium';
 
 // Playground-specific imports

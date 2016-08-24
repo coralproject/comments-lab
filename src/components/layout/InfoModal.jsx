@@ -31,9 +31,7 @@ class InfoModal extends Component {
     if(this.props.modalTopic && this.props.topics[this.props.modalTopic]) {
       dialog = <Dialog open={this.props.modalTopic} style={styles.dialog}>
         <DialogTitle>{ this.props.topics[this.props.modalTopic].title}</DialogTitle>
-        <DialogContent style={styles.dialogContent}>
-          { this.props.topics[this.props.modalTopic].description }
-        </DialogContent>
+        <DialogContent style={styles.dialogContent} dangerouslySetInnerHTML={ {__html:this.props.topics[this.props.modalTopic].description }}/>
         <DialogActions>
           <Button type='button' onClick={this.handleCloseDialog.bind(this)}>Got it!</Button>
         </DialogActions>
