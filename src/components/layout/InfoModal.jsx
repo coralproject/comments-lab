@@ -1,14 +1,11 @@
 import React, {Component, PropTypes} from 'react';
-import {Dialogue, DialogueTitle, DialogueContent, DialogueActions, Button} from 'react-mdl';
+import {Dialog, DialogTitle, DialogContent, DialogActions, Button} from 'react-mdl';
 import { connect } from 'react-redux';
-import {setModalTopic} from '/playground/PlaygroundActions';
+import {setTopic} from 'playground/PlaygroundActions';
 
 @connect(
   (state) => {
-    return {
-      modalTopic:state.modalTopic,
-      topics:state.topics
-    };
+    return state.newPlayground;
   },
   (dispatch) => {
     return {
@@ -25,20 +22,35 @@ class InfoModal extends Component {
   }
 
   handleCloseDialog() {
-    this.props.dispatch(setModalTopic(null));
+    this.props.dispatch(setTopic(null));
   }
 
   render() {
-    return <Dialog open={this.props.modalTopic}>
-      <DialogTitle>Learn more about { this.props.topics[this.props.modalTopic].title}</DialogTitle>
-      <DialogContent>
-        <p>{ this.props.topics[this.props.modalTopic].description }</p>
-      </DialogContent>
-      <DialogActions>
-        <Button type='button' onClick={this.handleCloseDialog.bind(this)}>Got it!</Button>
-      </DialogActions>
-    </Dialog>;
+    let dialog = null;
+    const styles = this.props.styles || defaultStyles;
+    if(this.props.modalTopic && this.props.topics[this.props.modalTopic]) {
+      dialog = <Dialog open={this.props.modalTopic} style={styles.dialog}>
+        <DialogTitle>{ this.props.topics[this.props.modalTopic].title}</DialogTitle>
+        <DialogContent style={styles.dialogContent}>
+          { this.props.topics[this.props.modalTopic].description }
+        </DialogContent>
+        <DialogActions>
+          <Button type='button' onClick={this.handleCloseDialog.bind(this)}>Got it!</Button>
+        </DialogActions>
+      </Dialog>;
+    }
+    return dialog;
   }
 }
 
 export default InfoModal;
+
+const defaultStyles = {
+  dialog:{
+    width:600
+  },
+  dialogContent:{
+    fontSize:14,
+    lineHeight:1.5
+  }
+};

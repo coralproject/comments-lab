@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import Radium from 'radium';
 
 import { setToggler, setTopic} from 'playground/PlaygroundActions';
@@ -21,22 +20,20 @@ class CustomizerToggle extends React.Component {
     this.props.setURL(this.props.togglerIndex, !currentStatus);
   }
 
-  onMouseEnter() {
-    if (this.props.toggler.topic) {
-      this.props.dispatch(setTopic(this.props.toggler.topic));
-    }
+  onInfoClick() {
+    this.props.dispatch(setTopic(this.props.toggler.topic));
   }
 
   render() {
-
+    const hasToggle = this.props.topics[this.props.toggler.topic] != undefined;
     return (
         <div>
           <Grid style={styles.togglerGrid}>
             <Cell col={10}>
-              <div style={ styles.descriptionSpan }>{ this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }</div>
+              <div style={[styles.descriptionSpan, hasToggle?styles.clickable:null]} onClick={this.onInfoClick.bind(this)}>{ this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }</div>
            </Cell>
            <Cell col={2}>
-             <Switch ripple checked={ this.props.toggler.status } onChange={this.onTogglerClick.bind(this)} />
+             <Switch ripple checked={this.props.toggler.status } onChange={this.onTogglerClick.bind(this)} />
            </Cell>
           </Grid>
           <Grid style={styles.togglerGrid}>
@@ -89,6 +86,9 @@ var styles = {
     fontFamily: themes.default.fontFamily,
     fontSize: '14px',
     lineHeight: '30px'
+  },
+  clickable: {
+    cursor:'pointer'
   },
   description: {
     color: '#666',
