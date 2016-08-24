@@ -47,11 +47,7 @@ class CustomizerSettings extends React.Component {
       delete settings[toggler];
     }
 
-    if(Object.keys(settings).length > 0) {
-      document.location.hash = encodeURIComponent(JSON.stringify(settings));
-    } else {
-      document.location.hash = '';
-    }
+    document.location.hash = encodeURIComponent(JSON.stringify(settings));
   }
 
   onTogglerGroupClick(group) {
