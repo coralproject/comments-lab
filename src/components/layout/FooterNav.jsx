@@ -18,8 +18,8 @@ class FooterNav extends Component {
     const styles = this.props.styles || defaultStyles;
     return <Footer size="mini" style={styles.footer}>
         <FooterSection type="left" logo="Coral Playground">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=playground.coralproject.net" style={styles.navLink}><img style={styles.shareIcon} src="/img/facebook.png"/></a>
-            <a href="https://twitter.com/home?status=Think%20you%20could%20build%20a%20better%20comment%20system?%20Try%20it%20out%20at%20http%3A//playground.coralproject.net" style={styles.navLink}><img style={styles.shareIcon} src="/img/twitter.png"/></a>     
+                  <a href={'https://www.facebook.com/sharer/sharer.php?u=' + window.location} style={styles.navLink}><img style={styles.shareIcon} src="/img/facebook.png"/></a>
+                  <a href={'https://twitter.com/home?status=Think%20you%20could%20build%20a%20better%20comment%20system?%20Try%20it%20out%20at%20' + encodeURIComponent(window.location)} style={styles.navLink}><img style={styles.shareIcon} src="/img/twitter.png"/></a>
         </FooterSection>
         <FooterSection type="right">
           <FooterLinkList>
