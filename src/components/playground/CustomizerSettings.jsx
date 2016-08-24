@@ -96,7 +96,8 @@ class CustomizerSettings extends React.Component {
                               toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
                               setURL={this.setURL.bind(this)}
                               dispatch={this.props.dispatch}
-                              key={ togglerKey } />
+                              key={ togglerKey }
+                              topics={this.props.topics}/>
                           </CardText>
                       );
                     })

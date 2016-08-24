@@ -7,6 +7,7 @@ import Radium from 'radium';
 import Sidebar from 'components/playground/Sidebar';
 import HeaderNav from 'components/layout/HeaderNav';
 import FooterNav from 'components/layout/FooterNav';
+import InfoModal from 'components/layout/InfoModal';
 import CustomizerSettings from 'components/playground/CustomizerSettings';
 import Preview from 'components/playground/Preview';
 
@@ -35,7 +36,7 @@ class Playground extends React.Component {
 
           </div>
           <FooterNav />
-
+          <InfoModal />
         </div>
 
       </DocumentTitle>

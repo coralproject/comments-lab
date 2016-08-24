@@ -163,7 +163,7 @@ const playground = (state = initialState, action) => {
   case types.SET_TOGGLER:
     return setToggler(action, state);
   case types.SET_TOPIC:
-    return Object.assign({}, state, { currentSidebarTopic: action.topic });
+    return Object.assign({}, state, { modalTopic: action.topic });
   case types.REPLY_COMMENT:
     return replyComment(action, state);
   case types.SEND_COMMENT:
