@@ -19,11 +19,6 @@ import components from './';
       config: state.newPlayground.config.stream,
       stream: state.newPlayground.stream
     };
-  },
-  (dispatch) => {
-    return {
-      dispatch
-    };
   }
 )
 
