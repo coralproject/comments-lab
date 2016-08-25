@@ -207,10 +207,10 @@ describe('PlaygroundReducer', () => {
       let newState = PlaygroundReducer(state, action);
       expect(newState).to.deep.equal(state);
     });
-    it('should take no action if the component does not exist',() => {
+    it('should add a new component if one does not already exist',() => {
       let state = {
         config:{
-          authors:[
+          comments:[
             {
               component:'KeepMeComponent',
               propTypes:['content']
@@ -219,7 +219,20 @@ describe('PlaygroundReducer', () => {
         }
       };
       let newState = PlaygroundReducer(state, action);
-      expect(newState).to.deep.equal(state);
+      expect(newState).to.deep.equal({
+        config:{
+          comments:[
+            {
+              component:'KeepMeComponent',
+              propTypes:['content']
+            },
+            {
+              component:'UpdateMe',
+              propTypes:['changed']
+            }
+          ]
+        }
+      });
     });
 
     it('should update configProps if no propTypes are sent', () => {
@@ -518,7 +531,7 @@ describe('PlaygroundReducer', () => {
       expect(state).to.deep.equal({
         selectedTogglerGroup:'content'
       });
-    })
+    });
 
     it('should switch the selectedTogglerGroup', () => {
       let newState = PlaygroundReducer(state, action);

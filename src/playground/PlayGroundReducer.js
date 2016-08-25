@@ -48,7 +48,6 @@ const removeComponent = (action, state) => {
   for(let i=0; i < itemConfig.length; i++) {
     if (itemConfig[i].component == action.component) {
       newItemConfig = itemConfig.slice(0,i).concat(itemConfig.slice(i+1, itemConfig.length));
-      break;
     }
   }
   let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
@@ -61,23 +60,30 @@ const updateComponent = (action, state) => {
   }
   let itemConfig = state.config[action.itemType];
   let newItemConfig = itemConfig.slice();
-  let newComponentConfig = {};
+  let exists = false;
+  const update = (action, component) => {
+    let newComponentConfig = {};
+    if (action.propTypes) {
+      newComponentConfig = Object.assign({},component,{propTypes:action.propTypes});
+    }
+    if (action.configProps) {
+      let newConfigProps = Object.assign({}, component.configProps, action.configProps);
+      newComponentConfig = Object.assign({}, component,newComponentConfig, {configProps:newConfigProps});
+    }
+    if (action.order != undefined && action.order != null) {
+      newComponentConfig = Object.assign({}, component, newComponentConfig, {order:action.order});     
+    }
+    return newComponentConfig;
+  };
   for(let i=0; i < itemConfig.length; i++) {
     if (itemConfig[i].component == action.component) {
-      if (action.propTypes) {
-        newComponentConfig = Object.assign({},itemConfig[i],{propTypes:action.propTypes});
-      }
-      if (action.configProps) {
-        let newConfigProps = Object.assign({}, itemConfig[i].configProps, action.configProps);
-        newComponentConfig = Object.assign({}, itemConfig[i],newComponentConfig, {configProps:newConfigProps});
-      }
-      if (action.order != undefined && action.order != null) {
-        newComponentConfig = Object.assign({}, itemConfig[i], newComponentConfig, {order:action.order});     
-      }
-      newItemConfig = itemConfig.slice();
-      newItemConfig[i] = newComponentConfig;
+      exists = true;
+      newItemConfig[i] = update(action, itemConfig[i]);
       break;
     }
+  }
+  if (!exists) {
+    newItemConfig.push(update(action, {component:action.component}));
   }
   let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
   return Object.assign({}, state, {config:newConfig});

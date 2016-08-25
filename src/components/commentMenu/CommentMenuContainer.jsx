@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React, {Component, PropTypes} from 'react';
+import {IconButton, Menu} from 'react-mdl';
 import components from './';
 
 
@@ -15,7 +16,7 @@ import components from './';
 @connect(
   (state) => {
     return {
-      config: state.newPlayground.config.comments,
+      config: state.newPlayground.config.commentMenu,
       items: state.newPlayground.items.comments
     };
   },
@@ -30,40 +31,50 @@ import components from './';
 * Iterate through each component in config
 * and pass it the appropriate props from items
 */
-class CommentContainer extends Component {
+class CommentMenuContainer extends Component {
+
+  static propTypes = {
+    id:PropTypes.string.isRequired,
+    config:PropTypes.array.isRequired 
+  }
+
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
     if (config.propTypes) {
       for (var i = 0; i < config.propTypes.length; i++) {
-        props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
+        props[config.propTypes[i]] = this.props[config.propTypes[i]];
       }      
     }
     return <Component {...props} dispatch={this.props.dispatch} key={config.component}/>;
   }
 
-
-  sortConfig(a,b) {
-    if (a.order > b.order) {
-      return 1;
-    }
-    if (a.order < b.order) {
-      return -1;
-    }
-    return 0;
-  }
-
   render() {
-    const sortedConfig = this.props.config.sort(this.sortConfig);
-    return <div>{
-      sortedConfig.map(this.mapComponentFromConfig.bind(this))
+    const styles = this.props.styles || defaultStyles;
+    let menuStyle = styles.hideMenu;
+    if (this.props.config && this.props.config.length > 0) {
+      menuStyle = styles.showMenu;
     }
+    return <div className="commentMenu"  style={menuStyle}>
+        <IconButton name="more_vert" id={'commentMenu_'+this.props.id} />
+        <Menu target={'commentMenu_'+this.props.id} align="right">
+          {
+            this.props.config.map(this.mapComponentFromConfig.bind(this))
+          }
+        </Menu>
     </div>;
   }
 }
 
-CommentContainer.propTypes = {
-  id:PropTypes.string.isRequired
-};
+export default CommentMenuContainer;
 
-export default CommentContainer;
+const defaultStyles = {
+  showMenu: {
+    float:'right',
+    display:'block'
+  },
+  hideMenu: {
+    float:'none',
+    display:'none'
+  }
+};

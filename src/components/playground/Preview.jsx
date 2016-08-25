@@ -23,7 +23,6 @@ class Preview extends React.Component {
   }
 
   onHideCommentsClick() {
-    console.log("Hide");
     this.setState({ commentsAreVisible: false });
   }
 
@@ -63,7 +62,6 @@ class Preview extends React.Component {
             this.state.commentsAreVisible ?
 
             <div style={ styles.sandBox }>
-              <p style={ styles.sandBoxIntro }>This is a sandbox only, this preview will be reset every time you reload the page.</p>
               {guidelines}
               <CommentBox />
               <Stream />

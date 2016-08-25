@@ -20,7 +20,7 @@ import MdFormatQuote from 'react-icons/lib/md/format-quote';
 import FaSmileO from 'react-icons/lib/fa/smile-o';
 import FaHeart from 'react-icons/lib/fa/heart';
 
-import {Button} from 'react-mdl'
+import {Button} from 'react-mdl';
 
 import { themes } from 'playgroundSettings';
 

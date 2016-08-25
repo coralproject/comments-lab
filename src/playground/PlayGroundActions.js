@@ -32,7 +32,7 @@ export function removeComponent(itemType, component) {
   };
 }
 
-export function updateComponent(itemType, component, propTypes, configProps, order) {
+export function updateComponent(itemType, component, propTypes, order, configProps) {
   return {
     type: UPDATE_COMPONENT,
     itemType,

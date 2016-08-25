@@ -38,7 +38,7 @@ const togglerGroups = {
         description: 'Whether to show profile pictures or not.',
         status: false,
         topic: 'profilepictures',
-        onFunction:addComponent('authors','ProfilePicture',['id'], null, 5),
+        onFunction:addComponent('authors','ProfilePicture',['id'], 5),
         offFunction:removeComponent('authors','ProfilePicture')
       }
     }
@@ -53,7 +53,7 @@ const togglerGroups = {
         status: false,
         topic: 'staffpicks',
         onFunction:addComponent('stream','StreamTabs',null,-10,{activeTab:'all'}),
-        offFunction:removeComponent('stream','StreamTabs')
+        offFunction:[removeComponent('stream','StreamTabs'),removeComponent('stream','StaffFilter')]
       },
       'muting': {
         label: 'Block/mute is ON',
@@ -61,7 +61,9 @@ const togglerGroups = {
         description: 'Blocking users will hide their posts from the comment stream.',
         status: false,
         topic: 'muting',
-        pulseTarget: 'commentName'
+        pulseTarget: 'commentName',
+        onFunction:[updateComponent('comments', 'CommentMenu',['id'], -10),addComponent('commentMenu','Block',['id','items'],0)],
+        offFunction:[removeComponent('commentMenu','Block'), removeComponent('stream','BlockFilter')]
       }
     }
   },

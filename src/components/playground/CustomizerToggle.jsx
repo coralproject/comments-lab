@@ -10,10 +10,21 @@ import {Grid, Cell, Switch} from 'react-mdl';
 @Radium
 class CustomizerToggle extends React.Component {
 
-  onTogglerClick() {
+  onTogglerClick(e) {
+    e.preventDefault();
     let currentStatus = this.props.toggler.status;
-    if (this.props.toggler.offFunction && this.props.toggler.onFunction) {
-      this.props.dispatch(currentStatus ? this.props.toggler.offFunction : this.props.toggler.onFunction);
+    let action = currentStatus ? this.props.toggler.offFunction : this.props.toggler.onFunction;
+    if (action) {
+      // Iterate through if action is an array.
+      if (action.length) {
+        for (var i = 0; i < action.length; i++) {
+          this.props.dispatch(action[i]);
+        }
+      } 
+      // just dispatch if action is an object
+      else {
+        this.props.dispatch(action);
+      }
     }
     this.props.dispatch(setToggler(this.props.groupIndex, this.props.togglerIndex, !currentStatus));
     this.setState({ active: !currentStatus });
