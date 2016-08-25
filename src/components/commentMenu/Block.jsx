@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import {MenuItem} from 'react-mdl';
 
 class Block extends Component {
 
@@ -7,7 +8,7 @@ class Block extends Component {
   }
 
   render() {
-    return <li className="mdl-menu__item">Block</li>;
+    return <MenuItem>Block</MenuItem>;
   }
 }
 
