@@ -53,7 +53,7 @@ const togglerGroups = {
         status: false,
         topic: 'staffpicks',
         onFunction:addComponent('stream','StreamTabs',null,-10,{activeTab:'all'}),
-        offFunction:removeComponent('stream','StreamTabs')
+        offFunction:[removeComponent('stream','StreamTabs'),removeComponent('stream','StaffFilter')]
       },
       'muting': {
         label: 'Block/mute is ON',
@@ -63,7 +63,7 @@ const togglerGroups = {
         topic: 'muting',
         pulseTarget: 'commentName',
         onFunction:[updateComponent('comments', 'CommentMenu',['id'], -10),addComponent('commentMenu','Block',['id','items'],0)],
-        offFunction:removeComponent('commentMenu','Block')
+        offFunction:[removeComponent('commentMenu','Block'), removeComponent('stream','BlockFilter')]
       }
     }
   },

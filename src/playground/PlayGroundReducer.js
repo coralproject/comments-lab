@@ -48,7 +48,6 @@ const removeComponent = (action, state) => {
   for(let i=0; i < itemConfig.length; i++) {
     if (itemConfig[i].component == action.component) {
       newItemConfig = itemConfig.slice(0,i).concat(itemConfig.slice(i+1, itemConfig.length));
-      break;
     }
   }
   let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
