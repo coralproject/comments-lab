@@ -17,7 +17,8 @@ class HeaderNav extends Component {
     return <Layout fixedHeader style={styles.headerLayout}>
             <Header title={<span><strong>Coral Playground</strong></span>} style={styles.header}>
                 <Navigation>
-                  <a href="#" onClick={this.onAboutClick.bind(this)}>About</a>                  
+                  <a href="#" onClick={this.onAboutClick.bind(this)}>About</a>
+                  <a href="#"style={styles.share}>Share</a>                  
                   <a href={'https://www.facebook.com/sharer/sharer.php?u=' + window.location} style={styles.navLink}><img style={styles.shareIcon} src="/img/facebook.png"/></a>
                   <a href={'https://twitter.com/home?status=Think%20you%20could%20build%20a%20better%20comment%20system?%20Try%20it%20out%20at%20' + encodeURIComponent(window.location)} style={styles.navLink}><img style={styles.shareIcon} src="/img/twitter.png"/></a>
                 </Navigation>
@@ -37,8 +38,13 @@ const defaultStyles = {
     background: 'rgba(247,114,96,1)'
   },
   navLink:{
-    margin:'20px 5px 0px 5px',
+    margin:'20px 0px 0px 0px',
     padding:0
+  },
+  share:{
+    margin:0,
+    padding:0,
+    cursor:'default'
   },
   shareIcon:{
     width:30,
