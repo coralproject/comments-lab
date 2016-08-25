@@ -19,6 +19,11 @@ import components from './';
       config: state.newPlayground.config.stream,
       stream: state.newPlayground.stream
     };
+  },
+  (dispatch) => {
+    return {
+      dispatch
+    };
   }
 )
 
@@ -30,8 +35,8 @@ class StreamContainer extends Component {
 
   static propTypes = {
     items:PropTypes.object.isRequired,
-    config:PropTypes.object.isRequired,
-    stream:PropTypes.object.isRequired,
+    config:PropTypes.array.isRequired,
+    stream:PropTypes.array.isRequired,
     dispatch:PropTypes.func.isRequired
   }
 
