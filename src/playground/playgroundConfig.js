@@ -1,6 +1,10 @@
 let config = {
   comments:[
     {
+      propTypes:['id'],
+      component:'CommentMenu'
+    },
+    {
       propTypes:['content'],
       component:'DefaultComment',
       order: 0
@@ -23,7 +27,8 @@ let config = {
       component:'CommentStream',
       order:0
     }
-  ]
+  ],
+  commentMenu:[]
 };
 
 export default config;
