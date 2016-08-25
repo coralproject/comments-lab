@@ -78,15 +78,12 @@ const updateComponent = (action, state) => {
   };
   for(let i=0; i < itemConfig.length; i++) {
     if (itemConfig[i].component == action.component) {
-      console.log("Found component")
       exists = true;
       newItemConfig[i] = update(action, itemConfig[i]);
       break;
     }
   }
-  console.log(exists)
   if (!exists) {
-    console.log('Component does not exist');
     newItemConfig.push(update(action, {component:action.component}));
   }
   let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
