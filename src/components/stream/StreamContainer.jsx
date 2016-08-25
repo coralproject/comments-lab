@@ -40,7 +40,7 @@ class StreamContainer extends Component {
     dispatch:PropTypes.func.isRequired
   }
 
-  mapComponentFromConfig(config) {
+  mapComponentFromConfig(config,j) {
     let Component = components[config.component];
     let props = {...config.configProps};
 
@@ -49,7 +49,7 @@ class StreamContainer extends Component {
         props[config.propTypes[i]] = this.props[config.propTypes[i]];
       }
     }
-    return <Component {...props} dispatch={this.props.dispatch} key={config.component} />;
+    return <Component {...props} dispatch={this.props.dispatch} key={config.component + '_' + j} />;
   }
 
   sortConfig(a,b) {
