@@ -26,8 +26,13 @@ class CustomizerSettings extends React.Component {
       let togglerGroup = this.props.togglerGroups[group];
       for (let toggle in togglerGroup.togglers) {
         if(settings[toggle]) {
-          if(togglerGroup.togglers[toggle].onFunction) {
-            this.props.dispatch(togglerGroup.togglers[toggle].onFunction);
+          let action = togglerGroup.togglers[toggle].onFunction;
+          if(action && action.length) {
+            for (var i = 0; i < action.length; i++) {
+              this.props.dispatch(action[i]);
+            }
+          } else if (action) {
+            this.props.dispatch(action);
           }
         }
       }
