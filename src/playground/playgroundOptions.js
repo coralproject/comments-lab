@@ -38,7 +38,7 @@ const togglerGroups = {
         description: 'Whether to show profile pictures or not.',
         status: false,
         topic: 'profilepictures',
-        onFunction:addComponent('authors','ProfilePicture',['id'], null, 5),
+        onFunction:addComponent('authors','ProfilePicture',['id'], 5),
         offFunction:removeComponent('authors','ProfilePicture')
       }
     }
@@ -61,7 +61,9 @@ const togglerGroups = {
         description: 'Blocking users will hide their posts from the comment stream.',
         status: false,
         topic: 'muting',
-        pulseTarget: 'commentName'
+        pulseTarget: 'commentName',
+        onFunction:[updateComponent('comments', 'CommentMenu',['id'], 10),addComponent('commentMenuOptions','Block',['id'],0)],
+        offFunction:removeComponent('commentMenuOptions','Block')
       }
     }
   },
