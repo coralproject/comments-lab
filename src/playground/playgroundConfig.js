@@ -16,7 +16,7 @@ let config = {
   ],
   authors:[
     {
-      propTypes:['realName'],
+      propTypes:['realName','anonymous'],
       component:'DefaultAuthor',
       order:10
     }
