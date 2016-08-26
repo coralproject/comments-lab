@@ -96,7 +96,9 @@ const togglerGroups = {
         description: 'Visitors are able to see your public profile.',
         status: false,
         topic: 'public_profile',
-        pulseTarget: 'commentName'
+        pulseTarget: 'commentName',
+        onFunction:[addComponent('authorProfile','BigProfilePicture',['id'],-10),addComponent('authorProfile','ProfileName',['nickName'],0)],
+        offFunction:[removeComponent('authorProfile','BigProfilePicture'),removeComponent('authorProfile','ProfileName')]
       }
     }
   },

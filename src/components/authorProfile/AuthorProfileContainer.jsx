@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React, {Component, PropTypes} from 'react';
 import components from './';
+import {Card} from 'react-mdl';
 
 
 /*
@@ -62,14 +63,27 @@ class AuthorProfileContainer extends Component {
   }
 
   render() {
+    const styles = this.props.styles || defaultStyle;
     let sortedConfig = this.props.config.sort(this.sortConfig);
     return <div>
-        {
-          sortedConfig.map(this.mapComponentFromConfig.bind(this))
-        }
+      {
+        this.props.comments[this.props.commentId].showProfile &&
+        this.props.config.length > 0 &&
+        <Card shadow={1} style={styles.profileCard}>
+            {
+              sortedConfig.map(this.mapComponentFromConfig.bind(this))
+            }
+        </Card>        
+      }
     </div>;
   }
 }
 
-
 export default AuthorProfileContainer;
+
+const defaultStyle={
+  profileCard:{
+    width:200,
+    margin:20
+  }
+}

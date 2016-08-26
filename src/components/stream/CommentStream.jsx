@@ -2,8 +2,6 @@ import React, {Component, PropTypes} from 'react';
 import Comment from '../comments/CommentContainer';
 import Author from '../authors/AuthorContainer';
 import Profile from '../authorProfile/AuthorProfileContainer';
-import {Card} from 'react-mdl';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {updateItem} from 'playground/PlaygroundActions';
 
 class CommentStream extends Component {
@@ -32,12 +30,7 @@ class CommentStream extends Component {
               <div onClick={this.onAuthorClick(id).bind(this)}>
                 <Author commentId={id} />
               </div>
-                {
-                  this.props.comments[id].showProfile &&
-                  <Card shadow={1} style={styles.profileCard}>
-                    <Profile commentId={id}/>
-                  </Card>
-                }
+              <Profile commentId={id}/>
               <Comment id={id} />
             </div>;
           })

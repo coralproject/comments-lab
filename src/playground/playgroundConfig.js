@@ -29,18 +29,7 @@ let config = {
     }
   ],
   commentMenu:[],
-  authorProfile:[
-    {
-      propTypes:['id'],
-      component:'BigProfilePicture',
-      order:-10
-    },
-    {
-      propTypes:['nickName'],
-      component:'ProfileName',
-      order:0
-    }
-  ]
+  authorProfile:[]
 };
 
 export default config;
