@@ -8,8 +8,15 @@ class ProfileBio extends Component {
   }
 
   render() {
-    return <CardText><strong>@{this.props.nickName}</strong></CardText>;
+    const styles = this.props.styles || defaultStyle;
+    return <CardText style={styles.profileName}><strong>@{this.props.nickName}</strong></CardText>;
   }
 }
 
 export default ProfileBio;
+
+const defaultStyle = {
+  profileName: {
+    paddingBottom:4
+  }
+};

@@ -110,7 +110,9 @@ const togglerGroups = {
         offLabel: 'Statistics are OFF',
         description: 'Reputation statistics...',
         status: false,
-        topic: 'stats'
+        topic: 'stats',
+        onFunction:addComponent('authors','Statistics',['comments'],20),
+        offFunction:removeComponent('authors','Statistics')
       },
       'badges': {
         label: 'Badges are ON',

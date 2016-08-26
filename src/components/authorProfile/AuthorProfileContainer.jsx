@@ -84,6 +84,7 @@ export default AuthorProfileContainer;
 const defaultStyle={
   profileCard:{
     width:200,
-    margin:20
+    margin:20,
+    paddingBottom:16
   }
 }
