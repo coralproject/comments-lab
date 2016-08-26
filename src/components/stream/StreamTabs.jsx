@@ -10,7 +10,7 @@ class StreamTabs extends Component {
   }
 
   onStaffClick() {
-    this.props.dispatch(updateComponent('stream','StaffFilter',['stream','items']));
+    this.props.dispatch(updateComponent('stream','StaffFilter',['stream','comments']));
     this.props.dispatch(updateComponent('stream','StreamTabs',null,null,{activeTab:'staff'}));
   }
 
