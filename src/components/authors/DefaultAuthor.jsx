@@ -21,8 +21,8 @@ class DefaultAuthor extends Component {
 DefaultAuthor.propTypes = {
   realName:PropTypes.string,
   nickName:PropTypes.string,
-  allowAnon: PropTypes.boolean,
-  anonymous: PropTypes.boolean
+  allowAnon: PropTypes.bool,
+  anonymous: PropTypes.bool
 };
 
 export default DefaultAuthor;

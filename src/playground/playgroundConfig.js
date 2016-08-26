@@ -23,12 +23,24 @@ let config = {
   ],
   stream:[
     {
-      propTypes:['stream'],
+      propTypes:['stream','comments'],
       component:'CommentStream',
       order:0
     }
   ],
-  commentMenu:[]
+  commentMenu:[],
+  authorProfile:[
+    {
+      propTypes:['id'],
+      component:'BigProfilePicture',
+      order:-10
+    },
+    {
+      propTypes:['nickName'],
+      component:'ProfileName',
+      order:0
+    }
+  ]
 };
 
 export default config;

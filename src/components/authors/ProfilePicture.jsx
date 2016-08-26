@@ -10,15 +10,6 @@ class ProfilePicture extends Component {
 }
 
 const defaultStyles = {
-  profilePicPane: {
-    width: '180px',
-    [mediaQueries.mobile]: {
-      width: '120px',
-      position: 'absolute',
-      top: '0px',
-      left: '0px'
-    }
-  },
   profilePicture: {
     width:60,
     height:60,

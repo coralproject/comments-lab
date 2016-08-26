@@ -15,9 +15,9 @@ import components from './';
 @connect(
   (state) => {
     return {
-      comments: state.newPlayground.items.comments,
-      config: state.newPlayground.config.stream,
-      stream: state.newPlayground.stream
+      config: state.newPlayground.config.authorProfile,
+      authors: state.newPlayground.items.users,
+      comments: state.newPlayground.items.comments
     };
   },
   (dispatch) => {
@@ -31,25 +31,25 @@ import components from './';
 * Iterate through each component in config
 * and pass it the appropriate props from items
 */
-class StreamContainer extends Component {
+class AuthorProfileContainer extends Component {
 
   static propTypes = {
-    comments:PropTypes.object.isRequired,
-    config:PropTypes.array.isRequired,
-    stream:PropTypes.array.isRequired,
-    dispatch:PropTypes.func.isRequired
+    commentId:PropTypes.string.isRequired
   }
 
-  mapComponentFromConfig(config,j) {
+  getItem() {
+    console.log(this.props.comments);
+    let authorId = this.props.comments[this.props.commentId].user;
+    return this.props.authors[authorId];
+  }
+
+  mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
-
-    if (config.propTypes) {
-      for (var i = 0; i < config.propTypes.length; i++) {
-        props[config.propTypes[i]] = this.props[config.propTypes[i]];
-      }
+    for (var i = 0; i < config.propTypes.length; i++) {
+      props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
     }
-    return <Component {...props} dispatch={this.props.dispatch} key={config.component + '_' + j} />;
+    return <Component {...props} key={config.component} />;
   }
 
   sortConfig(a,b) {
@@ -64,13 +64,13 @@ class StreamContainer extends Component {
 
   render() {
     let sortedConfig = this.props.config.sort(this.sortConfig);
-    return <div>{
-      sortedConfig.map(this.mapComponentFromConfig.bind(this))
-    }
+    return <div>
+        {
+          sortedConfig.map(this.mapComponentFromConfig.bind(this))
+        }
     </div>;
   }
 }
 
 
-export default StreamContainer;
-
+export default AuthorProfileContainer;

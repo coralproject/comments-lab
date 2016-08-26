@@ -9,6 +9,7 @@ const comments = {
     upvotes: 87,
     upvoted: false,
     staffPick: true,
+    showProfile:true,
     replies: [
       {
         user: 2,
