@@ -12,7 +12,7 @@ class DefaultAuthor extends Component {
       displayName = <h4 style={styles.anonymous}>Anonymous</h4>;
     }
     return (
-      <div className="author">
+      <div className="author" style={styles.author}>
         {displayName}
       </div>
     );
@@ -23,8 +23,7 @@ DefaultAuthor.propTypes = {
   realName:PropTypes.string,
   nickName:PropTypes.string,
   allowAnon: PropTypes.bool,
-  anonymous: PropTypes.bool,
-  dispatch: PropTypes.func.isRequired
+  anonymous: PropTypes.bool
 };
 
 export default DefaultAuthor;
@@ -48,5 +47,8 @@ let defaultStyles =   {
     marginBottom: '3px',
     verticalAlign:'top',
     fontStyle:'italic'
+  },
+  author: {
+    display:'inline-block'
   }
 };

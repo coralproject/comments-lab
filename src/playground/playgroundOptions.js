@@ -119,7 +119,9 @@ const togglerGroups = {
         offLabel: 'Badges are OFF',
         description: 'Badges are common in discussion boards to show reputation achievements of a user.',
         status: false,
-        topic: 'badges'
+        topic: 'badges',
+        onFunction:addComponent('authors','Badges',['badges'],15),
+        offFunction:removeComponent('authors','Badges')
       },
       'privileges': {
         label: 'Moderation Privileges are ON',
