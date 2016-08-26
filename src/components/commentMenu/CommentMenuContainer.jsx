@@ -49,17 +49,28 @@ class CommentMenuContainer extends Component {
     return <Component {...props} dispatch={this.props.dispatch} key={config.component}/>;
   }
 
+  sortConfig(a,b) {
+    if (a.order > b.order) {
+      return 1;
+    }
+    if (a.order < b.order) {
+      return -1;
+    }
+    return 0;
+  }
+
   render() {
     const styles = this.props.styles || defaultStyles;
     let menuStyle = styles.hideMenu;
     if (this.props.config && this.props.config.length > 0) {
       menuStyle = styles.showMenu;
     }
+    const sortedConfig = this.props.config.sort(sortedConfig);
     return <div className="commentMenu"  style={menuStyle}>
         <IconButton name="more_vert" id={'commentMenu_'+this.props.id} />
         <Menu target={'commentMenu_'+this.props.id} align="right">
           {
-            this.props.config.map(this.mapComponentFromConfig.bind(this))
+            sortedConfig.map(this.mapComponentFromConfig.bind(this))
           }
         </Menu>
     </div>;

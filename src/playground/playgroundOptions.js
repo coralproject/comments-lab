@@ -110,14 +110,18 @@ const togglerGroups = {
         offLabel: 'Statistics are OFF',
         description: 'Reputation statistics...',
         status: false,
-        topic: 'stats'
+        topic: 'stats',
+        onFunction:addComponent('authors','Statistics',['comments'],20),
+        offFunction:removeComponent('authors','Statistics')
       },
       'badges': {
         label: 'Badges are ON',
         offLabel: 'Badges are OFF',
         description: 'Badges are common in discussion boards to show reputation achievements of a user.',
         status: false,
-        topic: 'badges'
+        topic: 'badges',
+        onFunction:addComponent('authors','Badges',['badges'],15),
+        offFunction:removeComponent('authors','Badges')
       },
       'privileges': {
         label: 'Moderation Privileges are ON',
@@ -125,7 +129,9 @@ const togglerGroups = {
         description: 'Many reputation systems allow certain privileges (as moderating others) as you gain reputation.',
         status: false,
         topic: 'privileges',
-        pulseTarget: 'commentTools'
+        pulseTarget: 'commentTools',
+        onFunction:[addComponent('commentMenu','Warn',[],10), addComponent('commentMenu','Ban',[],20)],
+        offFunction:[removeComponent('commentMenu','Warn'),removeComponent('commentMenu','Ban')]
       }
     }
   },

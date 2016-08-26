@@ -19,7 +19,6 @@ class CoralIcon extends React.Component {
   }
 
   render() {
-    console.log("AAAAAAA", this.props.name);
     var g = _.find(icons, {name: this.props.name}).glyph || icons[0].glyph;;
     return (
       <span style={[
