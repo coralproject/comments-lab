@@ -129,7 +129,9 @@ const togglerGroups = {
         description: 'Many reputation systems allow certain privileges (as moderating others) as you gain reputation.',
         status: false,
         topic: 'privileges',
-        pulseTarget: 'commentTools'
+        pulseTarget: 'commentTools',
+        onFunction:[addComponent('commentMenu','Warn',[],10), addComponent('commentMenu','Ban',[],20)],
+        offFunction:[removeComponent('commentMenu','Warn'),removeComponent('commentMenu','Ban')]
       }
     }
   },
