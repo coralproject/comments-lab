@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React, {Component, PropTypes} from 'react';
 import components from './';
+import {Card} from 'react-mdl';
 
 
 /*
@@ -15,7 +16,7 @@ import components from './';
 @connect(
   (state) => {
     return {
-      config: state.newPlayground.config.authors,
+      config: state.newPlayground.config.authorProfile,
       authors: state.newPlayground.items.users,
       comments: state.newPlayground.items.comments
     };
@@ -31,7 +32,12 @@ import components from './';
 * Iterate through each component in config
 * and pass it the appropriate props from items
 */
-class AuthorContainer extends Component {
+class AuthorProfileContainer extends Component {
+
+  static propTypes = {
+    commentId:PropTypes.string.isRequired
+  }
+
   getItem() {
     let authorId = this.props.comments[this.props.commentId].user;
     return this.props.authors[authorId];
@@ -57,16 +63,27 @@ class AuthorContainer extends Component {
   }
 
   render() {
+    const styles = this.props.styles || defaultStyle;
     let sortedConfig = this.props.config.sort(this.sortConfig);
-    return <div>{
-      sortedConfig.map(this.mapComponentFromConfig.bind(this))
-    }
+    return <div>
+      {
+        this.props.comments[this.props.commentId].showProfile &&
+        this.props.config.length > 0 &&
+        <Card shadow={1} style={styles.profileCard}>
+            {
+              sortedConfig.map(this.mapComponentFromConfig.bind(this))
+            }
+        </Card>        
+      }
     </div>;
   }
 }
 
-AuthorContainer.propTypes = {
-  commentId:PropTypes.string.isRequired
-};
+export default AuthorProfileContainer;
 
-export default AuthorContainer;
+const defaultStyle={
+  profileCard:{
+    width:200,
+    margin:20
+  }
+}

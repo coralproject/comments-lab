@@ -76,7 +76,9 @@ const togglerGroups = {
         description: 'Enabling users to remain completely anonymous (no real names or nicknames).',
         status: false,
         topic: 'anonymity',
-        pulseTarget: 'commentName'
+        pulseTarget: 'commentName',
+        onFunction: updateComponent('authors','DefaultAuthor',null,null,{allowAnon:true}),
+        offFunction: updateComponent('authors','DefaultAuthor',null,null,{allowAnon:false})
       },
       'pseudonyms': {
         label: 'Pseudonyms are ON',
@@ -85,16 +87,18 @@ const togglerGroups = {
         status: false,
         topic: 'pseudonyms',
         pulseTarget: 'commentName',
-        onFunction: updateComponent('authors','DefaultAuthor',['nickName']),
-        offFunction: updateComponent('authors','DefaultAuthor',['realName'])
+        onFunction: updateComponent('authors','DefaultAuthor',['nickName','anonymous']),
+        offFunction: updateComponent('authors','DefaultAuthor',['realName','anonymous'])
       },
       'public_profile': {
         label: 'Public Profile is ON',
         offLabel: 'Public Profile is OFF',
-        description: 'Visitors are able to see your public profile.',
+        description: 'Visitors are able click an author\'s name to see a public profile.',
         status: false,
         topic: 'public_profile',
-        pulseTarget: 'commentName'
+        pulseTarget: 'commentName',
+        onFunction:[addComponent('authorProfile','BigProfilePicture',['id'],-10),addComponent('authorProfile','ProfileName',['nickName'],0)],
+        offFunction:[removeComponent('authorProfile','BigProfilePicture'),removeComponent('authorProfile','ProfileName')]
       }
     }
   },

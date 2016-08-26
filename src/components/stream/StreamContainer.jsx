@@ -15,7 +15,7 @@ import components from './';
 @connect(
   (state) => {
     return {
-      items: state.newPlayground.items,
+      comments: state.newPlayground.items.comments,
       config: state.newPlayground.config.stream,
       stream: state.newPlayground.stream
     };
@@ -34,7 +34,7 @@ import components from './';
 class StreamContainer extends Component {
 
   static propTypes = {
-    items:PropTypes.object.isRequired,
+    comments:PropTypes.object.isRequired,
     config:PropTypes.array.isRequired,
     stream:PropTypes.array.isRequired,
     dispatch:PropTypes.func.isRequired
@@ -73,3 +73,4 @@ class StreamContainer extends Component {
 
 
 export default StreamContainer;
+

@@ -16,19 +16,20 @@ let config = {
   ],
   authors:[
     {
-      propTypes:['realName'],
+      propTypes:['realName','anonymous'],
       component:'DefaultAuthor',
       order:10
     }
   ],
   stream:[
     {
-      propTypes:['stream'],
+      propTypes:['stream','comments'],
       component:'CommentStream',
       order:0
     }
   ],
-  commentMenu:[]
+  commentMenu:[],
+  authorProfile:[]
 };
 
 export default config;
