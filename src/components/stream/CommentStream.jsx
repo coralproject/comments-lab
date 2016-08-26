@@ -4,12 +4,21 @@ import Author from '../authors/AuthorContainer';
 import Profile from '../authorProfile/AuthorProfileContainer';
 import {Card} from 'react-mdl';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import {updateItem} from 'playground/PlaygroundActions';
 
 class CommentStream extends Component {
 
   static PropTypes = {
     stream:PropTypes.array.isRequired,
-    comments:PropTypes.object.isRequired
+    comments:PropTypes.object.isRequired,
+    dispatch:PropTypes.func.isRequired
+  }
+
+  onAuthorClick(id) {
+    return (e) => {
+      e.preventDefault();
+      this.props.dispatch(updateItem(id, 'comments', 'showProfile', !this.props.comments[id].showProfile));
+    };
   }
 
   render() {
@@ -19,20 +28,17 @@ class CommentStream extends Component {
       <div>
         {
           this.props.stream.map((id) => {
-            return <div key={id}>
-              <Author commentId={id}/>
-              <ReactCSSTransitionGroup
-                  transitionName='togglerGroup'
-                  transitionEnterTimeout={250}
-                  transitionLeaveTimeout={250}>
+            return <div key={id} >
+              <div onClick={this.onAuthorClick(id).bind(this)}>
+                <Author commentId={id} />
+              </div>
                 {
                   this.props.comments[id].showProfile &&
                   <Card shadow={1} style={styles.profileCard}>
                     <Profile commentId={id}/>
                   </Card>
                 }
-              </ReactCSSTransitionGroup>
-              <Comment id={id}/>
+              <Comment id={id} />
             </div>;
           })
         }

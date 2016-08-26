@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import { mediaQueries } from '../../playgroundSettings';
 
 class DefaultAuthor extends Component {
+
   render() {
     const styles = this.props.styles || defaultStyles;
     let displayName = <h4 style={ styles.userName} >
@@ -22,7 +23,8 @@ DefaultAuthor.propTypes = {
   realName:PropTypes.string,
   nickName:PropTypes.string,
   allowAnon: PropTypes.bool,
-  anonymous: PropTypes.bool
+  anonymous: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired
 };
 
 export default DefaultAuthor;

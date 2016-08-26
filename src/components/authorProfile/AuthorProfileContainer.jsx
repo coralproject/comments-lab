@@ -38,7 +38,6 @@ class AuthorProfileContainer extends Component {
   }
 
   getItem() {
-    console.log(this.props.comments);
     let authorId = this.props.comments[this.props.commentId].user;
     return this.props.authors[authorId];
   }
