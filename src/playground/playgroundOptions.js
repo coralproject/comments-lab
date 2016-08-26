@@ -93,7 +93,7 @@ const togglerGroups = {
       'public_profile': {
         label: 'Public Profile is ON',
         offLabel: 'Public Profile is OFF',
-        description: 'Visitors are able to see your public profile.',
+        description: 'Visitors are able click an author\'s name to see a public profile.',
         status: false,
         topic: 'public_profile',
         pulseTarget: 'commentName',

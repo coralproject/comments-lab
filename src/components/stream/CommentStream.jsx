@@ -46,10 +46,6 @@ let defaultStyles = {
     fontStyle: 'italic',
     fontSize: '11pt',
     color: '#888'
-  },
-  profileCard:{
-    width:200,
-    margin:20
   }
 };
 
