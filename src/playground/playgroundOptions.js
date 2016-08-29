@@ -152,7 +152,9 @@ const togglerGroups = {
         offLabel: 'Likes are OFF',
         description: 'Enables likes on comments, no dislikes, just likes.',
         status: false,
-        topic: 'likes'
+        topic: 'likes',
+        onFunction:addComponent('interactions','LikeButton',['id', 'likes','liked'],10),
+        offFunction:removeComponent('interactions','LikeButton')
       },
       'upvotes': {
         label: 'Up/Down voting is ON',
