@@ -7,6 +7,7 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 87,
+    downvotes: 10,
     upvoted: false,
     staffPick: true,
     showProfile:true,
@@ -41,6 +42,7 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 45,
+    downvotes: 0,
     upvoted: false
   },
   c:{
@@ -51,6 +53,7 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 82,
+    downvotes: 22,
     upvoted: false,
     replies: [
       {
@@ -84,6 +87,7 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 84,
+    downvotes: 23,
     upvoted: false
   },
   e:{
@@ -94,6 +98,7 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 11,
+    downvotes: 5,
     upvoted: false
   },
   f:{
@@ -104,6 +109,7 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 14,
+    downvotes: 0,
     upvoted: false
   },
   g:{
@@ -114,6 +120,7 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 30,
+    downvotes: 15,
     upvoted: false
   },
   h:{
@@ -124,6 +131,7 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 22,
+    downvotes: 0,
     upvoted: false,
     staffPick: true
   }  

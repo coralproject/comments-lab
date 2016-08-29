@@ -161,7 +161,12 @@ const togglerGroups = {
         offLabel: 'Up/Down voting is OFF',
         description: 'Enables up/down voting on comments.',
         status: false,
-        topic: 'upvotes'
+        topic: 'upvotes',
+        onFunction:[
+          addComponent('interactions','UpDownVoting',['id', 'upvotes','downvotes','updownvoted'],20),
+          addComponent('stream','UpDownVoteOrderFilter',['stream','comments'],20)
+        ],
+        offFunction:[removeComponent('interactions','UpDownVoting'),removeComponent('stream','UpDownVoteOrderFilter')]
       }
     }
   },
