@@ -221,13 +221,6 @@ const togglerGroups = {
         description: 'Allows following users and getting notified of new posts.',
         status: false,
         topic: 'following'
-      },
-      'privatemessages': {
-        label: 'Private messages are ON',
-        offLabel: 'Private messages are OFF',
-        description: 'Allows sending private messages between users.',
-        status: false,
-        topic: 'privatemessages'
       }
     }
   },
