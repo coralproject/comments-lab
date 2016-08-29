@@ -39,7 +39,10 @@ class InteractionsContainer extends Component {
         props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
       }      
     }
-    return <Component {...props} dispatch={this.props.dispatch} key={config.component}/>;
+    const styles = this.props.styles || defaultStyles;
+    return <div style={styles.interaction}>
+      <Component {...props} dispatch={this.props.dispatch} key={config.component}/>
+    </div>;
   }
 
 
@@ -67,3 +70,10 @@ InteractionsContainer.propTypes = {
 };
 
 export default InteractionsContainer;
+
+const defaultStyles = {
+  interaction: {
+    display:'inline-block',
+    margin:5
+  }
+};

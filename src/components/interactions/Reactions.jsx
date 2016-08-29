@@ -27,7 +27,6 @@ export default Reactions;
 const defaultStyles = {
   reactionEmoji: {
     padding:1,
-    border: '1px solid grey',
     borderRadius: 3,
     display: 'inline-block',
     opacity:.75,
