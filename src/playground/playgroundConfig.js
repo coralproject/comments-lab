@@ -8,10 +8,6 @@ let config = {
       propTypes:['content'],
       component:'DefaultComment',
       order: 0
-    },
-    {
-      component:'CommentDivider',
-      order:1000
     }
   ],
   authors:[
@@ -25,6 +21,13 @@ let config = {
     {
       propTypes:['stream','comments'],
       component:'CommentStream',
+      order:0
+    }
+  ],
+  interactions:[
+    {
+      propTypes:['id','reactions'],
+      component:'Reactions',
       order:0
     }
   ],

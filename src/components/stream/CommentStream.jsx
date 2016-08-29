@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import Comment from '../comments/CommentContainer';
 import Author from '../authors/AuthorContainer';
 import Profile from '../authorProfile/AuthorProfileContainer';
+import Interactions from '../interactions/InteractionsContainer';
 import {updateItem} from 'playground/PlaygroundActions';
 
 class CommentStream extends Component {
@@ -32,6 +33,8 @@ class CommentStream extends Component {
               </div>
               <Profile commentId={id}/>
               <Comment id={id} />
+              <Interactions id={id}/>
+              <hr className="commentDivider" style={styles.commentDivider}/>
             </div>;
           })
         }
@@ -46,6 +49,9 @@ let defaultStyles = {
     fontStyle: 'italic',
     fontSize: '11pt',
     color: '#888'
+  },
+  commentDivider:{
+    marginBottom:20
   }
 };
 

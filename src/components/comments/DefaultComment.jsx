@@ -30,7 +30,7 @@ let defaultStyles =   {
   },
   commentContent: {
     fontSize: '12pt',
-    marginBottom: '20px',
+    marginBottom: '5px',
     width:'95%'
   }
 };
