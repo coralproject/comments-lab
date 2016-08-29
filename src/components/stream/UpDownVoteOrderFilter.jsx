@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {setStream} from '../../playground/PlaygroundActions';
 
-class StaffFilter extends Component {
+class UpDownVoteOrderFilter extends Component {
 
   static propTypes = {
     comments:PropTypes.object.isRequired,
@@ -11,13 +11,13 @@ class StaffFilter extends Component {
 
   componentDidMount() {
     this.setState({original:this.props.stream});
-    let filteredStream = [];
-    for (var i = 0; i < this.props.stream.length; i++) {
-      if (this.props.comments[this.props.stream[i]].staffPick) {
-        filteredStream.push(this.props.stream[i]);
-      }
-    }
-    this.props.dispatch(setStream(filteredStream));
+    let reorderedStream = this.props.stream.slice();
+    reorderedStream.sort((a,b) => {
+      let c1 = this.props.comments[a];
+      let c2 = this.props.comments[b];
+      return (c2.upvotes - c2.downvotes) - (c1.upvotes - c1.downvotes);
+    });
+    this.props.dispatch(setStream(reorderedStream));
   }
 
   componentWillUnmount() {
@@ -29,4 +29,4 @@ class StaffFilter extends Component {
   }
 }
 
-export default StaffFilter;
+export default UpDownVoteOrderFilter;

@@ -62,7 +62,7 @@ const togglerGroups = {
         status: false,
         topic: 'muting',
         pulseTarget: 'commentName',
-        onFunction:[updateComponent('comments', 'CommentMenu',['id'], -10),addComponent('commentMenu','Block',['id','items'],0)],
+        onFunction:[updateComponent('comments', 'CommentMenu',['id'], -10),addComponent('commentMenu','Block',['id','comments'],0)],
         offFunction:[removeComponent('commentMenu','Block'), removeComponent('stream','BlockFilter')]
       }
     }
@@ -143,21 +143,30 @@ const togglerGroups = {
         offLabel: 'Reactions are OFF',
         description: 'Enables Reactions (other than likes) on comments.',
         status: false,
-        topic: 'reactions'
+        topic: 'reactions',
+        onFunction:addComponent('interactions','Reactions',['id','reactions'],0),
+        offFunction:removeComponent('interactions','Reactions')
       },
       'likes': {
         label: 'Likes are ON',
         offLabel: 'Likes are OFF',
         description: 'Enables likes on comments, no dislikes, just likes.',
         status: false,
-        topic: 'likes'
+        topic: 'likes',
+        onFunction:addComponent('interactions','LikeButton',['id', 'likes','liked'],10),
+        offFunction:removeComponent('interactions','LikeButton')
       },
       'upvotes': {
         label: 'Up/Down voting is ON',
         offLabel: 'Up/Down voting is OFF',
         description: 'Enables up/down voting on comments.',
         status: false,
-        topic: 'upvotes'
+        topic: 'upvotes',
+        onFunction:[
+          addComponent('interactions','UpDownVoting',['id', 'upvotes','downvotes','updownvoted'],20),
+          addComponent('stream','UpDownVoteOrderFilter',['stream','comments'],20)
+        ],
+        offFunction:[removeComponent('interactions','UpDownVoting'),removeComponent('stream','UpDownVoteOrderFilter')]
       }
     }
   },

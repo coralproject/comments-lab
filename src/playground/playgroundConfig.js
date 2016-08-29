@@ -8,10 +8,6 @@ let config = {
       propTypes:['content'],
       component:'DefaultComment',
       order: 0
-    },
-    {
-      component:'CommentDivider',
-      order:1000
     }
   ],
   authors:[
@@ -28,6 +24,7 @@ let config = {
       order:0
     }
   ],
+  interactions:[],
   commentMenu:[],
   authorProfile:[]
 };

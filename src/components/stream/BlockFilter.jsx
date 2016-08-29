@@ -6,7 +6,7 @@ class BlockFilter extends Component {
   static propTypes = {
     blockedUser:PropTypes.string.isRequired,
     stream:PropTypes.array.isRequired,
-    items:PropTypes.array.isRequired,
+    comments:PropTypes.array.isRequired,
     dispatch:PropTypes.func.isRequired
   }
 
@@ -14,7 +14,7 @@ class BlockFilter extends Component {
     this.setState({original:this.props.stream});
     let filteredStream = [];
     for (var i = 0; i < this.props.stream.length; i++) {
-      if (this.props.items.comments[this.props.stream[i]].user != this.props.blockedUser) {
+      if (this.props.comments[this.props.stream[i]].user != this.props.blockedUser) {
         filteredStream.push(this.props.stream[i]);
       }
     }
@@ -26,7 +26,6 @@ class BlockFilter extends Component {
   }
 
   render() {
-    console.log("Rendering blockfilter")
     return null;
   }
 }

@@ -17,7 +17,7 @@ import components from './';
   (state) => {
     return {
       config: state.newPlayground.config.commentMenu,
-      items: state.newPlayground.items.comments
+      comments: state.newPlayground.items.comments
     };
   },
   (dispatch) => {
@@ -35,7 +35,8 @@ class CommentMenuContainer extends Component {
 
   static propTypes = {
     id:PropTypes.string.isRequired,
-    config:PropTypes.array.isRequired 
+    config:PropTypes.array.isRequired,
+    comments: PropTypes.object.isRequired
   }
 
   mapComponentFromConfig(config) {
