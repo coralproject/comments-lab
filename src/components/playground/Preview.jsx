@@ -9,6 +9,8 @@ import MdComment from 'react-icons/lib/md/comment';
 
 import { themes, mediaQueries } from '../../playgroundSettings';
 
+import {Card, CardText} from 'react-mdl';
+
 @connect(state => state.playground)
 @Radium
 class Preview extends React.Component {
@@ -30,19 +32,24 @@ class Preview extends React.Component {
 
 
     var guidelines = this.props.togglerGroups['community'].togglers['guidelines'].status ?
-        <div style={ styles.guidelines }>
-          We aim to create a safe and sustainable environment for discussion. That means:
+        <Card shadow={1} style={styles.guidelines}>
+          <CardText>
+            We aim to create a safe and sustainable environment for discussion.
+            <br/>
+            <br/>
+            That means:
+            <ul style={styles.communityNorms}>
+              <li>Be supportive of each other</li>
+              <li>Criticize ideas, not people</li>
+              <li>Flag bad behavior</li>
+              <li>Follow the rules</li>
+            </ul>
 
-          <ul>
-            <li>Be supportive of each other</li>
-            <li>Criticize ideas, not people</li>
-            <li>Flag bad behavior</li>
-            <li>Follow the rules</li>
-          </ul>
-
-          <p>The best contributions will be featured on the site and in our newsletter.</p>
-          <a href="#">Click here to read our community guidelines and harassment policy.</a>
-        </div>
+            <br/>
+            <p>The best contributions will be featured on the site and in our newsletter.</p>
+            <a href="#">Click here to read our community guidelines and harassment policy.</a>
+          </CardText>
+        </Card>
       :
         null;
 
@@ -136,10 +143,13 @@ var styles = {
     border: '1px solid #aaa'
   },
   guidelines: {
-    padding: '20px',
+    width:'90%',
+    padding: 10,
     lineHeight: '1.1',
     color: '#222',
-    background: '#eee',
     marginBottom: '20px'
+  },
+  communityNorms: {
+    marginLeft:20
   }
 };
