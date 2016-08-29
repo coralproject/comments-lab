@@ -24,13 +24,7 @@ let config = {
       order:0
     }
   ],
-  interactions:[
-    {
-      propTypes:['id','reactions'],
-      component:'Reactions',
-      order:0
-    }
-  ],
+  interactions:[],
   commentMenu:[],
   authorProfile:[]
 };

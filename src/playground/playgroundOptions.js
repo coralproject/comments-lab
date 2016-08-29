@@ -143,7 +143,9 @@ const togglerGroups = {
         offLabel: 'Reactions are OFF',
         description: 'Enables Reactions (other than likes) on comments.',
         status: false,
-        topic: 'reactions'
+        topic: 'reactions',
+        onFunction:addComponent('interactions','Reactions',['id','reactions'],0),
+        offFunction:removeComponent('interactions','Reactions')
       },
       'likes': {
         label: 'Likes are ON',
