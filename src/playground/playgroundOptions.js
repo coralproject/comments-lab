@@ -211,7 +211,9 @@ const togglerGroups = {
         offLabel: 'Mentions are OFF',
         description: 'Mentions are often used as...',
         status: false,
-        topic: 'mentions'
+        topic: 'mentions',
+        onFunction:addComponent('stream','MentionsFilter',['comments','stream']),
+        offFunction:removeComponent('stream','MentionsFilter')
       },
       'following': {
         label: 'Following is ON',
