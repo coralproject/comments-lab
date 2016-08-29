@@ -62,7 +62,7 @@ const togglerGroups = {
         status: false,
         topic: 'muting',
         pulseTarget: 'commentName',
-        onFunction:[updateComponent('comments', 'CommentMenu',['id'], -10),addComponent('commentMenu','Block',['id','comments'],0)],
+        onFunction:[addComponent('commentMenu','Block',['id','comments'],0)],
         offFunction:[removeComponent('commentMenu','Block'), removeComponent('stream','BlockFilter')]
       }
     }
@@ -220,7 +220,9 @@ const togglerGroups = {
         offLabel: 'Following is OFF',
         description: 'Allows following users and getting notified of new posts.',
         status: false,
-        topic: 'following'
+        topic: 'following',
+        onFunction:[addComponent('commentMenu','Follow',['id','comments'],-10)],
+        offFunction:removeComponent('commentMenu', 'Follow')
       }
     }
   },
