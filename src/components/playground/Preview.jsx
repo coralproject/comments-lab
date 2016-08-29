@@ -5,11 +5,9 @@ import Radium from 'radium';
 import CommentBox from './CommentBox';
 import Stream from '../stream/StreamContainer';
 
-import MdComment from 'react-icons/lib/md/comment';
-
 import { themes, mediaQueries } from '../../playgroundSettings';
 
-import {Card, CardText} from 'react-mdl';
+import {Icon, Button} from 'react-mdl';
 
 @connect(state => state.playground)
 @Radium
@@ -59,7 +57,7 @@ class Preview extends React.Component {
           {
             this.props.togglerGroups.layout.togglers.hiddenbydefault.status &&
             this.state.commentsAreVisible ?
-              <button style={ styles.hideComments } onClick={ this.onHideCommentsClick.bind(this) }>Hide comments</button>
+              <Button style={ styles.hideComments } onClick={ this.onHideCommentsClick.bind(this) }>Hide comments</Button>
             : null
           }
         </div>
@@ -76,9 +74,9 @@ class Preview extends React.Component {
 
           :
 
-            <div style={ styles.clickToRead } onClick={ this.onClickToReadClick.bind(this) }>
-              <MdComment /> Click here to <strong>read the comments.</strong>
-            </div>
+            <Button style={styles.showComments} onClick={ this.onClickToReadClick.bind(this) }>
+                <Icon name="comment" /> Show Comments.
+            </Button>
         }
       </div>
     );
@@ -108,15 +106,8 @@ var styles = {
     marginTop: '-10px',
     marginRight: '10px'
   },
-  clickToRead: {
-    cursor: 'pointer',
-    padding: '20px',
-    border: '1px solid #ddd',
-    margin: '10px 0',
-    fontSize: '20pt',
-    color: '#444'
-  },
-  sandBox: {
+  showComments: {
+    float:'right'
   },
   sandBoxIntro: {
     padding: '20px',
@@ -137,10 +128,7 @@ var styles = {
   hideComments: {
     position: 'absolute',
     right: '0px',
-    top: '0px',
-    background: '#eee',
-    padding: '5px 10px',
-    border: '1px solid #aaa'
+    top: '0px'
   },
   guidelines: {
     width:'90%',
