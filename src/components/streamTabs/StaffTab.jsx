@@ -1,6 +1,7 @@
 import React, {Component, PropTypes} from 'react';
+import {addComponent, removeComponent} from 'playground/PlaygroundActions';
 
-class AllTab extends Component {
+class StaffTab extends Component {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired
@@ -8,18 +9,18 @@ class AllTab extends Component {
 
   render() {
     const styles = this.props.styles || defaultStyles;
-    return <a className={'mdl-tabs__tab ' + (this.props.activeTab == 'all' ? 'is-active' : null)}
+    return <a className={'mdl-tabs__tab ' + (this.props.activeTab == 'staff' ? 'is-active' : null)}
       style={styles.streamTab}
-      onClick={ this.props.switchTab('all')}>
-      All
+      onClick={ this.props.switchTab('staff') }>
+      Staff
     </a>;
   }
 }
 
-export default AllTab;
+export default StaffTab;
 
 const defaultStyles = {
   streamTab: {
     cursor:'pointer'
   }
-}
+};

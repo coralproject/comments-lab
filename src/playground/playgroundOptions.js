@@ -52,8 +52,8 @@ const togglerGroups = {
         description: 'Shows a tab separating staff picks from other comments.',
         status: false,
         topic: 'staffpicks',
-        onFunction:addComponent('stream','StreamTabs',null,-10,{activeTab:'all'}),
-        offFunction:[removeComponent('stream','StreamTabs'),removeComponent('stream','StaffFilter')]
+        onFunction:addComponent('streamTabs','StaffTab',null,10),
+        offFunction:[removeComponent('streamTabs','StaffTab'),removeComponent('stream','StaffFilter')]
       },
       'muting': {
         label: 'Block/mute is ON',
