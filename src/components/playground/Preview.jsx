@@ -4,6 +4,7 @@ import Radium from 'radium';
 
 import CommentBox from './CommentBox';
 import Stream from '../stream/StreamContainer';
+import StreamTabs from '../streamTabs/StreamTabsContainer';
 
 import { themes, mediaQueries } from '../../playgroundSettings';
 
@@ -69,6 +70,7 @@ class Preview extends React.Component {
             <div style={ styles.sandBox }>
               {guidelines}
               <CommentBox />
+              <StreamTabs />
               <Stream />
             </div>
 
