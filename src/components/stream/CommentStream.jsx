@@ -50,7 +50,7 @@ let defaultStyles = {
     fontSize: '11pt',
     color: '#888'
   },
-  commentDivider:{
+commentDivider:{
     marginBottom:20
   }
 };

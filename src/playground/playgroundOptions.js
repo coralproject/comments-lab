@@ -51,9 +51,9 @@ const togglerGroups = {
         offLabel: 'Staff Picks is OFF',
         description: 'Shows a tab separating staff picks from other comments.',
         status: false,
-        topic: 'staffpicks',
-        onFunction:addComponent('stream','StreamTabs',null,-10,{activeTab:'all'}),
-        offFunction:[removeComponent('stream','StreamTabs'),removeComponent('stream','StaffFilter')]
+      topic: 'staffpicks',
+        onFunction:addComponent('streamTabs','StaffTab',null,10),
+        offFunction:[removeComponent('streamTabs','StaffTab'),removeComponent('stream','StaffFilter')]
       },
       'muting': {
         label: 'Block/mute is ON',
@@ -62,7 +62,7 @@ const togglerGroups = {
         status: false,
         topic: 'muting',
         pulseTarget: 'commentName',
-        onFunction:[updateComponent('comments', 'CommentMenu',['id'], -10),addComponent('commentMenu','Block',['id','comments'],0)],
+        onFunction:[addComponent('commentMenu','Block',['id','comments'],0)],
         offFunction:[removeComponent('commentMenu','Block'), removeComponent('stream','BlockFilter')]
       }
     }
@@ -211,21 +211,21 @@ const togglerGroups = {
         offLabel: 'Mentions are OFF',
         description: 'Mentions are often used as...',
         status: false,
-        topic: 'mentions'
+        topic: 'mentions',
+        onFunction:addComponent('stream','MentionsFilter',['comments','stream']),
+        offFunction:removeComponent('stream','MentionsFilter')
       },
       'following': {
         label: 'Following is ON',
         offLabel: 'Following is OFF',
         description: 'Allows following users and getting notified of new posts.',
         status: false,
-        topic: 'following'
-      },
-      'privatemessages': {
-        label: 'Private messages are ON',
-        offLabel: 'Private messages are OFF',
-        description: 'Allows sending private messages between users.',
-        status: false,
-        topic: 'privatemessages'
+        topic: 'following',
+        onFunction:[
+          addComponent('commentMenu','Follow',['id','comments'],-10),
+          addComponent('streamTabs','FollowTab',[],20)
+        ],
+        offFunction:removeComponent('commentMenu', 'Follow')
       }
     }
   },

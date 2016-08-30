@@ -24,6 +24,13 @@ let config = {
       order:0
     }
   ],
+  streamTabs:[
+    {
+      component:'AllTab',
+      propTypes:['activeTab'],
+      order:0  
+    }
+  ],
   interactions:[],
   commentMenu:[],
   authorProfile:[]

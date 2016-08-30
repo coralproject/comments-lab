@@ -4,10 +4,11 @@ import Radium from 'radium';
 
 import CommentBox from './CommentBox';
 import Stream from '../stream/StreamContainer';
-
-import MdComment from 'react-icons/lib/md/comment';
+import StreamTabs from '../streamTabs/StreamTabsContainer';
 
 import { themes, mediaQueries } from '../../playgroundSettings';
+
+import {Icon, Button} from 'react-mdl';
 
 @connect(state => state.playground)
 @Radium
@@ -30,19 +31,24 @@ class Preview extends React.Component {
 
 
     var guidelines = this.props.togglerGroups['community'].togglers['guidelines'].status ?
-        <div style={ styles.guidelines }>
-          We aim to create a safe and sustainable environment for discussion. That means:
+        <Card shadow={1} style={styles.guidelines}>
+          <CardText>
+            We aim to create a safe and sustainable environment for discussion.
+            <br/>
+            <br/>
+            That means:
+            <ul style={styles.communityNorms}>
+              <li>Be supportive of each other</li>
+              <li>Criticize ideas, not people</li>
+              <li>Flag bad behavior</li>
+              <li>Follow the rules</li>
+            </ul>
 
-          <ul>
-            <li>Be supportive of each other</li>
-            <li>Criticize ideas, not people</li>
-            <li>Flag bad behavior</li>
-            <li>Follow the rules</li>
-          </ul>
-
-          <p>The best contributions will be featured on the site and in our newsletter.</p>
-          <a href="#">Click here to read our community guidelines and harassment policy.</a>
-        </div>
+            <br/>
+            <p>The best contributions will be featured on the site and in our newsletter.</p>
+            <a href="#">Click here to read our community guidelines and harassment policy.</a>
+          </CardText>
+        </Card>
       :
         null;
 
@@ -52,7 +58,7 @@ class Preview extends React.Component {
           {
             this.props.togglerGroups.layout.togglers.hiddenbydefault.status &&
             this.state.commentsAreVisible ?
-              <button style={ styles.hideComments } onClick={ this.onHideCommentsClick.bind(this) }>Hide comments</button>
+              <Button style={ styles.hideComments } onClick={ this.onHideCommentsClick.bind(this) }>Hide comments</Button>
             : null
           }
         </div>
@@ -64,14 +70,15 @@ class Preview extends React.Component {
             <div style={ styles.sandBox }>
               {guidelines}
               <CommentBox />
+              <StreamTabs />
               <Stream />
             </div>
 
           :
 
-            <div style={ styles.clickToRead } onClick={ this.onClickToReadClick.bind(this) }>
-              <MdComment /> Click here to <strong>read the comments.</strong>
-            </div>
+            <Button style={styles.showComments} onClick={ this.onClickToReadClick.bind(this) }>
+                <Icon name="comment" /> Show Comments.
+            </Button>
         }
       </div>
     );
@@ -101,15 +108,8 @@ var styles = {
     marginTop: '-10px',
     marginRight: '10px'
   },
-  clickToRead: {
-    cursor: 'pointer',
-    padding: '20px',
-    border: '1px solid #ddd',
-    margin: '10px 0',
-    fontSize: '20pt',
-    color: '#444'
-  },
-  sandBox: {
+  showComments: {
+    float:'right'
   },
   sandBoxIntro: {
     padding: '20px',
@@ -130,16 +130,16 @@ var styles = {
   hideComments: {
     position: 'absolute',
     right: '0px',
-    top: '0px',
-    background: '#eee',
-    padding: '5px 10px',
-    border: '1px solid #aaa'
+    top: '0px'
   },
   guidelines: {
-    padding: '20px',
+    width:'90%',
+    padding: 10,
     lineHeight: '1.1',
     color: '#222',
-    background: '#eee',
     marginBottom: '20px'
+  },
+  communityNorms: {
+    marginLeft:20
   }
 };
