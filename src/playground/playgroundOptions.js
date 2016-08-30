@@ -51,7 +51,7 @@ const togglerGroups = {
         offLabel: 'Staff Picks is OFF',
         description: 'Shows a tab separating staff picks from other comments.',
         status: false,
-        topic: 'staffpicks',
+      topic: 'staffpicks',
         onFunction:addComponent('streamTabs','StaffTab',null,10),
         offFunction:[removeComponent('streamTabs','StaffTab'),removeComponent('stream','StaffFilter')]
       },
@@ -221,7 +221,10 @@ const togglerGroups = {
         description: 'Allows following users and getting notified of new posts.',
         status: false,
         topic: 'following',
-        onFunction:[addComponent('commentMenu','Follow',['id','comments'],-10)],
+        onFunction:[
+          addComponent('commentMenu','Follow',['id','comments'],-10),
+          addComponent('streamTabs','FollowTab',[],20)
+        ],
         offFunction:removeComponent('commentMenu', 'Follow')
       }
     }

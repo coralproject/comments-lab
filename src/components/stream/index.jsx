@@ -4,6 +4,7 @@ import StaffFilter from './StaffFilter';
 import BlockFilter from './BlockFilter';
 import UpDownVoteOrderFilter from './UpDownVoteOrderFilter';
 import MentionsFilter from './MentionsFilter';
+import FollowFilter from './FollowFilter';
 
 export default {
   CommentStream,
@@ -11,5 +12,6 @@ export default {
   StaffFilter,
   BlockFilter,
   UpDownVoteOrderFilter,
-  MentionsFilter
+  MentionsFilter,
+  FollowFilter
 };
