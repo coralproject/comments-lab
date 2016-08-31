@@ -195,6 +195,7 @@ var styles = {
   },
   commentBox: {
     border: '1px solid #ddd',
+    marginBottom: 20
   },
   replyMode: {
     padding: '4px',

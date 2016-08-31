@@ -41,14 +41,14 @@ const togglerGroups = {
         onFunction:addComponent('authors','ProfilePicture',['id'], 5),
         offFunction:removeComponent('authors','ProfilePicture')
       },
-      'postdates': {
-        label: 'Time since post is ON',
-        offLabel: 'Time since post is OFF',
-        description: 'Shows when a comment was posted.',
+      'commentcount': {
+        label: 'Comment count is ON',
+        offLabel: 'Comment count is OFF',
+        description: 'Shows the total number of comments displayed.',
         status: false,
-        topic: 'postdates',
-        onFunction:addComponent('comments','PubDate',['pubdate'], -10),
-        offFunction:removeComponent('comments','PubDate')
+        topic: 'commentcount',
+        onFunction:addComponent('stream','CommentCount',['stream'], -10),
+        offFunction:removeComponent('stream','CommentCount')
       }
     }
   },
