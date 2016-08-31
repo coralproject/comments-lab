@@ -3,6 +3,7 @@ import Comment from '../comments/CommentContainer';
 import Author from '../authors/AuthorContainer';
 import Profile from '../authorProfile/AuthorProfileContainer';
 import Interactions from '../interactions/InteractionsContainer';
+import Replies from '../replies/RepliesContainer';
 import {updateItem} from 'playground/PlaygroundActions';
 
 class CommentStream extends Component {
@@ -16,7 +17,9 @@ class CommentStream extends Component {
   onAuthorClick(id) {
     return (e) => {
       e.preventDefault();
-      this.props.dispatch(updateItem(id, 'comments', 'showProfile', !this.props.comments[id].showProfile));
+      this.props.dispatch(
+        updateItem(id, 'comments', 'showProfile', !this.props.comments[id].showProfile)
+      );
     };
   }
 
@@ -34,6 +37,7 @@ class CommentStream extends Component {
               <Profile commentId={id}/>
               <Comment id={id} />
               <Interactions id={id}/>
+              <Replies id={id} replyIndex={[]} />
               <hr className="commentDivider" style={styles.commentDivider}/>
             </div>;
           })
@@ -50,7 +54,7 @@ let defaultStyles = {
     fontSize: '11pt',
     color: '#888'
   },
-commentDivider:{
+  commentDivider:{
     marginBottom:20
   }
 };

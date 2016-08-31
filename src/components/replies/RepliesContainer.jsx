@@ -15,7 +15,7 @@ import components from './';
 @connect(
   (state) => {
     return {
-      config: state.newPlayground.config.comments,
+      config: state.newPlayground.config.replies,
       comments: state.newPlayground.items.comments
     };
   },
@@ -30,29 +30,36 @@ import components from './';
 * Iterate through each component in config
 * and pass it the appropriate props from items
 */
-class CommentContainer extends Component {
+class RepliesContainer extends Component {
+
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    replyIndex: PropTypes.array.isRequired
+  }
 
   getItem() {
-    if (this.props.replyIndex) {
-      let comment = this.props.comments[this.props.id];
-      return this.props.replyIndex.reduce((priorComment, replyIndex) => {
-        return priorComment.replies[replyIndex];
-      }, comment);
-    }
-    return this.props.comments[this.props.id];
+    // let comment = this.props.comments[this.props.id];
+    // if (!comment.replies) {
+    //   return {};
+    // }
+    // return this.props.replyIndex.reduce((pre, replyIndex) => {
+    //   return pre.replies[replyIndex];
+    // }, comment);
+    return {
+      id: this.props.id,
+      replyIndex: this.props.replyIndex,
+      comments: this.props.comments
+    };
   }
 
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
-    if (config.propTypes) {
-      for (var i = 0; i < config.propTypes.length; i++) {
-        props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
-      }
+    for (var i = 0; i < config.propTypes.length; i++) {
+      props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
     }
-    return <Component {...props} dispatch={this.props.dispatch} key={config.component}/>;
+    return <Component {...props} key={config.component} />;
   }
-
 
   sortConfig(a,b) {
     if (a.order > b.order) {
@@ -65,16 +72,14 @@ class CommentContainer extends Component {
   }
 
   render() {
-    const sortedConfig = this.props.config.sort(this.sortConfig);
-    return <div>{
-      sortedConfig.map(this.mapComponentFromConfig.bind(this))
-    }
+    let sortedConfig = this.props.config.sort(this.sortConfig);
+    return <div>
+      {
+        sortedConfig.map(this.mapComponentFromConfig.bind(this))
+      }
     </div>;
   }
 }
 
-CommentContainer.propTypes = {
-  id:PropTypes.string.isRequired
-};
+export default RepliesContainer;
 
-export default CommentContainer;

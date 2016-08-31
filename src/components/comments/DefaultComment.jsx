@@ -10,7 +10,7 @@ class DefaultComment extends Component {
     return (
       <div className='comment'>
         <div style={ styles.commentDate } className='commentDate'>{ moment().fromNow() }</div>
-        <div style={ styles.commentContent } dangerouslySetInnerHTML={{__html:this.props.content}}/>
+        <div style={ styles.commentContent } className='commentContent' dangerouslySetInnerHTML={{__html:this.props.content}}/>
       </div>
     );
   }

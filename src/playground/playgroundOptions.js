@@ -178,14 +178,18 @@ const togglerGroups = {
         offLabel: 'Permalinks are OFF',
         description: 'Displays a link to a specific comment on a thread.',
         status: false,
-        topic: 'permalinks'
+        topic: 'permalinks',
+        onFunction:addComponent('interactions','Permalink',['id']),
+        offFunction:removeComponent('interactions','Permalink')
       },
       'replies': {
         label: 'Nested Replies are ON',
         offLabel: 'Nested Replies are OFF',
         description: 'Allows nested replies on comments.',
         status: false,
-        topic: 'replies'
+        topic: 'replies',
+        onFunction:addComponent('replies','Replies',['id', 'replyIndex','comments']),
+        offFunction:removeComponent('replies','Replies')
       },
       'trolls': {
         label: 'Trolls are ON',

@@ -33,7 +33,8 @@ let config = {
   ],
   interactions:[],
   commentMenu:[],
-  authorProfile:[]
+  authorProfile:[],
+  replies:[]
 };
 
 export default config;

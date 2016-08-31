@@ -33,6 +33,13 @@ import components from './';
 */
 class AuthorContainer extends Component {
   getItem() {
+    if (this.props.replyIndex) {
+      let comment = this.props.comments[this.props.id];
+      let reply = this.props.replyIndex.reduce((priorComment, replyIndex) => {
+        return priorComment.replies[replyIndex];
+      }, comment);
+      return this.props.authors[reply.user];
+    }
     let authorId = this.props.comments[this.props.commentId].user;
     return this.props.authors[authorId];
   }
@@ -66,7 +73,8 @@ class AuthorContainer extends Component {
 }
 
 AuthorContainer.propTypes = {
-  commentId:PropTypes.string.isRequired
+  commentId:PropTypes.string.isRequired,
+  replyIndex: PropTypes.array
 };
 
 export default AuthorContainer;

@@ -16,7 +16,7 @@ import components from './';
   (state) => {
     return {
       config: state.newPlayground.config.interactions,
-      items: state.newPlayground.items.comments
+      comments: state.newPlayground.items.comments
     };
   },
   (dispatch) => {
@@ -31,12 +31,23 @@ import components from './';
 * and pass it the appropriate props from items
 */
 class InteractionsContainer extends Component {
+
+  getItem() {
+    if (this.props.replyIndex) {
+      let comment = this.props.comments[this.props.id];
+      return this.props.replyIndex.reduce((priorComment, replyIndex) => {
+        return priorComment.replies[replyIndex];
+      }, comment);
+    }
+    return this.props.comments[this.props.id];
+  }
+
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
     if (config.propTypes) {
       for (var i = 0; i < config.propTypes.length; i++) {
-        props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
+        props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
       }      
     }
     const styles = this.props.styles || defaultStyles;
@@ -66,7 +77,8 @@ class InteractionsContainer extends Component {
 }
 
 InteractionsContainer.propTypes = {
-  id:PropTypes.string.isRequired
+  id:PropTypes.string.isRequired,
+  replyIndex: PropTypes.array
 };
 
 export default InteractionsContainer;

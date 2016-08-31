@@ -8,7 +8,7 @@ import StreamTabs from '../streamTabs/StreamTabsContainer';
 
 import { themes, mediaQueries } from '../../playgroundSettings';
 
-import {Icon, Button} from 'react-mdl';
+import {Card, CardText, Icon, Button} from 'react-mdl';
 
 @connect(state => state.playground)
 @Radium
