@@ -28,8 +28,6 @@ class Preview extends React.Component {
   }
 
   render() {
-
-
     var guidelines = this.props.togglerGroups['community'].togglers['guidelines'].status ?
       <div style={styles.guidelines}>
         We aim to create a safe and sustainable environment for discussion.

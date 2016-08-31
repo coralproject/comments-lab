@@ -11,7 +11,8 @@ const initialState = {
     users:users
   },
   config:config,
-  stream:['a','b','c','d','e','f','g','h']
+  stream:['a','b','c','d','e','f','g','h'],
+  showWelcome:true
 };
 
 initialState.togglerGroups = togglerGroups;
@@ -184,6 +185,8 @@ const playground = (state = initialState, action) => {
     return togglerFromURL(action, state);
   case types.SET_TOGGLER_GROUP:
     return Object.assign({}, state, {selectedTogglerGroup:action.group});
+  case types.TOGGLE_WELCOME_HERO:
+    return Object.assign({}, state, {showWelcome:!state.showWelcome});
   default:
     console.log('Not a Playground action:', action.type);
     return state;

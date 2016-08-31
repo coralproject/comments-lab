@@ -9,6 +9,7 @@ import FooterNav from 'components/layout/FooterNav';
 import InfoModal from 'components/layout/InfoModal';
 import CustomizerSettings from 'components/playground/CustomizerSettings';
 import Preview from 'components/playground/Preview';
+import WelcomeHero from 'components/playground/WelcomeHero';
 
 import DocumentTitle from 'react-document-title';
 
@@ -29,6 +30,7 @@ class Playground extends React.Component {
 
           <div style={styles.playgroundContainer}>
             <HeaderNav />
+            <WelcomeHero />
             <CustomizerSettings />
 
             <Preview />
