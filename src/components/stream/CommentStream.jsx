@@ -16,7 +16,9 @@ class CommentStream extends Component {
   onAuthorClick(id) {
     return (e) => {
       e.preventDefault();
-      this.props.dispatch(updateItem(id, 'comments', 'showProfile', !this.props.comments[id].showProfile));
+      this.props.dispatch(
+        updateItem(id, 'comments', 'showProfile', !this.props.comments[id].showProfile)
+      );
     };
   }
 
@@ -50,7 +52,7 @@ let defaultStyles = {
     fontSize: '11pt',
     color: '#888'
   },
-commentDivider:{
+  commentDivider:{
     marginBottom:20
   }
 };

@@ -178,7 +178,9 @@ const togglerGroups = {
         offLabel: 'Permalinks are OFF',
         description: 'Displays a link to a specific comment on a thread.',
         status: false,
-        topic: 'permalinks'
+        topic: 'permalinks',
+        onFunction:addComponent('interactions','Permalink',['id']),
+        offFunction:removeComponent('interactions','Permalink')
       },
       'replies': {
         label: 'Nested Replies are ON',
