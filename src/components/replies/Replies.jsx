@@ -27,8 +27,8 @@ class Replies extends Component {
         replies && 
         replies.map((reply,i) => {
           const newReplyIndex = this.props.replyIndex.concat(i);
-          return <div className="replies" style={styles.replies}>
-              <Authors id={this.props.id} replyIndex={newReplyIndex} />
+          return <div className="replies" style={styles.replies} key={i}>
+              <Authors commentId={this.props.id} replyIndex={newReplyIndex} />
               <Comments id={this.props.id} replyIndex={newReplyIndex} />
               <Interactions id={this.props.id} replyIndex={newReplyIndex} />
               <Replies

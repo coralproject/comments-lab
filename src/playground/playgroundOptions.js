@@ -40,6 +40,15 @@ const togglerGroups = {
         topic: 'profilepictures',
         onFunction:addComponent('authors','ProfilePicture',['id'], 5),
         offFunction:removeComponent('authors','ProfilePicture')
+      },
+      'commentcount': {
+        label: 'Comment count is ON',
+        offLabel: 'Comment count is OFF',
+        description: 'Shows the total number of comments displayed.',
+        status: false,
+        topic: 'commentcount',
+        onFunction:addComponent('stream','CommentCount',['stream'], -10),
+        offFunction:removeComponent('stream','CommentCount')
       }
     }
   },

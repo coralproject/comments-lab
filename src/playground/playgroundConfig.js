@@ -5,6 +5,11 @@ let config = {
       component:'CommentMenu'
     },
     {
+      propTypes:['pubdate'],
+      component:'PubDate',
+      order: -10
+    },
+    {
       propTypes:['content'],
       component:'DefaultComment',
       order: 0

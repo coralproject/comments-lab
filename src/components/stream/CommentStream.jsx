@@ -26,7 +26,6 @@ class CommentStream extends Component {
   render() {
     let styles = this.props.styles || defaultStyles;
     return <div id="stream">
-      <p style={ styles.commentCount }>{ this.props.stream.length } comments</p>
       <div>
         {
           this.props.stream.map((id) => {
@@ -48,12 +47,6 @@ class CommentStream extends Component {
 }
 
 let defaultStyles = {
-  commentCount: {
-    padding: '10px 0 0 0',
-    fontStyle: 'italic',
-    fontSize: '11pt',
-    color: '#888'
-  },
   commentDivider:{
     marginBottom:20
   }

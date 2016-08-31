@@ -34,7 +34,7 @@ import components from './';
 class AuthorContainer extends Component {
   getItem() {
     if (this.props.replyIndex) {
-      let comment = this.props.comments[this.props.id];
+      let comment = this.props.comments[this.props.commentId];
       let reply = this.props.replyIndex.reduce((priorComment, replyIndex) => {
         return priorComment.replies[replyIndex];
       }, comment);
