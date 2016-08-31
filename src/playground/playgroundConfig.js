@@ -33,7 +33,14 @@ let config = {
   ],
   interactions:[],
   commentMenu:[],
-  authorProfile:[]
+  authorProfile:[],
+  replies:[
+    {
+      propTypes:['id','replyIndex','comments'],
+      component:'Reply',
+      order:0
+    }
+  ]
 };
 
 export default config;

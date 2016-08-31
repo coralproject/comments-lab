@@ -3,6 +3,7 @@ import Comment from '../comments/CommentContainer';
 import Author from '../authors/AuthorContainer';
 import Profile from '../authorProfile/AuthorProfileContainer';
 import Interactions from '../interactions/InteractionsContainer';
+import Replies from '../replies/ReplyContainer';
 import {updateItem} from 'playground/PlaygroundActions';
 
 class CommentStream extends Component {
@@ -36,6 +37,7 @@ class CommentStream extends Component {
               <Profile commentId={id}/>
               <Comment id={id} />
               <Interactions id={id}/>
+              <Replies id={id} replyIndex={[]} />
               <hr className="commentDivider" style={styles.commentDivider}/>
             </div>;
           })
