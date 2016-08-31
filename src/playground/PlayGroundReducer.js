@@ -70,13 +70,13 @@ const updateComponent = (action, state) => {
       let newConfigProps = Object.assign({}, component.configProps, action.configProps);
       newComponentConfig = Object.assign({}, component,newComponentConfig, {configProps:newConfigProps});
     }
-    if (action.order != undefined && action.order != null) {
+    if (action.order !== undefined && action.order !== null) {
       newComponentConfig = Object.assign({}, component, newComponentConfig, {order:action.order});     
     }
     return newComponentConfig;
   };
   for(let i=0; i < itemConfig.length; i++) {
-    if (itemConfig[i].component == action.component) {
+    if (itemConfig[i].component === action.component) {
       exists = true;
       newItemConfig[i] = update(action, itemConfig[i]);
       break;
