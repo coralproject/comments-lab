@@ -2,13 +2,16 @@ const comments = {
   a:{
     user: 1,
     id:'a',
-    content: "Hello, @coolcat. Clinton is a smart guy, but I only started to trust or like him was when he was no longer running. And here he is running for his wife, Hillary. For him to lecture Sanders, or the public about Sanders, on the subject of honesty or integrity, is too much. I don't buy it. :smile:",
+    content: "Hello, @nobeyonce. Clinton is a smart guy, but I only started to trust or like him was when he was no longer running. And here he is running for his wife, Hillary. For him to lecture Sanders, or the public about Sanders, on the subject of honesty or integrity, is too much. I don't buy it. :smile:",
     likes: 28,
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 87,
+    downvotes: 10,
     upvoted: false,
     staffPick: true,
+    showProfile:true,
+    pubdate: 3600000,
     replies: [
       {
         user: 2,
@@ -18,6 +21,7 @@ const comments = {
         reactions: ['heart', 'ok_woman'],
         upvotes: 56,
         upvoted: false,
+        pubdate: 4500000,
         replies: [
           {
             user: 1,
@@ -26,7 +30,8 @@ const comments = {
             liked: false,
             reactions: ['heart', 'ok_woman'],
             upvotes: 45,
-            upvoted: false
+            upvoted: false,
+            pubdate: 6000000,
           }
         ]
       }
@@ -40,7 +45,9 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 45,
-    upvoted: false
+    downvotes: 0,
+    upvoted: false,
+    pubdate: 7200000
   },
   c:{
     user: 2,
@@ -50,7 +57,9 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 82,
+    downvotes: 22,
     upvoted: false,
+    pubdate: 7200000,
     replies: [
       {
         user: 2,
@@ -60,6 +69,7 @@ const comments = {
         reactions: ['heart', 'ok_woman'],
         upvotes: 56,
         upvoted: false,
+        pubdate: 10000000,
         replies: [
           {
             user: 1,
@@ -69,7 +79,8 @@ const comments = {
             reactions: ['heart', 'ok_woman'],
             upvotes: 45,
             upvoted: false,
-            staffPick: true
+            staffPick: true,
+            pubdate: 12000000
           }
         ]
       }
@@ -83,7 +94,9 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 84,
-    upvoted: false
+    downvotes: 23,
+    upvoted: false,
+    pubdate: 10000000
   },
   e:{
     user: 3,
@@ -93,7 +106,9 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 11,
-    upvoted: false
+    downvotes: 5,
+    upvoted: false,
+    pubdate: 10200000
   },
   f:{
     user: 2,
@@ -103,7 +118,9 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 14,
-    upvoted: false
+    downvotes: 0,
+    upvoted: false,
+    pubdate: 15000000
   },
   g:{
     user: 1,
@@ -113,7 +130,9 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 30,
-    upvoted: false
+    downvotes: 15,
+    upvoted: false,
+    pubdate: 20000000
   },
   h:{
     user: 3,
@@ -123,8 +142,10 @@ const comments = {
     liked: false,
     reactions: ['heart', 'ok_woman'],
     upvotes: 22,
+    downvotes: 0,
     upvoted: false,
-    staffPick: true
+    staffPick: true,
+    pubdate: 25000000
   }  
 };
 

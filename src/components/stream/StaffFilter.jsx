@@ -4,7 +4,7 @@ import {setStream} from '../../playground/PlaygroundActions';
 class StaffFilter extends Component {
 
   static propTypes = {
-    items:PropTypes.object.isRequired,
+    comments:PropTypes.object.isRequired,
     stream:PropTypes.array.isRequired,
     dispatch:PropTypes.func.isRequired
   }
@@ -13,7 +13,7 @@ class StaffFilter extends Component {
     this.setState({original:this.props.stream});
     let filteredStream = [];
     for (var i = 0; i < this.props.stream.length; i++) {
-      if (this.props.items.comments[this.props.stream[i]].staffPick) {
+      if (this.props.comments[this.props.stream[i]].staffPick) {
         filteredStream.push(this.props.stream[i]);
       }
     }

@@ -207,10 +207,10 @@ describe('PlaygroundReducer', () => {
       let newState = PlaygroundReducer(state, action);
       expect(newState).to.deep.equal(state);
     });
-    it('should take no action if the component does not exist',() => {
+    it('should add a new component if one does not already exist',() => {
       let state = {
         config:{
-          authors:[
+          comments:[
             {
               component:'KeepMeComponent',
               propTypes:['content']
@@ -219,7 +219,20 @@ describe('PlaygroundReducer', () => {
         }
       };
       let newState = PlaygroundReducer(state, action);
-      expect(newState).to.deep.equal(state);
+      expect(newState).to.deep.equal({
+        config:{
+          comments:[
+            {
+              component:'KeepMeComponent',
+              propTypes:['content']
+            },
+            {
+              component:'UpdateMe',
+              propTypes:['changed']
+            }
+          ]
+        }
+      });
     });
 
     it('should update configProps if no propTypes are sent', () => {
@@ -407,4 +420,124 @@ describe('PlaygroundReducer', () => {
       });
     });
   }) ;
+
+  describe('SET_TOGGLER', () => {
+    let action;
+    let state;
+    beforeEach(()=> {
+      action={
+        type:'SET_TOGGLER',
+        groupIndex:'content',
+        togglerIndex:'emoji',
+        status:false
+      };
+      state={
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:true
+              }              
+            }
+          }
+        }
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        togglerGroups:{
+          content:{
+            togglers: {
+              emoji:{
+                status:true
+              }
+            }
+          }
+        }
+      });
+    });
+
+    it('should toggle the appropriate option',() => {
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.togglerGroups.content.togglers.emoji.status).to.be.false;
+    });
+  });
+  
+  describe('TOGGLER_FROM_URL', () => {
+    let action;
+    let state;
+    beforeEach(() => {
+      action = {
+        type: 'TOGGLER_FROM_URL',
+        url: '%7B%22emoji%22%3Atrue%7D'
+      };
+      state = {
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:false
+              }              
+            }
+          }
+        }
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        togglerGroups:{
+          content:{
+            togglers:{
+              emoji:{
+                status:false
+              }              
+            }
+          }
+        }
+      });
+    });
+
+    it('should take no action if URL params are blank', () => {
+      action.url=null;
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal(state);
+    });
+
+    it('should set toggles based on a formatted URL', () =>{
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.togglerGroups.content.togglers.emoji.status).to.be.true;    
+    });
+  });
+
+  describe('SET_TOGGLER_GROUP', () => {
+    let action;
+    let state;
+    beforeEach(() => {
+      action = {
+        type: 'SET_TOGGLER_GROUP',
+        group:'moderation'
+      };
+      state = {
+        selectedTogglerGroup:'content'
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        selectedTogglerGroup:'content'
+      });
+    });
+
+    it('should switch the selectedTogglerGroup', () => {
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal({
+        selectedTogglerGroup:'moderation'
+      });
+    });
+  });
 });

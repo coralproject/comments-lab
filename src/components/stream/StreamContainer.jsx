@@ -15,9 +15,10 @@ import components from './';
 @connect(
   (state) => {
     return {
-      items: state.newPlayground.items,
+      comments: state.newPlayground.items.comments,
       config: state.newPlayground.config.stream,
-      stream: state.newPlayground.stream
+      stream: state.newPlayground.stream,
+      users: state.newPlayground.items.users
     };
   },
   (dispatch) => {
@@ -33,7 +34,14 @@ import components from './';
 */
 class StreamContainer extends Component {
 
-  mapComponentFromConfig(config) {
+  static propTypes = {
+    comments:PropTypes.object.isRequired,
+    config:PropTypes.array.isRequired,
+    stream:PropTypes.array.isRequired,
+    dispatch:PropTypes.func.isRequired
+  }
+
+  mapComponentFromConfig(config,j) {
     let Component = components[config.component];
     let props = {...config.configProps};
 
@@ -42,7 +50,7 @@ class StreamContainer extends Component {
         props[config.propTypes[i]] = this.props[config.propTypes[i]];
       }
     }
-    return <Component {...props} dispatch={this.props.dispatch} key={config.component} />;
+    return <Component {...props} dispatch={this.props.dispatch} key={config.component + '_' + j} />;
   }
 
   sortConfig(a,b) {
@@ -66,3 +74,4 @@ class StreamContainer extends Component {
 
 
 export default StreamContainer;
+
