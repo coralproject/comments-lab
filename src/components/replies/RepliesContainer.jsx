@@ -30,7 +30,7 @@ import components from './';
 * Iterate through each component in config
 * and pass it the appropriate props from items
 */
-class ReplyContainer extends Component {
+class RepliesContainer extends Component {
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -81,5 +81,5 @@ class ReplyContainer extends Component {
   }
 }
 
-export default ReplyContainer;
+export default RepliesContainer;
 

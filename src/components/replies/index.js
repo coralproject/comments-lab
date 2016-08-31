@@ -1,6 +1,6 @@
-import Reply from './Reply';
+import Replies from './Replies';
 
 
 export default {
-  Reply
+  Replies
 };

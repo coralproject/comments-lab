@@ -23,7 +23,7 @@ DefaultAuthor.propTypes = {
   realName:PropTypes.string,
   nickName:PropTypes.string,
   allowAnon: PropTypes.bool,
-  anonymous: PropTypes.bool.isRequired
+  anonymous: PropTypes.bool
 };
 
 export default DefaultAuthor;

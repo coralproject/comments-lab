@@ -187,7 +187,9 @@ const togglerGroups = {
         offLabel: 'Nested Replies are OFF',
         description: 'Allows nested replies on comments.',
         status: false,
-        topic: 'replies'
+        topic: 'replies',
+        onFunction:addComponent('replies','Replies',['id', 'replyIndex','comments']),
+        offFunction:removeComponent('replies','Replies')
       },
       'trolls': {
         label: 'Trolls are ON',

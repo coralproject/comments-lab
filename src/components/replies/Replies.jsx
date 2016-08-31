@@ -1,6 +1,9 @@
 import React, {Component, PropTypes} from 'react';
+import Authors from 'components/Authors/AuthorContainer';
+import Comments from 'components/Comments/CommentContainer';
+import Interactions from 'components/Interactions/InteractionsContainer';
 
-class Reply extends Component {
+class Replies extends Component {
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -16,19 +19,21 @@ class Reply extends Component {
       }
       return priorComment[replyIndex].replies;
     }, comment);
-    replies = replies || [];
+    replies = replies;
 
     const styles = this.props.styles || defaultStyles;
-
     return <div>
       {
-        replies.length > 0 && 
+        replies && 
         replies.map((reply,i) => {
+          const newReplyIndex = this.props.replyIndex.concat(i);
           return <div className="replies" style={styles.replies}>
-              {reply.content}
-              <Reply
+              <Authors id={this.props.id} replyIndex={newReplyIndex} />
+              <Comments id={this.props.id} replyIndex={newReplyIndex} />
+              <Interactions id={this.props.id} replyIndex={newReplyIndex} />
+              <Replies
                 id={this.props.id}
-                replyIndex={this.props.replyIndex.concat(i)}
+                replyIndex={newReplyIndex}
                 comments = {this.props.comments}/>
             </div>;
         })
@@ -37,10 +42,11 @@ class Reply extends Component {
   }
 }
 
-export default Reply;
+export default Replies;
 
 const defaultStyles = {
   replies: {
-    marginLeft:40
+    marginLeft:40,
+    marginTop:20
   }
-}
+};

@@ -3,7 +3,7 @@ import Comment from '../comments/CommentContainer';
 import Author from '../authors/AuthorContainer';
 import Profile from '../authorProfile/AuthorProfileContainer';
 import Interactions from '../interactions/InteractionsContainer';
-import Replies from '../replies/ReplyContainer';
+import Replies from '../replies/RepliesContainer';
 import {updateItem} from 'playground/PlaygroundActions';
 
 class CommentStream extends Component {

@@ -34,13 +34,7 @@ let config = {
   interactions:[],
   commentMenu:[],
   authorProfile:[],
-  replies:[
-    {
-      propTypes:['id','replyIndex','comments'],
-      component:'Reply',
-      order:0
-    }
-  ]
+  replies:[]
 };
 
 export default config;
