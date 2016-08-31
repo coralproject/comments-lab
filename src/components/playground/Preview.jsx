@@ -31,26 +31,24 @@ class Preview extends React.Component {
 
 
     var guidelines = this.props.togglerGroups['community'].togglers['guidelines'].status ?
-        <Card shadow={1} style={styles.guidelines}>
-          <CardText>
-            We aim to create a safe and sustainable environment for discussion.
-            <br/>
-            <br/>
-            That means:
-            <ul style={styles.communityNorms}>
-              <li>Be supportive of each other</li>
-              <li>Criticize ideas, not people</li>
-              <li>Flag bad behavior</li>
-              <li>Follow the rules</li>
-            </ul>
+      <div style={styles.guidelines}>
+        We aim to create a safe and sustainable environment for discussion.
+        <br/>
+        <br/>
+        That means:
+        <ul style={styles.communityNorms}>
+          <li>Be supportive of each other</li>
+          <li>Criticize ideas, not people</li>
+          <li>Flag bad behavior</li>
+          <li>Follow the rules</li>
+        </ul>
 
-            <br/>
-            <p>The best contributions will be featured on the site and in our newsletter.</p>
-            <a href="#">Click here to read our community guidelines and harassment policy.</a>
-          </CardText>
-        </Card>
+        <br/>
+        <p>The best contributions will be featured on the site and in our newsletter.</p>
+        <a href="#">Click here to read our community guidelines and harassment policy.</a>
+      </div>
       :
-        null;
+      null;
 
     return (
       <div style={ styles.preview } id="preview">
