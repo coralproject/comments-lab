@@ -66,7 +66,8 @@ class CommentContainer extends Component {
 
   render() {
     const sortedConfig = this.props.config.sort(this.sortConfig);
-    return <div>{
+    return <div>
+    {
       sortedConfig.map(this.mapComponentFromConfig.bind(this))
     }
     </div>;

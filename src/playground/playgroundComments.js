@@ -21,6 +21,7 @@ const comments = {
         reactions: ['heart', 'ok_woman'],
         upvotes: 56,
         upvoted: false,
+        pubdate: 4500000,
         replies: [
           {
             user: 1,
@@ -29,7 +30,8 @@ const comments = {
             liked: false,
             reactions: ['heart', 'ok_woman'],
             upvotes: 45,
-            upvoted: false
+            upvoted: false,
+            pubdate: 6000000,
           }
         ]
       }
@@ -67,6 +69,7 @@ const comments = {
         reactions: ['heart', 'ok_woman'],
         upvotes: 56,
         upvoted: false,
+        pubdate: 10000000,
         replies: [
           {
             user: 1,
@@ -76,7 +79,8 @@ const comments = {
             reactions: ['heart', 'ok_woman'],
             upvotes: 45,
             upvoted: false,
-            staffPick: true
+            staffPick: true,
+            pubdate: 12000000
           }
         ]
       }
