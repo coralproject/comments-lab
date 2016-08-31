@@ -19,6 +19,15 @@ const togglerGroups = {
         topic: 'emoji',
         onFunction:addComponent('comments','EmojiFilter',['id','content']),
         offFunction:removeComponent('comments','EmojiFilter')
+      },
+      'editing': {
+        label: 'Comment editing is ON',
+        offLabel: 'Comment editing is OFF',
+        description: 'Comment editing can be helpful to correct typos, can be abused. You can only edit comments that you post.',
+        status: false,
+        topic: 'editing',
+        onFunction:addComponent('interactions','Edit',['id','content', 'user']),
+        offFunction:removeComponent('interactions','Edit')
       }
     }
   },

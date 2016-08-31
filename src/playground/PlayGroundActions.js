@@ -61,6 +61,7 @@ export const setTopic = (topic) => {
 };
 
 export const sendComment = (content) => {
+  const id = uuid.v4();
   return {
     type: SEND_COMMENT,
     comment: {
@@ -70,13 +71,15 @@ export const sendComment = (content) => {
       liked: false,
       reactions: [],
       upvoted: false,
-      upvotes: 0
+      upvotes: 0,
+      id
     },
-    id:uuid.v4()
+    id
   };
 };
 
 export const replyComment = (content, parents) => {
+  const id = uuid.v4();
   return {
     type: REPLY_COMMENT,
     comment: {
@@ -86,9 +89,10 @@ export const replyComment = (content, parents) => {
       liked: false,
       reactions: [],
       upvoted: false,
-      upvotes: 0
+      upvotes: 0,
+      id: id
     },
-    id:uuid.v4(),
+    id: id,
     parents: parents
   };
 };
