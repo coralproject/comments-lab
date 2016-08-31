@@ -15,7 +15,12 @@ class HeaderNav extends Component {
     const styles = this.props.styles || defaultStyles;
 
     return <Layout fixedHeader style={styles.headerLayout}>
-            <Header title={<span><strong>Coral Playground</strong></span>} style={styles.header}>
+            <Header title={
+              <span>
+                <img style={styles.logo} src="img/logo_white.png"/>
+                <strong>Coral Playground</strong>
+              </span>
+            } style={styles.header}>
                 <Navigation>
                   <a href="#" onClick={this.onAboutClick.bind(this)}>About</a>
                   <a href="#"style={styles.share}>Share</a>                  
@@ -49,5 +54,11 @@ const defaultStyles = {
   shareIcon:{
     width:30,
     height:30
+  },
+  logo: {
+    width: 20,
+    height:20,
+    marginRight: 10,
+    verticalAlign: 'bottom'
   }
 };
