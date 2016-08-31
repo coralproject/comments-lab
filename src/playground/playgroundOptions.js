@@ -40,6 +40,15 @@ const togglerGroups = {
         topic: 'profilepictures',
         onFunction:addComponent('authors','ProfilePicture',['id'], 5),
         offFunction:removeComponent('authors','ProfilePicture')
+      },
+      'postdates': {
+        label: 'Time since post is ON',
+        offLabel: 'Time since post is OFF',
+        description: 'Shows when a comment was posted.',
+        status: false,
+        topic: 'postdates',
+        onFunction:addComponent('comments','PubDate',['pubdate'], -10),
+        offFunction:removeComponent('comments','PubDate')
       }
     }
   },

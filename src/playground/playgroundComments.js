@@ -11,6 +11,7 @@ const comments = {
     upvoted: false,
     staffPick: true,
     showProfile:true,
+    pubdate: 3600000,
     replies: [
       {
         user: 2,
@@ -43,7 +44,8 @@ const comments = {
     reactions: ['heart', 'ok_woman'],
     upvotes: 45,
     downvotes: 0,
-    upvoted: false
+    upvoted: false,
+    pubdate: 7200000
   },
   c:{
     user: 2,
@@ -55,6 +57,7 @@ const comments = {
     upvotes: 82,
     downvotes: 22,
     upvoted: false,
+    pubdate: 7200000,
     replies: [
       {
         user: 2,
@@ -88,7 +91,8 @@ const comments = {
     reactions: ['heart', 'ok_woman'],
     upvotes: 84,
     downvotes: 23,
-    upvoted: false
+    upvoted: false,
+    pubdate: 10000000
   },
   e:{
     user: 3,
@@ -99,7 +103,8 @@ const comments = {
     reactions: ['heart', 'ok_woman'],
     upvotes: 11,
     downvotes: 5,
-    upvoted: false
+    upvoted: false,
+    pubdate: 10200000
   },
   f:{
     user: 2,
@@ -110,7 +115,8 @@ const comments = {
     reactions: ['heart', 'ok_woman'],
     upvotes: 14,
     downvotes: 0,
-    upvoted: false
+    upvoted: false,
+    pubdate: 15000000
   },
   g:{
     user: 1,
@@ -121,7 +127,8 @@ const comments = {
     reactions: ['heart', 'ok_woman'],
     upvotes: 30,
     downvotes: 15,
-    upvoted: false
+    upvoted: false,
+    pubdate: 20000000
   },
   h:{
     user: 3,
@@ -133,7 +140,8 @@ const comments = {
     upvotes: 22,
     downvotes: 0,
     upvoted: false,
-    staffPick: true
+    staffPick: true,
+    pubdate: 25000000
   }  
 };
 
