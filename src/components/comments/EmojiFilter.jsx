@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react';
+import ReactDOMServer from 'react-dom/server'
 import ReactEmoji from 'react-emoji';
 import {updateItem} from '../../playground/PlaygroundActions';
 
@@ -17,7 +18,7 @@ class EmojiFilter extends Component {
       if (typeof obj == 'object') {
         // We render the Emojis as plain HTML, 
         // or they would render as "[Object object]"
-        return React.renderToString(<span>{ obj }</span>);
+        return ReactDOMServer.renderToString(<span>{ obj }</span>);
       } else {
         return obj;
       }
