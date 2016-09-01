@@ -6,14 +6,13 @@ class Follow extends Component {
 
   static propTypes = {
     id:PropTypes.string.isRequired,
-    comments:PropTypes.object.isRequired,
+    user:PropTypes.string.isRequired,
     dispatch:PropTypes.func.isRequired
   }
 
   onFollowClick(e) {
     e.preventDefault();
-    const followedUser = this.props.comments[this.props.id].user;
-    this.props.dispatch(updateItem(followedUser,'users','following',true));
+    this.props.dispatch(updateItem(this.props.user,'users','following',true));
   }
 
   render() {
