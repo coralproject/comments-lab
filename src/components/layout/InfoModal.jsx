@@ -5,7 +5,7 @@ import {setTopic} from 'playground/PlaygroundActions';
 
 @connect(
   (state) => {
-    return state.newPlayground;
+    return state.playground;
   },
   (dispatch) => {
     return {
