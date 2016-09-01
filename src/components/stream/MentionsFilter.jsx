@@ -9,21 +9,40 @@ class MentionsFilter extends Component {
     dispatch:PropTypes.func.isRequired
   }
 
-  componentDidMount() {
-    for (let i = 0; i < this.props.stream.length; i++) {
-      let content = this.props.comments[this.props.stream[i]].content;
+  filterProps(props) {
+    for (let i = 0; i < props.stream.length; i++) {
+      let content = props.comments[props.stream[i]].content;
+      let newContent = content.replace(/(@[a-z]+)/g,'<a href=#>$1</a>');
+      props.dispatch(updateItem(props.stream[i],'comments','content',newContent));
+    }
+  }
 
+  componentDidMount() {
+    this.props.stream.reduce((prev, commentId) => {
+      let content = this.props.comments[commentId].content;
       this.setState((prevState) => {
         if (!prevState.originals) {
           prevState.originals = [];
         }
-        prevState.originals.push({id:this.props.stream[i],content}) ;
+        prevState.originals.push({id:commentId, content}) ;
         return prevState;
       });
+    },{});
+    this.filterProps(this.props);
+  }
 
-      let newContent = content.replace(/(@[a-z]+)/g,'<a href=#>$1</a>');
-      this.props.dispatch(updateItem(this.props.stream[i],'comments','content',newContent));
-    }
+  shouldComponentUpdate(nextProps) {
+    let newContent = false;
+    nextProps.stream.reduce((prev, commentId) => {
+      if (nextProps.comments[commentId].content !== this.props.comments[commentId].content) {
+        newContent = true;
+      }
+    });
+    return newContent;
+  }
+
+  componentWillUpdate(nextProps) {
+    this.filterProps(nextProps);
   }
 
   componentWillUnmount() {

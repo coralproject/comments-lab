@@ -9,9 +9,8 @@ class EmojiFilter extends Component {
     content: PropTypes.string.isRequired
   }
 
-  componentDidMount() {
-    this.setState({originalContent:this.props.content});
-    let emojiArray = ReactEmoji.emojify(this.props.content);
+  filterProps(props) {
+    let emojiArray = ReactEmoji.emojify(props.content);
     // After running emojify, we get an array of strings (which may contain HTML)
     // and objects holding the Emojis
     let emojiContent = emojiArray.map((obj) => {
@@ -23,7 +22,21 @@ class EmojiFilter extends Component {
         return obj;
       }
     }).join('');
-    this.props.dispatch(updateItem(this.props.id, 'comments', 'content', emojiContent));
+    props.dispatch(updateItem(props.id, 'comments', 'content', emojiContent));
+  } 
+
+  componentDidMount() {
+    this.setState({originalContent:this.props.content});
+    this.filterProps(this.props);
+    
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.content !== this.props.content;
+  }
+
+  componentWillUpdate(nextProps) {
+    this.filterProps(nextProps);
   }
 
   componentWillUnmount() {
