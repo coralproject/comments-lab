@@ -47,8 +47,11 @@ class AuthorContainer extends Component {
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
-    for (var i = 0; i < config.propTypes.length; i++) {
-      props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
+    if (config.propTypes) {
+      config.propTypes.reduce((props, propType) => {
+        props[propType] = this.getItem()[propType];
+        return props;
+      },props);
     }
     return <Component {...props} dispatch={this.props.dispatch} key={config.component} />;
   }

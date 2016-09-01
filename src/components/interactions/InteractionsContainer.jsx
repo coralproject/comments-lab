@@ -46,9 +46,10 @@ class InteractionsContainer extends Component {
     let Component = components[config.component];
     let props = {...config.configProps};
     if (config.propTypes) {
-      for (var i = 0; i < config.propTypes.length; i++) {
-        props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
-      }      
+      config.propTypes.reduce((props, propType) => {
+        props[propType] = this.getItem()[propType];
+        return props;
+      },props);      
     }
     const styles = this.props.styles || defaultStyles;
     return <div style={styles.interaction}>

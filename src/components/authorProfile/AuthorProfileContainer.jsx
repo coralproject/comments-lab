@@ -30,7 +30,7 @@ import {Card} from 'react-mdl';
 
 /*
 * Iterate through each component in config
-* and pass it the appropriate props from items
+* and pass it the appropriate props from getItem
 */
 class AuthorProfileContainer extends Component {
 
@@ -46,8 +46,11 @@ class AuthorProfileContainer extends Component {
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
-    for (var i = 0; i < config.propTypes.length; i++) {
-      props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
+    if (config.propTypes) {
+      config.propTypes.reduce((props, propType) => {
+        props[propType] = this.getItem()[propType];
+        return props;
+      },props);      
     }
     return <Component {...props} key={config.component} />;
   }

@@ -38,13 +38,6 @@ class RepliesContainer extends Component {
   }
 
   getItem() {
-    // let comment = this.props.comments[this.props.id];
-    // if (!comment.replies) {
-    //   return {};
-    // }
-    // return this.props.replyIndex.reduce((pre, replyIndex) => {
-    //   return pre.replies[replyIndex];
-    // }, comment);
     return {
       id: this.props.id,
       replyIndex: this.props.replyIndex,
@@ -55,8 +48,11 @@ class RepliesContainer extends Component {
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
-    for (var i = 0; i < config.propTypes.length; i++) {
-      props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
+    if (config.propTypes) {
+      config.propTypes.reduce((props, propType) => {
+        props[propType] = this.getItem()[propType];
+        return props;
+      },props);      
     }
     return <Component {...props} key={config.component} />;
   }
