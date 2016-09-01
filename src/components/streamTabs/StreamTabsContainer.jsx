@@ -105,6 +105,7 @@ export default StreamTabsContainer;
 
 const defaultStyles = {
   tabBar: {
-    justifyContent:'flex-start'
+    justifyContent:'flex-start',
+    marginBottom:20
   }
 };
