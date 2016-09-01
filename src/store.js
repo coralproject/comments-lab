@@ -21,10 +21,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   finalCreateStore = compose(
     applyMiddleware(...middleware),
-    require('redux-devtools').devTools(),
-    require('redux-devtools').persistState(
-      window.location.href.match(/[?&]debug_session=([^&]+)\b/)
-    )
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore);
 }
 

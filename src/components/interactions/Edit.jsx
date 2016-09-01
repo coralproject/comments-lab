@@ -5,8 +5,6 @@ import {updateItem} from 'playground/PlaygroundActions';
 class Edit extends Component {
   constructor(props) {
     super(props);
-    console.log(props.content
-      )
     this.state={
       showEdit:false,
       content:props.content
