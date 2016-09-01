@@ -39,6 +39,10 @@ class CommentMenuContainer extends Component {
     comments: PropTypes.object.isRequired
   }
 
+  getItem() {
+    return this.props.comments[this.props.id];
+  }
+
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
