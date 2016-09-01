@@ -16,8 +16,8 @@ import components from './';
 @connect(
   (state) => {
     return {
-      config: state.newPlayground.config.commentMenu,
-      comments: state.newPlayground.items.comments
+      config: state.playground.config.commentMenu,
+      comments: state.playground.items.comments
     };
   },
   (dispatch) => {

@@ -8,7 +8,7 @@ import {Card, CardText} from 'react-mdl';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-@connect(state => state.newPlayground)
+@connect(state => state.playground)
 @Radium
 class CustomizerSettings extends React.Component {
 

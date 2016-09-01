@@ -14,7 +14,7 @@ class Edit extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
-    user: PropTypes.string.isRequired,
+    user: PropTypes.number.isRequired,
     dispatch: PropTypes.func.isRequired
   }
 

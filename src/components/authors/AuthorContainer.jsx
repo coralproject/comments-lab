@@ -15,9 +15,9 @@ import components from './';
 @connect(
   (state) => {
     return {
-      config: state.newPlayground.config.authors,
-      authors: state.newPlayground.items.users,
-      comments: state.newPlayground.items.comments
+      config: state.playground.config.authors,
+      authors: state.playground.items.users,
+      comments: state.playground.items.comments
     };
   },
   (dispatch) => {

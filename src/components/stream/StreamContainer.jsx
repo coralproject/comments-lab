@@ -15,10 +15,10 @@ import components from './';
 @connect(
   (state) => {
     return {
-      comments: state.newPlayground.items.comments,
-      config: state.newPlayground.config.stream,
-      stream: state.newPlayground.stream,
-      users: state.newPlayground.items.users
+      comments: state.playground.items.comments,
+      config: state.playground.config.stream,
+      stream: state.playground.stream,
+      users: state.playground.items.users
     };
   },
   (dispatch) => {

@@ -16,9 +16,9 @@ import {addComponent, removeComponent} from 'playground/PlaygroundActions';
 @connect(
   (state) => {
     return {
-      comments: state.newPlayground.items.comments,
-      config: state.newPlayground.config.streamTabs,
-      stream: state.newPlayground.stream
+      comments: state.playground.items.comments,
+      config: state.playground.config.streamTabs,
+      stream: state.playground.stream
     };
   },
   (dispatch) => {

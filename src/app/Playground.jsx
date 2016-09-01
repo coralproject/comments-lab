@@ -3,7 +3,6 @@ import React from 'react';
 import Radium from 'radium';
 
 // Playground-specific imports
-import Sidebar from 'components/playground/Sidebar';
 import HeaderNav from 'components/layout/HeaderNav';
 import FooterNav from 'components/layout/FooterNav';
 import InfoModal from 'components/layout/InfoModal';

@@ -6,7 +6,7 @@ import {toggleWelcomeHero} from 'playground/PlaygroundActions';
 @connect(
   (state) => {
     return {
-      show: state.newPlayground.showWelcome
+      show: state.playground.showWelcome
     };
   },
   (dispatch) => {

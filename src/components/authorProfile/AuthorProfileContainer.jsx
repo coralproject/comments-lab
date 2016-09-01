@@ -16,9 +16,9 @@ import {Card} from 'react-mdl';
 @connect(
   (state) => {
     return {
-      config: state.newPlayground.config.authorProfile,
-      authors: state.newPlayground.items.users,
-      comments: state.newPlayground.items.comments
+      config: state.playground.config.authorProfile,
+      authors: state.playground.items.users,
+      comments: state.playground.items.comments
     };
   },
   (dispatch) => {

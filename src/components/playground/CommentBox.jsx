@@ -24,7 +24,7 @@ import {Button} from 'react-mdl';
 
 import { themes } from 'playgroundSettings';
 
-@connect(state => state.newPlayground)
+@connect(state => state.playground)
 @Radium
 class CommentBox extends React.Component {
 
