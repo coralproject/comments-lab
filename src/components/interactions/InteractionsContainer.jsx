@@ -52,8 +52,8 @@ class InteractionsContainer extends Component {
       },props);      
     }
     const styles = this.props.styles || defaultStyles;
-    return <div style={styles.interaction}>
-      <Component {...props} dispatch={this.props.dispatch} key={config.component}/>
+    return <div style={styles.interaction} key={config.component}>
+      <Component {...props} dispatch={this.props.dispatch} />
     </div>;
   }
 
