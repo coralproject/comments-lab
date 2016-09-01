@@ -146,7 +146,11 @@ class CommentBox extends React.Component {
             null
         }
         <div style={ [ styles.commentBox, this.props.replyMode ? styles.replyMode : '' ] }>
-          <ReactCSSTransitionGroup transitionName="fade" transitionAppear={ false }>
+          <ReactCSSTransitionGroup
+            transitionName="fade"
+            transitionAppear={ false }
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}>
             { toolBar }
           </ReactCSSTransitionGroup>
           <div style={ styles.draftJsEditor }>
