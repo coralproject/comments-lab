@@ -13,7 +13,7 @@ class Reactions extends Component {
     return <div className="reactions">
       {
         this.props.reactions.map((reaction) => {
-          return <div className='reactionEmoji' style={styles.reactionEmoji}> 
+          return <div className='reactionEmoji' style={styles.reactionEmoji} key={reaction}> 
               {ReactEmoji.emojify(':' + reaction + ':')}
             </div>;
         })
