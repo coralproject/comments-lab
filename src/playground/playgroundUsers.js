@@ -1,6 +1,6 @@
 export default { 
-  0: {
-    id:0,
+  '0': {
+    id:'0',
     nickName: 'bogususer123',
     realName: 'Bogus Jones',
     bio: 'Bodacious test user',
@@ -19,8 +19,8 @@ export default {
       }
     ]
   },
-  1: {
-    id:1,
+  '1': {
+    id:'1',
     nickName: 'republicantrout',
     realName: 'Donald Trout',
     bio: 'A fish with a wish for a wall',
@@ -44,8 +44,8 @@ export default {
       }
     ]
   },
-  2: {
-    id:2,
+  '2': {
+    id:'2',
     nickName: 'satanicverses',
     realName: 'Salmon Rushdie',
     bio: 'Swimming against the current',
@@ -65,8 +65,8 @@ export default {
       }
     ]
   },
-  3: {
-    id:3,
+  '3': {
+    id:'3',
     nickName: 'nobeyonce',
     realName: 'Tuna Turner',
     bio: 'Talk to my heart that\'s where real talkin\' starts',

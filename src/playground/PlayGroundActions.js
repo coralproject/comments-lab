@@ -65,7 +65,7 @@ export const sendComment = (content) => {
   return {
     type: SEND_COMMENT,
     comment: {
-      user: 0,
+      user: '0',
       content: content,
       likes: 0,
       liked: false,
