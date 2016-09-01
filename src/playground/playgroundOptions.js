@@ -80,7 +80,7 @@ const togglerGroups = {
         status: false,
         topic: 'muting',
         pulseTarget: 'commentName',
-        onFunction:[addComponent('commentMenu','Block',['id','comments'],0)],
+        onFunction:[addComponent('commentMenu','Block',['id','user'],0)],
         offFunction:[removeComponent('commentMenu','Block'), removeComponent('stream','BlockFilter')]
       }
     }

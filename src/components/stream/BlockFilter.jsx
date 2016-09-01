@@ -6,7 +6,7 @@ class BlockFilter extends Component {
   static propTypes = {
     blockedUser:PropTypes.string.isRequired,
     stream:PropTypes.array.isRequired,
-    comments:PropTypes.array.isRequired,
+    comments:PropTypes.object.isRequired,
     dispatch:PropTypes.func.isRequired
   }
 
