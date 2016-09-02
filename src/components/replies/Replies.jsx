@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
-import Authors from 'components/Authors/AuthorContainer';
-import Comments from 'components/Comments/CommentContainer';
-import Interactions from 'components/Interactions/InteractionsContainer';
+import Authors from 'components/authors/AuthorContainer';
+import Comments from 'components/comments/CommentContainer';
+import Interactions from 'components/interactions/InteractionsContainer';
 
 class Replies extends Component {
 
