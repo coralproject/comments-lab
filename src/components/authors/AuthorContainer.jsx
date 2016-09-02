@@ -15,9 +15,9 @@ import components from './';
 @connect(
   (state) => {
     return {
-      config: state.newPlayground.config.authors,
-      authors: state.newPlayground.items.users,
-      comments: state.newPlayground.items.comments
+      config: state.playground.config.authors,
+      authors: state.playground.items.users,
+      comments: state.playground.items.comments
     };
   },
   (dispatch) => {
@@ -33,17 +33,27 @@ import components from './';
 */
 class AuthorContainer extends Component {
   getItem() {
+    if (this.props.replyIndex) {
+      let comment = this.props.comments[this.props.commentId];
+      let reply = this.props.replyIndex.reduce((priorComment, replyIndex) => {
+        return priorComment.replies[replyIndex];
+      }, comment);
+      return this.props.authors[reply.user];
+    }
     let authorId = this.props.comments[this.props.commentId].user;
     return this.props.authors[authorId];
   }
 
   mapComponentFromConfig(config) {
     let Component = components[config.component];
-    let props = {};
-    for (var i = 0; i < config.propTypes.length; i++) {
-      props[config.propTypes[i]] = this.getItem()[config.propTypes[i]];
+    let props = {...config.configProps};
+    if (config.propTypes) {
+      config.propTypes.reduce((props, propType) => {
+        props[propType] = this.getItem()[propType];
+        return props;
+      },props);
     }
-    return <Component {...props} key={config.component} />;
+    return <Component {...props} dispatch={this.props.dispatch} key={config.component} />;
   }
 
   sortConfig(a,b) {
@@ -66,7 +76,8 @@ class AuthorContainer extends Component {
 }
 
 AuthorContainer.propTypes = {
-  commentId:PropTypes.string.isRequired
+  commentId:PropTypes.string.isRequired,
+  replyIndex: PropTypes.array
 };
 
 export default AuthorContainer;

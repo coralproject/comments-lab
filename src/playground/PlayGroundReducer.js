@@ -11,7 +11,8 @@ const initialState = {
     users:users
   },
   config:config,
-  stream:['a','b','c','d','e','f','g','h']
+  stream:['a','b','c','d','e','f','g','h'],
+  showWelcome:true
 };
 
 initialState.togglerGroups = togglerGroups;
@@ -48,7 +49,6 @@ const removeComponent = (action, state) => {
   for(let i=0; i < itemConfig.length; i++) {
     if (itemConfig[i].component == action.component) {
       newItemConfig = itemConfig.slice(0,i).concat(itemConfig.slice(i+1, itemConfig.length));
-      break;
     }
   }
   let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
@@ -61,42 +61,67 @@ const updateComponent = (action, state) => {
   }
   let itemConfig = state.config[action.itemType];
   let newItemConfig = itemConfig.slice();
-  let newComponentConfig = {};
+  let exists = false;
+  const update = (action, component) => {
+    let newComponentConfig = {};
+    if (action.propTypes) {
+      newComponentConfig = Object.assign({},component,{propTypes:action.propTypes});
+    }
+    if (action.configProps) {
+      let newConfigProps = Object.assign({}, component.configProps, action.configProps);
+      newComponentConfig = Object.assign({}, component,newComponentConfig, {configProps:newConfigProps});
+    }
+    if (action.order !== undefined && action.order !== null) {
+      newComponentConfig = Object.assign({}, component, newComponentConfig, {order:action.order});     
+    }
+    return newComponentConfig;
+  };
   for(let i=0; i < itemConfig.length; i++) {
-    if (itemConfig[i].component == action.component) {
-      if (action.propTypes) {
-        newComponentConfig = Object.assign({},itemConfig[i],{propTypes:action.propTypes});
-      }
-      if (action.configProps) {
-        let newConfigProps = Object.assign({}, itemConfig[i].configProps, action.configProps);
-        newComponentConfig = Object.assign({}, itemConfig[i],newComponentConfig, {configProps:newConfigProps});
-      }
-      if (action.order != undefined && action.order != null) {
-        newComponentConfig = Object.assign({}, itemConfig[i], newComponentConfig, {order:action.order});     
-      }
-      newItemConfig = itemConfig.slice();
-      newItemConfig[i] = newComponentConfig;
+    if (itemConfig[i].component === action.component) {
+      exists = true;
+      newItemConfig[i] = update(action, itemConfig[i]);
       break;
     }
+  }
+  if (!exists) {
+    newItemConfig.push(update(action, {component:action.component}));
   }
   let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
   return Object.assign({}, state, {config:newConfig});
 };
 
 const setToggler = (action, state) => {
-  let toggleGroupsUpdater = {};
-  toggleGroupsUpdater[action.groupIndex] = { togglers: state.togglerGroups[action.groupIndex].togglers };
-  toggleGroupsUpdater[action.groupIndex].togglers[action.togglerIndex].status = action.status;
+  let newTogglerGroups = JSON.parse(JSON.stringify(state.togglerGroups));
+  newTogglerGroups[action.groupIndex].togglers[action.togglerIndex].status = action.status;
 
   let animate = false;
   let target = '';
-  if (action.status && state.togglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget) {
+  if (action.status && newTogglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget) {
     animate = true,
-    target = state.togglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget;
+    target = newTogglerGroups[action.groupIndex].togglers[action.togglerIndex].pulseTarget;
   }
 
-  return Object.assign({}, state, { toggleGroups: toggleGroupsUpdater, pulseAnimation: animate, pulseTarget: target });
+  return Object.assign({}, state, { togglerGroups: newTogglerGroups, pulseAnimation: animate, pulseTarget: target });
 };
+
+const togglerFromURL = (action, state) => {
+  if (!action.url) {
+    return state;
+  }
+  let togglerObj = JSON.parse(decodeURIComponent(action.url));
+  let newTogglerGroups = JSON.parse(JSON.stringify(state.togglerGroups));
+  for (let group in newTogglerGroups) {
+    let toggleGroup = newTogglerGroups[group];
+    for (let toggle in toggleGroup.togglers) {
+      if (togglerObj[toggle]) {
+        toggleGroup.togglers[toggle].status = togglerObj[toggle];
+      }
+    }
+  }
+  return Object.assign({}, state, { togglerGroups: newTogglerGroups});
+};
+
+
 
 const replyComment = (action, state) => {
   let commentsCopy = state.items.comments.slice();
@@ -145,7 +170,7 @@ const playground = (state = initialState, action) => {
   case types.SET_TOGGLER:
     return setToggler(action, state);
   case types.SET_TOPIC:
-    return Object.assign({}, state, { currentSidebarTopic: action.topic });
+    return Object.assign({}, state, { modalTopic: action.topic });
   case types.REPLY_COMMENT:
     return replyComment(action, state);
   case types.SEND_COMMENT:
@@ -154,6 +179,14 @@ const playground = (state = initialState, action) => {
     return updateItem(action,state);
   case types.SET_STREAM:
     return Object.assign({}, state, {stream:action.stream});
+  case types.URL_FROM_TOGGLER:
+    return urlFromToggler(action, state);
+  case types.TOGGLER_FROM_URL:
+    return togglerFromURL(action, state);
+  case types.SET_TOGGLER_GROUP:
+    return Object.assign({}, state, {selectedTogglerGroup:action.group});
+  case types.TOGGLE_WELCOME_HERO:
+    return Object.assign({}, state, {showWelcome:!state.showWelcome});
   default:
     console.log('Not a Playground action:', action.type);
     return state;

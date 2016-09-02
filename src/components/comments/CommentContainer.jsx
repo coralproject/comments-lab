@@ -15,8 +15,8 @@ import components from './';
 @connect(
   (state) => {
     return {
-      config: state.newPlayground.config.comments,
-      items: state.newPlayground.items.comments
+      config: state.playground.config.comments,
+      comments: state.playground.items.comments
     };
   },
   (dispatch) => {
@@ -31,20 +31,45 @@ import components from './';
 * and pass it the appropriate props from items
 */
 class CommentContainer extends Component {
+
+  getItem() {
+    if (this.props.replyIndex) {
+      let comment = this.props.comments[this.props.id];
+      return this.props.replyIndex.reduce((priorComment, replyIndex) => {
+        return priorComment.replies[replyIndex];
+      }, comment);
+    }
+    return this.props.comments[this.props.id];
+  }
+
   mapComponentFromConfig(config) {
     let Component = components[config.component];
     let props = {...config.configProps};
     if (config.propTypes) {
-      for (var i = 0; i < config.propTypes.length; i++) {
-        props[config.propTypes[i]] = this.props.items[this.props.id][config.propTypes[i]];
-      }      
+      config.propTypes.reduce((props, propType) => {
+        props[propType] = this.getItem()[propType];
+        return props;
+      },props);    
     }
     return <Component {...props} dispatch={this.props.dispatch} key={config.component}/>;
   }
 
+
+  sortConfig(a,b) {
+    if (a.order > b.order) {
+      return 1;
+    }
+    if (a.order < b.order) {
+      return -1;
+    }
+    return 0;
+  }
+
   render() {
-    return <div>{
-      this.props.config.map(this.mapComponentFromConfig.bind(this))
+    const sortedConfig = this.props.config.sort(this.sortConfig);
+    return <div>
+    {
+      sortedConfig.map(this.mapComponentFromConfig.bind(this))
     }
     </div>;
   }

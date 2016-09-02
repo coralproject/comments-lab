@@ -4,10 +4,11 @@ import Radium from 'radium';
 
 import CommentBox from './CommentBox';
 import Stream from '../stream/StreamContainer';
-
-import MdComment from 'react-icons/lib/md/comment';
+import StreamTabs from '../streamTabs/StreamTabsContainer';
 
 import { themes, mediaQueries } from '../../playgroundSettings';
+
+import {Card, CardText, Icon, Button} from 'react-mdl';
 
 @connect(state => state.playground)
 @Radium
@@ -23,40 +24,37 @@ class Preview extends React.Component {
   }
 
   onHideCommentsClick() {
-    console.log("Hide");
     this.setState({ commentsAreVisible: false });
   }
 
   render() {
-
-
     var guidelines = this.props.togglerGroups['community'].togglers['guidelines'].status ?
-        <div style={ styles.guidelines }>
-          We aim to create a safe and sustainable environment for discussion. That means:
+      <div style={styles.guidelines}>
+        We aim to create a safe and sustainable environment for discussion.
+        <br/>
+        <br/>
+        That means:
+        <ul style={styles.communityNorms}>
+          <li>Be supportive of each other</li>
+          <li>Criticize ideas, not people</li>
+          <li>Flag bad behavior</li>
+          <li>Follow the rules</li>
+        </ul>
 
-          <ul>
-            <li>Be supportive of each other</li>
-            <li>Criticize ideas, not people</li>
-            <li>Flag bad behavior</li>
-            <li>Follow the rules</li>
-          </ul>
-
-          <p>The best contributions will be featured on the site and in our newsletter.</p>
-          <a href="#">Click here to read our community guidelines and harassment policy.</a>
-        </div>
+        <br/>
+        <p>The best contributions will be featured on the site and in our newsletter.</p>
+        <a href="#">Click here to read our community guidelines and harassment policy.</a>
+      </div>
       :
-        null;
+      null;
 
     return (
-      <div style={ styles.preview }>
+      <div style={ styles.preview } id="preview">
         <div style={ styles.previewBar }>
-          <h2 style={ styles.previewBarTitle }>
-            <span style={ styles.previewTitleSpan }>PREVIEW</span>
-          </h2>
           {
             this.props.togglerGroups.layout.togglers.hiddenbydefault.status &&
             this.state.commentsAreVisible ?
-              <button style={ styles.hideComments } onClick={ this.onHideCommentsClick.bind(this) }>Hide comments</button>
+              <Button style={ styles.hideComments } onClick={ this.onHideCommentsClick.bind(this) }>Hide comments</Button>
             : null
           }
         </div>
@@ -66,17 +64,17 @@ class Preview extends React.Component {
             this.state.commentsAreVisible ?
 
             <div style={ styles.sandBox }>
-              <p style={ styles.sandBoxIntro }>This is a sandbox only, this preview will be reset every time you reload the page.</p>
               {guidelines}
               <CommentBox />
+              <StreamTabs />
               <Stream />
             </div>
 
           :
 
-            <div style={ styles.clickToRead } onClick={ this.onClickToReadClick.bind(this) }>
-              <MdComment /> Click here to <strong>read the comments.</strong>
-            </div>
+            <Button style={styles.showComments} onClick={ this.onClickToReadClick.bind(this) }>
+                <Icon name="comment" /> Show Comments.
+            </Button>
         }
       </div>
     );
@@ -89,11 +87,16 @@ export default Preview;
 var styles = {
   preview: {
     background: 'white',
-    padding: '40px',
+    padding: '0px 40px 40px 40px',
     color: '#3d3d3d',
     minHeight: '500px',
-    position: 'relative',
+    width:'65%',
+    display:'inline-block',
+    overflowY: 'auto',
     [mediaQueries.tablet]: {
+      'float': 'none',
+      width: '100%',
+      height: 'auto',
       padding: '20px 20px 120px 20px'
     }
   },
@@ -101,15 +104,8 @@ var styles = {
     marginTop: '-10px',
     marginRight: '10px'
   },
-  clickToRead: {
-    cursor: 'pointer',
-    padding: '20px',
-    border: '1px solid #ddd',
-    margin: '10px 0',
-    fontSize: '20pt',
-    color: '#444'
-  },
-  sandBox: {
+  showComments: {
+    float:'right'
   },
   sandBoxIntro: {
     padding: '20px',
@@ -118,11 +114,9 @@ var styles = {
     fontSize: '11pt'
   },
   previewBar: {
-    borderBottom: '1px solid #ccc',
     position: 'relative',
     fontSize: '16pt',
-    paddingBottom: '10px',
-    position: 'relative'
+    paddingBottom: '10px'
   },
   previewTitleSpan: {
     fontFamily: themes.default.fontFamily,
@@ -132,16 +126,16 @@ var styles = {
   hideComments: {
     position: 'absolute',
     right: '0px',
-    top: '0px',
-    background: '#eee',
-    padding: '5px 10px',
-    border: '1px solid #aaa'
+    top: '0px'
   },
   guidelines: {
-    padding: '20px',
+    width:'90%',
+    padding: 10,
     lineHeight: '1.1',
     color: '#222',
-    background: '#eee',
     marginBottom: '20px'
+  },
+  communityNorms: {
+    marginLeft:20
   }
 };

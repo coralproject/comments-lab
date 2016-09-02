@@ -1,8 +1,9 @@
 export default { 
-  0: {
-    id:0,
+  '0': {
+    id:'0',
     nickName: 'bogususer123',
     realName: 'Bogus Jones',
+    bio: 'Bodacious test user',
     party: 'republican',
     comments: 1912,
     points: 1244,
@@ -18,10 +19,11 @@ export default {
       }
     ]
   },
-  1: {
-    id:1,
+  '1': {
+    id:'1',
     nickName: 'republicantrout',
     realName: 'Donald Trout',
+    bio: 'A fish with a wish for a wall',
     party: 'republican',
     comments: 243,
     points: 124,
@@ -42,10 +44,11 @@ export default {
       }
     ]
   },
-  2: {
-    id:2,
+  '2': {
+    id:'2',
     nickName: 'satanicverses',
     realName: 'Salmon Rushdie',
+    bio: 'Swimming against the current',
     party: 'democrat',
     anonymous: true,
     comments: 110,
@@ -62,10 +65,11 @@ export default {
       }
     ]
   },
-  3: {
-    id:3,
+  '3': {
+    id:'3',
     nickName: 'nobeyonce',
     realName: 'Tuna Turner',
+    bio: 'Talk to my heart that\'s where real talkin\' starts',
     comments: 124,
     party: 'democrat',
     points: 124,

@@ -5,12 +5,12 @@ const mediaQueries = {
   mobile: '@media only screen and (max-width : 480px)',
   desktop: '@media only screen and (max-width: 1280px)',
   largeDesktop: '@media only screen and (min-width: 1280px)'
-}
+};
 
 const themes = {
   default: {
     fontFamily: 'Lato'
   }
-}
+};
 
 export { themes, mediaQueries };
