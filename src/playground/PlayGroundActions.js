@@ -13,6 +13,7 @@ export const URL_FROM_TOGGLER = 'URL_FROM_TOGGLER';
 export const TOGGLER_FROM_URL = 'TOGGLER_FROM_URL';
 export const SET_TOGGLER_GROUP = 'SET_TOGGLER_GROUP';
 export const TOGGLE_WELCOME_HERO = 'TOGGLE_WELCOME_HERO';
+export const SET_NUM_CHARS = 'SET_NUM_CHARS';
 
 export function addComponent(itemType, component, propTypes, order, configProps) {
   return {
@@ -131,5 +132,12 @@ export const setTogglerGroup = (group) => {
 export const toggleWelcomeHero = () => {
   return {
     type:TOGGLE_WELCOME_HERO
-  }
-}
+  };
+};
+
+export const setNumChars = (numChars) => {
+  return {
+    type: SET_NUM_CHARS,
+    numChars
+  };
+};

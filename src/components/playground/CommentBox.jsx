@@ -169,6 +169,15 @@ class CommentBox extends React.Component {
                 null
             }
             <Button raised colored ripple onClick={ this.onSendClick.bind(this) }>Post</Button>
+            {
+              this.props.numChars &&
+              this.props.numChars > 0 &&
+              <div>
+                {
+                  editorState.getCurrentContent().getPlainText().length + '/' + this.props.numChars
+                }
+              </div>
+            }
           </div>
           {
             // !this.props.replyMode ?
