@@ -115,8 +115,8 @@ const togglerGroups = {
         status: false,
         topic: 'public_profile',
         pulseTarget: 'commentName',
-        onFunction:[addComponent('authorProfile','BigProfilePicture',['id'],-10),addComponent('authorProfile','ProfileName',['nickName'],0)],
-        offFunction:[removeComponent('authorProfile','BigProfilePicture'),removeComponent('authorProfile','ProfileName')]
+        onFunction:[addComponent('authorProfile','BigProfilePicture',['id'],-10),addComponent('authorProfile','ProfileBio',['nickName','membershipAge','location','education'],0)],
+        offFunction:[removeComponent('authorProfile','BigProfilePicture'),removeComponent('authorProfile','ProfileBio')]
       }
     }
   },
