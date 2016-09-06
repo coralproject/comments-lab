@@ -24,9 +24,9 @@ class UpDownVoting extends Component {
     const styles = this.props.styles || defaultStyles;
     return <div>
         <Icon onClick={this.incrementVote('upvotes').bind(this)} style={styles.voteIcon} className='upVoteIcon' name="arrow_upward" />
-        <span style={styles.likeCount} className='likeCount'>{this.props.upvotes}</span>
+        <span style={styles.interactionCount} className='interactionCount'>{this.props.upvotes}</span>
         <Icon onClick={this.incrementVote('downvotes').bind(this)} style={styles.voteIcon} className='downVoteIcon' name="arrow_downward" />
-        <span style={styles.likeCount} className='likeCount'>{this.props.downvotes}</span>
+        <span style={styles.interactionCount} className='interactionCount'>{this.props.downvotes}</span>
       </div>;
   }
 }
@@ -38,7 +38,7 @@ const defaultStyles = {
     fontSize:18,
     cursor:'pointer'
   },
-  likeCount:{
+  interactionCount:{
     fontSize:10
   }
 };
