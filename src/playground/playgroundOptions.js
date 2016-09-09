@@ -247,7 +247,10 @@ const togglerGroups = {
           addComponent('commentMenu','Follow',['id','user'],-10),
           addComponent('streamTabs','FollowTab',[],20)
         ],
-        offFunction:removeComponent('commentMenu', 'Follow')
+        offFunction:[
+          removeComponent('commentMenu', 'Follow'),
+          removeComponent('streamTabs','FollowTab')
+        ]
       }
     }
   }
