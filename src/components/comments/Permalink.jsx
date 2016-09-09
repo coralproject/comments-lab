@@ -35,7 +35,7 @@ class Permalink extends Component {
 
   render() {
     const styles = this.props.styles || defaultStyles;
-    return <div>
+    return <div className="permalinkContainer" style={styles.permalinkContainer}>
       <Icon style={styles.permalink} onClick={this.toggleLink} name="link"/>
       <Dialog
         style={styles.linkDialog}
@@ -63,12 +63,17 @@ export default Permalink;
 
 const defaultStyles = {
   permalink: {
-    cursor:'pointer'
+    cursor:'pointer',
+    fontSize:18
   },
   linkDialog: {
     width:'fit-content'
   },
   permalinkTextArea: {
     width:400
+  },
+  permalinkContainer:{
+    display:'inline-block',
+    marginLeft:5
   }
 };
