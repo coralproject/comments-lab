@@ -12,8 +12,7 @@ class BigProfilePicure extends Component {
     let styles = this.props.styles || defaultStyles;
     return <Cell col={4} style={styles.pictureContainer}>
       <img className="bigProfilePicture" style={ styles.profilePicture } src={ '/img/playground/profile' + this.props.id + '.jpg' } />
-      </Cell>;
-    // return <CardTitle expand style={Object.assign({background:'url(/img/playground/profile' + this.props.id + '.jpg)'},styles.profilePicture)}/>;
+    </Cell>;
   }
 }
 
