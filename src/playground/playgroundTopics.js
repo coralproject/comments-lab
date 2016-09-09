@@ -171,7 +171,9 @@ const topics = {
                       'through the expandable panel below.</li>' +
                     '<li style={ styles.playgroundBullet }><strong>Share your thoughts</strong> on the problems addressed by each solution.</li>' +
                     '<li style={ styles.playgroundBullet }><strong>Interested in <span style={ styles.experimentsLabel }>experiments?</span></strong> For comments with a twist, check out the "Experimental" section of the customizer down below.</li>' +
-                    '</ul>'
+                    '</ul>' + 
+                    '<br/>' +
+                    '<em>Images from <a href="http://www.istockphoto.com" target="_blank">iStock</a> and <a href="https://www.flickr.com/photos/12836528@N00/" target="_blank">Kevin Dooley</a></em>'
   }
 };
 
