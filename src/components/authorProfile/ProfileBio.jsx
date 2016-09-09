@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {CardText} from 'react-mdl';
+import {Cell} from 'react-mdl';
 
 class ProfileBio extends Component {
 
@@ -12,14 +12,14 @@ class ProfileBio extends Component {
 
   render() {
     const styles = this.props.styles || defaultStyle;
-    return <CardText style={styles.profileName}>
+    return <Cell col={8} style={styles.profileName}>
       <strong>@{this.props.nickName}</strong>
       <p style={styles.userInfo}>
         Member for: {this.props.membershipAge}<br/>
         Location: {this.props.location}<br/>
-        education: {this.props.education}<br/>
+        Education: {this.props.education}<br/>
       </p>
-    </CardText>;
+    </Cell>;
   }
 }
 
@@ -27,7 +27,8 @@ export default ProfileBio;
 
 const defaultStyle = {
   profileName: {
-    paddingBottom:4
+    paddingBottom:4,
+    marginTop:20
   },
   userInfo: {
     fontSize:14,

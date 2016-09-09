@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { mediaQueries } from '../../playgroundSettings';
-import {CardTitle} from 'react-mdl';
+import {Cell} from 'react-mdl';
 
 class BigProfilePicure extends Component {
 
@@ -10,20 +10,22 @@ class BigProfilePicure extends Component {
 
   render() {
     let styles = this.props.styles || defaultStyles;
-    // return <div style={styles.pictureContainer}>
-    //   <img className="bigProfilePicture" style={ styles.profilePicture } src={ '/img/playground/profile' + this.props.id + '.jpg' } />
-    //   </div>;
-    return <CardTitle expand style={Object.assign({background:'url(/img/playground/profile' + this.props.id + '.jpg)'},styles.profilePicture)}/>;
+    return <Cell col={4} style={styles.pictureContainer}>
+      <img className="bigProfilePicture" style={ styles.profilePicture } src={ '/img/playground/profile' + this.props.id + '.jpg' } />
+    </Cell>;
   }
 }
 
 const defaultStyles = {
   pictureContainer: {
-    float:'left'
+    width:'fit-content',
+    display:'inline-block'
   },
   profilePicture: {
-    backgroundSize:'cover',
-    height:200
+    height:100,
+    width:100,
+    margin:15,
+    borderRadius:50
   }
   
 
