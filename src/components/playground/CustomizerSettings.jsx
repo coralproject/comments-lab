@@ -126,7 +126,7 @@ var styles = {
     verticalAlign:'top',
     width:'35%',
     overflow:'auto',
-    [mediaQueries.mobile]: {
+    [mediaQueries.tablet]: {
       width: '100%',
       padding: 20
     }
