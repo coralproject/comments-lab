@@ -12,7 +12,7 @@ class MentionsFilter extends Component {
   filterProps(props) {
     for (let i = 0; i < props.stream.length; i++) {
       let content = props.comments[props.stream[i]].content;
-      let newContent = content.replace(/(@[a-z]+)/g,'<a href=#>$1</a>');
+      let newContent = content.replace(/(@[a-z1-9]+)(?![^<]*<\/a>)/gi,'<a href=#>$1</a>');
       props.dispatch(updateItem(props.stream[i],'comments','content',newContent));
     }
   }
@@ -34,10 +34,11 @@ class MentionsFilter extends Component {
   shouldComponentUpdate(nextProps) {
     let newContent = false;
     nextProps.stream.reduce((prev, commentId) => {
-      if (nextProps.comments[commentId].content !== this.props.comments[commentId].content) {
+      if (!this.props.comments[commentId] ||
+        nextProps.comments[commentId].content !== this.props.comments[commentId].content) {
         newContent = true;
       }
-    });
+    },{});
     return newContent;
   }
 

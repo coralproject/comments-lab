@@ -14,7 +14,7 @@ class Edit extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
-    user: PropTypes.number.isRequired,
+    user: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired
   }
 
@@ -32,7 +32,7 @@ class Edit extends Component {
     const styles = this.props.styles || defaultStyles;
     return <div>
     {
-      this.props.user === 0 &&
+      this.props.user === '0' &&
       <Icon style={styles.editIcon} onClick={this.toggleEdit.bind(this)} name="mode_edit"/>
     }
     <Dialog
@@ -71,5 +71,8 @@ const defaultStyles = {
   },
   textField: {
     width:'100%'
+  },
+  hide: {
+    display:'none'
   }
 };
