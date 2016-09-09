@@ -250,25 +250,6 @@ const togglerGroups = {
         offFunction:removeComponent('commentMenu', 'Follow')
       }
     }
-  },
-  'experimental': {
-    name: 'Experimental',
-    togglers: {
-      'replyrating': {
-        label: 'Reply Rating is ON',
-        offLabel: 'Reply Rating is OFF',
-        description: 'Asks for a reply rating before posting a Reply. Enable Nested Replies to see it in action.',
-        status: false,
-        topic: 'replyrating'
-      },
-      'topicrelevant': {
-        label: 'Topic Relevant Badges are ON',
-        offLabel: 'Topic Relevant Badges are OFF',
-        description: 'TBD',
-        status: false,
-        topic: 'topicrelevant'
-      }
-    }
   }
 };
 
