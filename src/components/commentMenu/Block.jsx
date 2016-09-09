@@ -16,7 +16,12 @@ class Block extends Component {
   }
 
   render() {
-    return <MenuItem onClick={this.onBlockClick.bind(this)}>Block</MenuItem>;
+    return <div>
+      {
+       this.props.user!== '0' && 
+       <MenuItem onClick={this.onBlockClick.bind(this)}>Block</MenuItem>
+      }
+    </div>;
   }
 }
 
