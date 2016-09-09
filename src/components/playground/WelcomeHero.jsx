@@ -57,7 +57,8 @@ export default WelcomeHero;
 const defaultStyles = {
   heroCard: {
     margin: 20,
-    width: '95%',
+    padding: 10,
+    width: 'fit-content',
     minHeight: 0
   },
   playgroundBullet: {
