@@ -6,6 +6,7 @@ class Permalink extends Component {
     super(props);
     this.state={showLink:false};
     this.toggleLink = this.toggleLink.bind(this);
+    this.copyToClipBoard = this.copyToClipBoard.bind(this);
   }
 
   static propTypes = {
@@ -19,12 +20,16 @@ class Permalink extends Component {
 
   copyToClipBoard() {
     var copyTextarea = document.querySelector('.permalinkTextArea input');
-    console.log(copyTextarea)
     copyTextarea.select();
     try {
-      document.execCommand('copy');
+      let success = document.execCommand('copy');
+      if (success) {
+        this.setState({copiedAlert:'Copied!'});
+      } else {
+        this.setState({copiedAlert:'Browser does not support copying.'});
+      }
     } catch (err) {
-      console.log('Browser does not support copying');
+      this.setState({copiedAlert:'Browser does not support copying.'});
     }
   }
 
@@ -43,6 +48,7 @@ class Permalink extends Component {
             style={styles.permalinkTextArea}
             label="permalink"
             value={'http://playground.coralproject.com/fake/link/to/post/' + this.props.id}/>
+          <p>{this.state.copiedAlert}</p>
         </DialogContent>
         <DialogActions>
           <Button type='button' onClick={this.toggleLink}>Done</Button>
