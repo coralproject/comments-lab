@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, {Component, PropTypes} from 'react';
 import components from './';
-import {Card} from 'react-mdl';
+import {Card, Grid} from 'react-mdl';
 
 
 /*
@@ -73,9 +73,11 @@ class AuthorProfileContainer extends Component {
         this.props.comments[this.props.commentId].showProfile &&
         this.props.config.length > 0 &&
         <Card shadow={1} style={styles.profileCard}>
+          <Grid style={styles.profileGrid}>
             {
               sortedConfig.map(this.mapComponentFromConfig.bind(this))
             }
+          </Grid>
         </Card>        
       }
     </div>;
@@ -86,8 +88,11 @@ export default AuthorProfileContainer;
 
 const defaultStyle={
   profileCard:{
-    width:200,
-    margin:20,
-    paddingBottom:16
+    minWidth:'90%',
+    minHeight:100,
+    margin:20
+  },
+  profileGrid:{
+    width:'100%'
   }
-}
+};
