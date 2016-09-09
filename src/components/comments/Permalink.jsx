@@ -47,7 +47,7 @@ class Permalink extends Component {
             className="permalinkTextArea"
             style={styles.permalinkTextArea}
             label="permalink"
-            value={'http://playground.coralproject.com/fake/link/to/post/' + this.props.id}/>
+            value={'/fake/link/to/post/' + this.props.id}/>
           <p>{this.state.copiedAlert}</p>
         </DialogContent>
         <DialogActions>
