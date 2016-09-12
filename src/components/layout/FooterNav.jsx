@@ -24,7 +24,7 @@ class FooterNav extends Component {
         <FooterSection type="right">
           <FooterLinkList>
               <a href="#" onClick={this.onAboutClick.bind(this)}>About this tool</a>
-              <a href="https://coralproject.net/contact.html" target="_blank">Send us Feedback</a>
+              <a href="https://coralproject.net/contribute.html#other-ideas-and-bug-reports" target="_blank">Send us Feedback</a>
           </FooterLinkList>
         </FooterSection>  
     </Footer>;
