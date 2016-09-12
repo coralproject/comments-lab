@@ -154,7 +154,16 @@ class CommentBox extends React.Component {
           </ReactCSSTransitionGroup>
           <div style={ styles.draftJsEditor }>
             { this.emojiPicker() }
-            <Editor ref="draftJsEditor" editorState={editorState} onChange={this.onChange} />
+            <Editor ref="draftJsEditor"
+              editorState={editorState}
+              onChange={this.onChange} />
+            <style>
+              {"\
+                .public-DraftEditor-content{\
+                  height:80px;\
+                }\
+              "}
+            </style>
           </div>
           <div style={ styles.commentBoxActions }>
             {
@@ -188,7 +197,7 @@ export default CommentBox;
 
 var styles = {
   draftJsEditor: {
-    padding: '20px',
+    padding: '20px 20px 0px 20px',
     background: 'white',
     position: 'relative'
   },
