@@ -15,10 +15,12 @@ class DefaultFlag extends Component {
   }
 
   onFlagClick() {
-    this.props.dispatch(setSnackbar({
-      text:'Thank you for reporting this comment. Our moderation team has been notified and will review it shortly.'
-    }));
-    this.props.dispatch(updateItem(this.props.id, 'comments', 'flagged', true));
+    if (!this.props.flagged) {
+      this.props.dispatch(setSnackbar({
+        text:'Thank you for reporting this comment. Our moderation team has been notified and will review it shortly.'
+      }));
+      this.props.dispatch(updateItem(this.props.id, 'comments', 'flagged', true));      
+    }
   }
 
   render() {
