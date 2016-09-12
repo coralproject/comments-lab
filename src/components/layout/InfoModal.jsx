@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Dialog, DialogTitle, DialogContent, DialogActions, Button} from 'react-mdl';
 import { connect } from 'react-redux';
 import {setTopic} from 'playground/PlaygroundActions';
+import { mediaQueries } from '../../playgroundSettings';
 
 @connect(
   (state) => {
@@ -45,7 +46,10 @@ export default InfoModal;
 
 const defaultStyles = {
   dialog:{
-    width:600
+    width:600,
+    [mediaQueries.tablet]: {
+      width:'100%'
+    }
   },
   dialogContent:{
     fontSize:14,
