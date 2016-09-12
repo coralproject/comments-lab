@@ -5,13 +5,20 @@ import config from './playgroundConfig';
 import togglerGroups from './playgroundOptions';
 import topics from './playgroundTopics';
 
+let stream = {
+  '00aa':{
+    type:'stream',
+    comments:['a','b','c','d','e','f','g','h'],
+  }
+},
+
 const initialState = {
   items:{
-    comments:comments,
-    users:users
+    ...comments,
+    ...users,
+    ...stream
   },
   config:config,
-  stream:['a','b','c','d','e','f','g','h'],
   showWelcome:true,
   numChars:100
 };

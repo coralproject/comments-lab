@@ -1,3 +1,53 @@
+let newConfig = [
+  {
+    container:'Comment',
+    component:'PubDate',
+    order:-10,
+    propTypes:['pubdate'],
+    itemType:'comment'
+  },
+  {
+    container:'Comment',
+    propTypes:['content'],
+    component:'DefaultComment',
+    order: 0,
+    itemType:'comment'
+  },
+  {
+    container: 'Author',
+    propTypes: ['realName','anonymous'],
+    component: 'DefaultAuthor',
+    order: 10,
+    itemType: 'user',
+    itemPath: [
+      {
+        type:'comment',
+        id:'id'
+      },
+      {
+        type:'user',
+        id:'author'
+      }
+    ]
+  },
+  {
+    container:'Stream',
+    mapChildren: true,
+    order:0,
+    itemType:'stream',
+    itemPath:[
+      {
+        type:'stream',
+        id:'id'
+      },
+      {
+        type:'comment',
+        id:'comments'
+      }
+    ]
+  }
+];
+
 let config = {
   comments:[
     {
