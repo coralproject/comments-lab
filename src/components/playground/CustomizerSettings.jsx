@@ -6,6 +6,8 @@ import CustomizerToggle from './CustomizerToggle';
 import {togglerFromURL, setTogglerGroup} from '../../playground/PlaygroundActions';
 import {Card, CardText} from 'react-mdl';
 
+import { mediaQueries } from '../../playgroundSettings';
+
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 @connect(state => state.playground)
@@ -123,7 +125,11 @@ var styles = {
     display:'inline-block',
     verticalAlign:'top',
     width:'35%',
-    overflow:'auto'
+    overflow:'auto',
+    [mediaQueries.tablet]: {
+      width: '100%',
+      padding: 20
+    }
   },
   card: {
     width: '90%',

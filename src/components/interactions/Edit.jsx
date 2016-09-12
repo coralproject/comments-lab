@@ -9,12 +9,14 @@ class Edit extends Component {
       showEdit:false,
       content:props.content
     };
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.onSaveClick = this.onSaveClick.bind(this);
   }
 
   static propTypes = {
     id: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
-    user: PropTypes.number.isRequired,
+    user: PropTypes.string.isRequired,
     dispatch: PropTypes.func.isRequired
   }
 
@@ -32,8 +34,8 @@ class Edit extends Component {
     const styles = this.props.styles || defaultStyles;
     return <div>
     {
-      this.props.user === 0 &&
-      <Icon style={styles.editIcon} onClick={this.toggleEdit.bind(this)} name="mode_edit"/>
+      this.props.user === '0' &&
+      <Icon style={styles.editIcon} onClick={this.toggleEdit} name="mode_edit"/>
     }
     <Dialog
       style={styles.editModal}
@@ -52,7 +54,7 @@ class Edit extends Component {
           />
       </DialogContent>
       <DialogActions>
-        <Button type='button' onClick={this.onSaveClick.bind(this)}>Save</Button>
+        <Button type='button' onClick={this.onSaveClick}>Save</Button>
       </DialogActions>
     </Dialog>
     </div>;
@@ -71,5 +73,8 @@ const defaultStyles = {
   },
   textField: {
     width:'100%'
+  },
+  hide: {
+    display:'none'
   }
 };

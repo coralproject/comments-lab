@@ -1,7 +1,7 @@
 import BigProfilePicture from './BigProfilePicture';
-import ProfileName from './ProfileName';
+import ProfileBio from './ProfileBio';
 
 export default {
   BigProfilePicture,
-  ProfileName
+  ProfileBio
 };

@@ -17,10 +17,9 @@ import MdFormatBold from 'react-icons/lib/md/format-bold';
 import MdFormatItalic from 'react-icons/lib/md/format-italic';
 import MdLink from 'react-icons/lib/md/link';
 import MdFormatQuote from 'react-icons/lib/md/format-quote';
-import FaSmileO from 'react-icons/lib/fa/smile-o';
 import FaHeart from 'react-icons/lib/fa/heart';
 
-import {Button} from 'react-mdl';
+import { Button, Icon } from 'react-mdl';
 
 import { themes } from 'playgroundSettings';
 
@@ -129,7 +128,7 @@ class CommentBox extends React.Component {
           {
             this.props.togglerGroups['content'].togglers['emoji'].status ?
               <span>
-                <button onClick={ this.toggleEmojiPicker.bind(this) } style={ styles.toolBarButton }><FaSmileO /></button>
+                <button onClick={ this.toggleEmojiPicker.bind(this) } style={ styles.toolBarButton }><Icon name="insert_emoticon" /></button>
               </span>
             :
               ''
@@ -155,7 +154,16 @@ class CommentBox extends React.Component {
           </ReactCSSTransitionGroup>
           <div style={ styles.draftJsEditor }>
             { this.emojiPicker() }
-            <Editor ref="draftJsEditor" editorState={editorState} onChange={this.onChange} />
+            <Editor ref="draftJsEditor"
+              editorState={editorState}
+              onChange={this.onChange} />
+            <style>
+              {"\
+                .public-DraftEditor-content{\
+                  height:80px;\
+                }\
+              "}
+            </style>
           </div>
           <div style={ styles.commentBoxActions }>
             {
@@ -189,7 +197,7 @@ export default CommentBox;
 
 var styles = {
   draftJsEditor: {
-    padding: '20px',
+    padding: '20px 20px 0px 20px',
     background: 'white',
     position: 'relative'
   },

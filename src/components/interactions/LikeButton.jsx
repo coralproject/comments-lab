@@ -22,7 +22,7 @@ class LikeButton extends Component {
     const styles = this.props.styles || defaultStyles;
     return <div>
         <Icon onClick={this.incrementLike.bind(this)} style={styles.likeIcon} className='likeIcon' name="thumb_up" />
-        <span style={styles.likeCount} className='likeCount'>{this.props.likes}</span>
+        <span style={styles.interactionCount} className='interactionCount'>{this.props.likes}</span>
       </div>;
   }
 }
@@ -34,7 +34,7 @@ const defaultStyles = {
     fontSize:18,
     cursor:'pointer'
   },
-  likeCount:{
+  interactionCount:{
     fontSize:10
   }
 };

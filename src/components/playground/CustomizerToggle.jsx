@@ -5,7 +5,7 @@ import { setToggler, setTopic} from 'playground/PlaygroundActions';
 
 import {themes} from 'playgroundSettings';
 
-import {Grid, Cell, Switch} from 'react-mdl';
+import {Grid, Cell, Switch,Icon} from 'react-mdl';
 
 @Radium
 class CustomizerToggle extends React.Component {
@@ -41,7 +41,12 @@ class CustomizerToggle extends React.Component {
         <div>
           <Grid style={styles.togglerGrid}>
             <Cell col={10}>
-              <div style={[styles.descriptionSpan, hasToggle?styles.clickable:null]} onClick={this.onInfoClick.bind(this)}>{ this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }</div>
+              <div 
+                style={[styles.descriptionSpan, hasToggle?styles.clickable:null]}
+                onClick={this.onInfoClick.bind(this)}>
+                { this.props.toggler.status ? this.props.toggler.label : this.props.toggler.offLabel }
+                { hasToggle && <Icon style={styles.infoIcon} name="info_outline"/>}
+              </div>
            </Cell>
            <Cell col={2}>
              <Switch ripple checked={this.props.toggler.status } onChange={this.onTogglerClick.bind(this)} />
@@ -113,5 +118,10 @@ var styles = {
     'float': 'left',
     margin: '0 10px 0 0',
     fontFamily: themes.default.fontFamily
+  },
+  infoIcon: {
+    fontSize:16,
+    opacity:.75,
+    marginLeft:5
   }
 };

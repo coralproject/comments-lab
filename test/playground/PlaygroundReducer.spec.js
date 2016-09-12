@@ -540,4 +540,39 @@ describe('PlaygroundReducer', () => {
       });
     });
   });
+
+
+  describe('SET_SNACKBAR', () => {
+    let action;
+    let state;
+    beforeEach(() => {
+      action = {
+        type: 'SET_SNACKBAR',
+        snackbar:{
+          text:'Show me!',
+          actionName: 'done'
+        }
+      };
+      state = {
+        snackbar:{}
+      };
+    });
+
+    it('should not morph state', () => {
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        snackbar:{}
+      });
+    });
+
+    it('should assign snackbar to state', () => {
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal({
+        snackbar:{
+          text:'Show me!',
+          actionName: 'done'
+        }
+      });
+    });
+  });
 });

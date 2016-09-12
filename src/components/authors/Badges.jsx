@@ -45,7 +45,8 @@ export default Badges;
 const defaultStyles = {
   badges:{
     display: 'inline-block',
-    marginLeft:10
+    marginLeft:10,
+    cursor:'default'
   },
   badgeIcon: {
     fontSize:18

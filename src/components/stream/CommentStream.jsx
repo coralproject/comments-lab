@@ -3,6 +3,7 @@ import Comment from '../comments/CommentContainer';
 import Author from '../authors/AuthorContainer';
 import Profile from '../authorProfile/AuthorProfileContainer';
 import Interactions from '../interactions/InteractionsContainer';
+import CommentMenu from '../commentMenu/CommentMenuContainer';
 import Replies from '../replies/RepliesContainer';
 import {updateItem} from 'playground/PlaygroundActions';
 
@@ -34,6 +35,7 @@ class CommentStream extends Component {
                 <Author commentId={id} />
               </div>
               <Profile commentId={id}/>
+              <CommentMenu id={id}/>
               <Comment id={id} />
               <Interactions id={id}/>
               <Replies id={id} replyIndex={[]} />

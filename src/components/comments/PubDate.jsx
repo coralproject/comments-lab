@@ -25,6 +25,7 @@ const defaultStyles =   {
   commentDate: {
     fontSize: '10pt',
     color: '#999',
-    marginBottom: '5px'
+    marginBottom: '5px',
+    display:'inline-block'
   }
 };

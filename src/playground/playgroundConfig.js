@@ -1,10 +1,6 @@
 let config = {
   comments:[
     {
-      propTypes:['id'],
-      component:'CommentMenu'
-    },
-    {
       propTypes:['pubdate'],
       component:'PubDate',
       order: -10

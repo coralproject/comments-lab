@@ -115,8 +115,8 @@ const togglerGroups = {
         status: false,
         topic: 'public_profile',
         pulseTarget: 'commentName',
-        onFunction:[addComponent('authorProfile','BigProfilePicture',['id'],-10),addComponent('authorProfile','ProfileName',['nickName'],0)],
-        offFunction:[removeComponent('authorProfile','BigProfilePicture'),removeComponent('authorProfile','ProfileName')]
+        onFunction:[addComponent('authorProfile','BigProfilePicture',['id'],-10),addComponent('authorProfile','ProfileBio',['nickName','membershipAge','location','education'],0)],
+        offFunction:[removeComponent('authorProfile','BigProfilePicture'),removeComponent('authorProfile','ProfileBio')]
       }
     }
   },
@@ -197,8 +197,8 @@ const togglerGroups = {
         description: 'Displays a link to a specific comment on a thread.',
         status: false,
         topic: 'permalinks',
-        onFunction:addComponent('interactions','Permalink',['id']),
-        offFunction:removeComponent('interactions','Permalink')
+        onFunction:addComponent('comments','Permalink',['id'],-5),
+        offFunction:removeComponent('comments','Permalink')
       },
       'replies': {
         label: 'Nested Replies are ON',
@@ -247,26 +247,10 @@ const togglerGroups = {
           addComponent('commentMenu','Follow',['id','user'],-10),
           addComponent('streamTabs','FollowTab',[],20)
         ],
-        offFunction:removeComponent('commentMenu', 'Follow')
-      }
-    }
-  },
-  'experimental': {
-    name: 'Experimental',
-    togglers: {
-      'replyrating': {
-        label: 'Reply Rating is ON',
-        offLabel: 'Reply Rating is OFF',
-        description: 'Asks for a reply rating before posting a Reply. Enable Nested Replies to see it in action.',
-        status: false,
-        topic: 'replyrating'
-      },
-      'topicrelevant': {
-        label: 'Topic Relevant Badges are ON',
-        offLabel: 'Topic Relevant Badges are OFF',
-        description: 'TBD',
-        status: false,
-        topic: 'topicrelevant'
+        offFunction:[
+          removeComponent('commentMenu', 'Follow'),
+          removeComponent('streamTabs','FollowTab')
+        ]
       }
     }
   }

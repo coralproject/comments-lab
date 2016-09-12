@@ -18,7 +18,6 @@ const defaultStyles = {
   commentCount: {
     padding: '10px 0 0 0',
     fontStyle: 'italic',
-    fontSize: '11pt',
-    color: '#888'
+    fontSize: '14pt'
   }
 };
