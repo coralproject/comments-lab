@@ -13,7 +13,8 @@ const initialState = {
   config:config,
   stream:['a','b','c','d','e','f','g','h'],
   showWelcome:true,
-  numChars:100
+  numChars:100,
+  snackbar:{}
 };
 
 initialState.togglerGroups = togglerGroups;
@@ -190,6 +191,8 @@ const playground = (state = initialState, action) => {
     return Object.assign({}, state, {showWelcome:!state.showWelcome});
   case types.SET_NUM_CHARS:
     return Object.assign({}, state, {numChars:action.numChars});
+  case types.SET_SNACKBAR:
+    return Object.assign({}, state, {snackbar:action.snackbar});
   default:
     console.log('Not a Playground action:', action.type);
     return state;

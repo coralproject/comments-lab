@@ -52,7 +52,7 @@ class AuthorProfileContainer extends Component {
         return props;
       },props);      
     }
-    return <Component {...props} key={config.component} />;
+    return <Component {...props} dispatch={this.props.dispatch} key={config.component} />;
   }
 
   sortConfig(a,b) {
