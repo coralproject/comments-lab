@@ -34,7 +34,7 @@ let config = {
   ],
   flag:[
     {
-      propTypes:['id'],
+      propTypes:['id', 'flagged'],
       component:'DefaultFlag',
       order:0
     }

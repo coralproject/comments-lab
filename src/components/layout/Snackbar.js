@@ -23,10 +23,24 @@ class Snack extends Component {
   }
   
   render() {
-    return <Snackbar
-        active={this.props.text}
-        onTimeout={()=>this.props.dispatch(setSnackbar({}))}
-        action={this.props.actionName}>{this.props.text}</Snackbar>
+    return <div>
+      {
+        this.props.action ?
+        <Snackbar
+          active={this.props.text}
+          onTimeout={()=>this.props.dispatch(setSnackbar({}))}
+          onActionClick={this.props.action}
+          action={this.props.actionName}>
+          {this.props.text}
+        </Snackbar>
+        :
+        <Snackbar
+          active={this.props.text}
+          onTimeout={()=>this.props.dispatch(setSnackbar({}))}>
+          {this.props.text}
+        </Snackbar>     
+      }
+      </div>;
   }
 }  
 
