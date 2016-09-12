@@ -151,6 +151,8 @@ function sendComment(action, state) {
 
 function updateItem(action, state) {
   if (!state.items[action.itemType] || !state.items[action.itemType][action.id]) {
+    console.log('Item not found in updateItem');
+    console.log(action);
     return state;
   }
   let newItem = Object.assign({}, state.items[action.itemType][action.id],{[action.propType]:action.propVal});
