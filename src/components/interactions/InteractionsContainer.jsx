@@ -33,12 +33,6 @@ import components from './';
 class InteractionsContainer extends Component {
 
   getItem() {
-    if (this.props.replyIndex) {
-      let comment = this.props.comments[this.props.id];
-      return this.props.replyIndex.reduce((priorComment, replyIndex) => {
-        return priorComment.replies[replyIndex];
-      }, comment);
-    }
     return this.props.comments[this.props.id];
   }
 

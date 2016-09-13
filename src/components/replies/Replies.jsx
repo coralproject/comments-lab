@@ -12,28 +12,19 @@ class Replies extends Component {
   }
 
   render() {
-    let comment = this.props.comments[this.props.id].replies;
-    let replies = this.props.replyIndex.reduce((priorComment, replyIndex) => {
-      if (!priorComment) {
-        return [];
-      }
-      return priorComment[replyIndex].replies;
-    }, comment);
-    replies = replies;
+    let replies = this.props.comments[this.props.id].replies;
 
     const styles = this.props.styles || defaultStyles;
     return <div>
       {
         replies && 
-        replies.map((reply,i) => {
-          const newReplyIndex = this.props.replyIndex.concat(i);
+        replies.map((reply, i) => {
           return <div className="replies" style={styles.replies} key={i}>
-              <Authors commentId={this.props.id} replyIndex={newReplyIndex} />
-              <Comments id={this.props.id} replyIndex={newReplyIndex} />
-              <Interactions id={this.props.id} replyIndex={newReplyIndex} />
+              <Authors commentId={reply} />
+              <Comments id={reply} />
+              <Interactions id={reply} />
               <Replies
-                id={this.props.id}
-                replyIndex={newReplyIndex}
+                id={reply}
                 comments = {this.props.comments}/>
             </div>;
         })
