@@ -12,7 +12,7 @@ const comments = {
     staffPick: true,
     showProfile:true,
     pubdate: 3600000,
-    replies: ['f']
+    replies: ['f','j']
   },
   b:{
     user: '1',
@@ -37,7 +37,7 @@ const comments = {
     downvotes: 22,
     upvoted: false,
     pubdate: 7200000,
-    replies: ['g']
+    replies: ['g','e']
   },
   d:{
     user: '4',
@@ -74,7 +74,7 @@ const comments = {
     upvotes: 14,
     downvotes: 0,
     upvoted: false,
-    replies:['g'],
+    replies:['h'],
     reply: true,
     pubdate: 15000000
   },
