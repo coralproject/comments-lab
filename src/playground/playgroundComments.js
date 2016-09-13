@@ -75,6 +75,7 @@ const comments = {
     downvotes: 0,
     upvoted: false,
     replies:['g'],
+    reply: true,
     pubdate: 15000000
   },
   g:{
@@ -88,6 +89,7 @@ const comments = {
     downvotes: 0,
     upvoted: false,
     staffPick: true,
+    reply:true,
     replies:['i'],
     pubdate: 25000000
   },
@@ -100,6 +102,7 @@ const comments = {
     reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
     upvotes: 30,
     downvotes: 15,
+    reply: true,
     upvoted: false,
     pubdate: 20000000
   },
@@ -114,6 +117,7 @@ const comments = {
     downvotes: 0,
     upvoted: false,
     staffPick: true,
+    reply: true,
     pubdate: 25000000
   },
   j:{
@@ -127,6 +131,7 @@ const comments = {
     downvotes: 20,
     upvoted: false,
     troll: true,
+    reply: true,
     pubdate: 28000000
   }
 };
