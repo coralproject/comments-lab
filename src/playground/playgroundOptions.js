@@ -216,7 +216,7 @@ const togglerGroups = {
         description: 'Allows nested replies on comments.',
         status: false,
         topic: 'replies',
-        onFunction:[addComponent('replies','Replies',['id', 'replyIndex','comments']),addComponent('stream','ReplyFilter',['stream','comments'])],
+        onFunction:[addComponent('replies','Replies',['id', 'replyIndex','comments'],0,{showTrolls:true}),addComponent('stream','ReplyFilter',['stream','comments'])],
         offFunction:[removeComponent('replies','Replies'), removeComponent('stream','ReplyFilter')]
       },
       'trolls': {
