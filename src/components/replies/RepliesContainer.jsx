@@ -40,7 +40,6 @@ class RepliesContainer extends Component {
   getItem() {
     return {
       id: this.props.id,
-      replyIndex: this.props.replyIndex,
       comments: this.props.comments
     };
   }
