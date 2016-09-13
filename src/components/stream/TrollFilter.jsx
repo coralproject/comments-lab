@@ -35,7 +35,6 @@ class TrollFilter extends Component {
         newContent = true;
       }
     }
-    console.log("TrollFilter: " + newContent)
     return newContent;
   }
 

@@ -26,8 +26,6 @@ class ReplyFilter extends Component {
 
   shouldComponentUpdate(nextProps) {
     let newContent = false;
-    console.log(nextProps.stream)
-    console.log(this.props.stream)
     if (nextProps.stream.length != this.props.stream.length) {
       newContent = true;
     }
@@ -36,7 +34,6 @@ class ReplyFilter extends Component {
         newContent = true;
       }
     }
-    console.log(newContent)
     return newContent;
   }
 
