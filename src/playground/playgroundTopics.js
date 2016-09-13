@@ -14,7 +14,7 @@ const topics = {
       }
     ]
   },
-  'edit':{
+  'editing':{
     title:'Editing your comments',
     description: 'Sometimes community members make mistakes - typos, or phrasing something poorly. Facebook, for instance, allows its users to edit posts forever, but that option could lead to confusion, and at worst gaslighting, i.e. people saying something provocative or abusive, then replacing it with something more innocuous and claiming it never happened. A short edit window of, say, five minutes, might make more sense.',
     hashtag: 'edit',
@@ -25,9 +25,10 @@ const topics = {
       }
     ]
   },
-  'hidden': {
+  'hiddenbydefault': {
     title: 'Hidden by default',
-    description: 'Some sites are hiding their comments behind a “Show comments” button. It makes comments an opt-in feature, saves in page loading time, and makes it easier to track who wants to read the comments. However, it often reduces casual engagement, as well as hiding how many users are engaging and the conversations users are having. Without another point of entry, e.g. highlighted comments in a box within the piece, readers may quickly forget that the community exists at all.'
+    description: 'Some sites are hiding their comments behind a “Show comments” button. It makes comments an opt-in feature, saves in page loading time, and makes it easier to track who wants to read the comments. However, it often reduces casual engagement, as well as hiding how many users are engaging and the conversations users are having. Without another point of entry, e.g. highlighted comments in a box within the piece, readers may quickly forget that the community exists at all.',
+    hashtag: 'hidden'
   },
   'permalinks': {
     title: 'Permalinks',
@@ -39,7 +40,7 @@ const topics = {
     links: [
       {
         title: 'Building Successful Online Communities',
-        description: 'https://mitpress.mit.edu/books/building-successful-online-communities'
+        href: 'https://mitpress.mit.edu/books/building-successful-online-communities'
       }
     ]
   },
