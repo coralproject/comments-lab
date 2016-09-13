@@ -224,7 +224,9 @@ const togglerGroups = {
         offLabel: 'Trolls are OFF',
         description: 'Show sample troll-like content in the stream.',
         status: false,
-        topic: 'trolls'
+        topic: 'trolls',
+        onFunction:removeComponent('stream','TrollFilter'),
+        offFunction:addComponent('stream','TrollFilter',['stream','comments'])
       }
     }
   },

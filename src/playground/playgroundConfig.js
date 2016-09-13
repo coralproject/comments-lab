@@ -23,6 +23,11 @@ let config = {
       propTypes:['stream','comments'],
       component:'CommentStream',
       order:0
+    },
+    {
+      propTypes:['stream','comments'],
+      component:'TrollFilter',
+      order:10
     }
   ],
   streamTabs:[

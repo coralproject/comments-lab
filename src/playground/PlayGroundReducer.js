@@ -11,7 +11,7 @@ const initialState = {
     users:users
   },
   config:config,
-  stream:['a','b','c','d','f','g','h','i'],
+  stream:['a','b','c','d','e','f','g','h','i','j'],
   showWelcome:true,
   numChars:100,
   snackbar:{}

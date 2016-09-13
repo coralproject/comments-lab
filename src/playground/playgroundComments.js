@@ -61,6 +61,7 @@ const comments = {
     upvotes: 1,
     downvotes: 15,
     upvoted: false,
+    troll: true,
     pubdate: 10200000
   },
   f:{
@@ -125,6 +126,7 @@ const comments = {
     upvotes: 10,
     downvotes: 20,
     upvoted: false,
+    troll: true,
     pubdate: 28000000
   }
 };
