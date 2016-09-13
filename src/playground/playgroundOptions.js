@@ -9,7 +9,7 @@ const togglerGroups = {
         offLabel: 'Rich content is OFF',
         description: 'Using bold or italic typefaces, possibly adding images.',
         status: false,
-        topic: 'rich_content'
+        topic: 'richcontent'
       },
       'emoji': {
         label: 'Emojis are ON',
@@ -88,7 +88,7 @@ const togglerGroups = {
         offLabel: 'Detailed Flags is OFF',
         description: 'When a user flags a comment they will be asked to provide information about why they have flagged it.',
         status: false,
-        topic: 'flag',
+        topic: 'flags',
         onFunction:[addComponent('flag','DetailFlag',['id','flagged']), removeComponent('flag','DefaultFlag')],
         offFunction:[removeComponent('flag','DetailFlag'),addComponent('flag','DefaultFlag',['id','flagged'])]
 
@@ -123,7 +123,7 @@ const togglerGroups = {
         offLabel: 'Public Profile is OFF',
         description: 'Visitors are able click an author\'s name to see a public profile.',
         status: false,
-        topic: 'public_profile',
+        topic: 'publicprofile',
         pulseTarget: 'commentName',
         onFunction:[addComponent('authorProfile','BigProfilePicture',['id'],-10),addComponent('authorProfile','ProfileBio',['nickName','membershipAge','location','education'],0)],
         offFunction:[removeComponent('authorProfile','BigProfilePicture'),removeComponent('authorProfile','ProfileBio')]
@@ -156,7 +156,7 @@ const togglerGroups = {
         offLabel: 'Moderation Privileges are OFF',
         description: 'Many reputation systems allow certain privileges (as moderating others) as you gain reputation.',
         status: false,
-        topic: 'privileges',
+        topic: 'moderation',
         pulseTarget: 'commentTools',
         onFunction:[addComponent('commentMenu','Warn',[],10), addComponent('commentMenu','Ban',[],20)],
         offFunction:[removeComponent('commentMenu','Warn'),removeComponent('commentMenu','Ban')]
@@ -216,7 +216,7 @@ const togglerGroups = {
         description: 'Allows nested replies on comments.',
         status: false,
         topic: 'replies',
-        onFunction:[addComponent('replies','Replies',['id', 'replyIndex','comments']),addComponent('stream','ReplyFilter',['stream','comments'])],
+        onFunction:[addComponent('replies','Replies',['id', 'replyIndex','comments'],0,{showTrolls:true}),addComponent('stream','ReplyFilter',['stream','comments'])],
         offFunction:[removeComponent('replies','Replies'), removeComponent('stream','ReplyFilter')]
       },
       'trolls': {

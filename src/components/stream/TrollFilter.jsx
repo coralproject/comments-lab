@@ -9,11 +9,11 @@ class TrollFilter extends Component {
     dispatch:PropTypes.func.isRequired
   }
 
-  filterProps() {
+  filterProps(props) {
     let filteredStream = [];
-    for (var i = 0; i < this.props.stream.length; i++) {
-      if (!this.props.comments[this.props.stream[i]].troll) {
-        filteredStream.push(this.props.stream[i]);
+    for (var i = 0; i < props.stream.length; i++) {
+      if (!props.comments[props.stream[i]].troll) {
+        filteredStream.push(props.stream[i]);
       }
     }
     this.props.dispatch(setStream(filteredStream));
@@ -27,6 +27,9 @@ class TrollFilter extends Component {
 
   shouldComponentUpdate(nextProps) {
     let newContent = false;
+    if (nextProps.stream.length != this.props.stream.length) {
+      newContent = true;
+    }
     for (var i = 0; i < nextProps.length; i++) {
       if (nextProps.stream[i] !== this.props.stream[i]) {
         newContent = true;
@@ -40,7 +43,7 @@ class TrollFilter extends Component {
   }
 
   componentWillUnmount() {
-    this.props.dispatch(setStream(this.state.original));
+    this.props.dispatch(setStream(['a','b','c','d','e','f','g','h','i','j']));
     this.props.dispatch(updateComponent('replies','Replies',null,null,{showTrolls:true}));
   }
 

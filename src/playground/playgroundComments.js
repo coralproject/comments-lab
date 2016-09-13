@@ -64,6 +64,7 @@ const comments = {
     downvotes: 15,
     upvoted: false,
     troll: true,
+    reply:true,
     pubdate: 10200000
   },
   f:{

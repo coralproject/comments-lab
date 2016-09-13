@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import {Card, CardText, CardTitle, Button} from 'react-mdl';
+import {Card, CardText, CardTitle, Button, Icon} from 'react-mdl';
 import {toggleWelcomeHero} from 'playground/PlaygroundActions';
 
 @connect(
@@ -32,7 +32,7 @@ class WelcomeHero extends Component {
             <br />
             <ul style={ styles.playgroundBullets }>
               <li style={ styles.playgroundBullet }><strong>Click on the names</strong> to reveal features. Switch them on and off to see how the comment box changes. Share your favorite comment settings by sharing the URL.</li>
-              <li style={ styles.playgroundBullet }><strong>Click on the “i” buttons</strong> to learn about why and how you might use each feature.</li>
+              <li style={ styles.playgroundBullet }><strong>Click on the <Icon name="info_outline" style={styles.infoIcon}/> buttons</strong> to learn about why and how you might use each feature.</li>
             <li style={ styles.playgroundBullet }><strong>Add features</strong> by submitting updates to our <a href="https://github.com/coralproject/experiment-playground" target="_blank">GitHub</a>.</li>
             </ul>
           </div>
@@ -66,5 +66,11 @@ const defaultStyles = {
   },
   heroButton: {
     float:'right'
+  },
+  infoIcon: {
+    fontSize:16,
+    opacity:.75,
+    marginLeft:5,
+    cursor: 'default'
   }
 };
