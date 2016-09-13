@@ -172,7 +172,7 @@ const topics = {
       '<li style={ styles.playgroundBullet }><strong>Share your thoughts</strong> on our <a href="https://coralproject.net/contribute.html#other-ideas-and-bug-reports">feedback form</a>.</li>' +
       '</ul>' + 
       '<br/>' +
-      '<em>Images from <a href="http://www.istockphoto.com" target="_blank">iStock</a> and <a href="https://www.flickr.com/photos/12836528@N00/" target="_blank">Kevin Dooley</a></em>'
+      '<em>Images from <a href="http://www.istockphoto.com" target="_blank">iStock</a>, <a href="https://www.flickr.com/photos/12836528@N00/" target="_blank">Kevin Dooley</a>, Shutterhacks and Banger1977.</em>'
   }
 };
 

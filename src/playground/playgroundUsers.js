@@ -21,9 +21,8 @@ export default {
   },
   '1': {
     id:'1',
-    nickName: 'republicantrout',
-    realName: 'Donald Trout',
-    bio: 'A fish with a wish for a wall',
+    nickName: 'thinkdifferent',
+    realName: 'Donnie Jones',
     party: 'republican',
     comments: 243,
     points: 124,
@@ -46,8 +45,8 @@ export default {
   },
   '2': {
     id:'2',
-    nickName: 'satanicverses',
-    realName: 'Salmon Rushdie',
+    nickName: 'littlegreenalien',
+    realName: 'Jasmine Smith',
     bio: 'Swimming against the current',
     party: 'democrat',
     anonymous: true,
@@ -67,15 +66,71 @@ export default {
   },
   '3': {
     id:'3',
-    nickName: 'nobeyonce',
-    realName: 'Tuna Turner',
-    bio: 'Talk to my heart that\'s where real talkin\' starts',
+    nickName: 'jack_mulligan',
+    realName: 'Jack Mulligan',
     comments: 124,
     party: 'democrat',
     points: 124,
     membershipAge: '6 years',
     location: 'Seattle, WA',
     education: 'B.A. Popular music',
+    upvoteBalance: 42,
+    badges: [
+      {
+        name: 'Expert moderator',
+        icon: 'moderator',
+        color: '#777'
+      }
+    ]
+  },
+  '4': {
+    id:'4',
+    nickName: 'angelofthenorth',
+    realName: 'Alex Karin',
+    comments: 87,
+    party: 'democrat',
+    points: 190,
+    membershipAge: '6 years',
+    location: 'Portland, OR',
+    education: 'MFA',
+    upvoteBalance: 42,
+    badges: [
+      {
+        name: 'Expert moderator',
+        icon: 'moderator',
+        color: '#777'
+      }
+    ]
+  },
+  '5': {
+    id:'5',
+    nickName: 'nastyjohn',
+    realName: 'Unpleasant Johnny',
+    comments: 87,
+    party: 'republican',
+    points: 190,
+    membershipAge: '6 years',
+    location: 'Austin, TX',
+    education: 'B.A. Economics',
+    upvoteBalance: 42,
+    badges: [
+      {
+        name: 'Expert moderator',
+        icon: 'moderator',
+        color: '#777'
+      }
+    ]
+  },
+  '6': {
+    id:'6',
+    nickName: 'trolldoll',
+    realName: 'Trolly McTrollface',
+    comments: 87,
+    party: 'republican',
+    points: 190,
+    membershipAge: '6 years',
+    location: 'New York, NY',
+    education: 'B.A. Marine Biology',
     upvoteBalance: 42,
     badges: [
       {
