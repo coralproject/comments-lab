@@ -19,14 +19,19 @@ class Replies extends Component {
       {
         replies && 
         replies.map((reply, i) => {
-          return <div className="replies" style={styles.replies} key={i}>
-              <Authors commentId={reply} />
-              <Comments id={reply} />
-              <Interactions id={reply} />
-              <Replies
-                id={reply}
-                comments = {this.props.comments}/>
-            </div>;
+          return <div>
+            {
+              (this.props.showTrolls || !this.props.comments[reply].troll) &&
+              <div className="replies" style={styles.replies} key={i}>
+                <Authors commentId={reply} />
+                <Comments id={reply} />
+                <Interactions id={reply} />
+                <Replies
+                  id={reply}
+                  comments = {this.props.comments}/>
+              </div>            
+            }
+          </div>;
         })
       }
     </div>;

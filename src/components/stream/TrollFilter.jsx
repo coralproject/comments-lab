@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-import {setStream} from '../../playground/PlaygroundActions';
+import {setStream, updateComponent} from '../../playground/PlaygroundActions';
 
 class TrollFilter extends Component {
 
@@ -18,10 +18,12 @@ class TrollFilter extends Component {
       }
     }
     this.props.dispatch(setStream(filteredStream));
+    this.props.dispatch(updateComponent('replies','Replies',null,null,{showTrolls:false}));
   }
 
   componentWillUnmount() {
     this.props.dispatch(setStream(this.state.original));
+    this.props.dispatch(updateComponent('replies','Replies',null,null,{showTrolls:true}));
   }
 
   render() {
