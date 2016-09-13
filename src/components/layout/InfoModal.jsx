@@ -29,13 +29,27 @@ class InfoModal extends Component {
   render() {
     let dialog = null;
     const styles = this.props.styles || defaultStyles;
-    if(this.props.modalTopic && this.props.topics[this.props.modalTopic]) {
+    const topic =this.props.topics[this.props.modalTopic]
+    if(topic) {
       dialog = <Dialog 
         open={this.props.modalTopic}
         style={styles.dialog}
         onCancel={this.handleCloseDialog}>
-        <DialogTitle style={styles.title}>{ this.props.topics[this.props.modalTopic].title}</DialogTitle>
-        <DialogContent style={styles.dialogContent} dangerouslySetInnerHTML={ {__html:this.props.topics[this.props.modalTopic].description }}/>
+        <DialogTitle style={styles.title}>{ topic.title}</DialogTitle>
+        <DialogContent style={styles.dialogContent} dangerouslySetInnerHTML={ {__html:topic.description }}/>
+        {
+          topic.links &&
+            <DialogContent className='additionalReading'>
+              <h3>Additional Reading</h3>
+              <ul style={styles.links}>
+              {
+                topic.links.map((link) => 
+                <li style={styles.link}><a href={link.href} target="_blank">{link.title}</a></li>
+                )              
+              }
+              </ul>
+              </DialogContent>
+        }
         <DialogActions>
           <Button type='button' onClick={this.handleCloseDialog.bind(this)}>Got it!</Button>
         </DialogActions>
@@ -60,5 +74,13 @@ const defaultStyles = {
   },
   title:{
     fontSize:34
+  },
+  links: {
+    marginTop: 10,
+    marginLeft: 10,
+    fontSize: 14
+  },
+  link: {
+    marginTop:5
   }
 };
