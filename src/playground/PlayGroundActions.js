@@ -3,6 +3,7 @@ import uuid from 'uuid';
 export const ADD_COMPONENT = 'ADD_COMPONENT';
 export const REMOVE_COMPONENT = 'REMOVE_COMPONENT';
 export const UPDATE_COMPONENT = 'UPDATE_COMPONENT';
+export const UPSERT_COMPONENT = 'UPSERT_COMPONENT';
 export const SET_TOGGLER = 'SET_TOGGLER';
 export const SET_TOPIC = 'SET_TOPIC';
 export const SEND_COMMENT = 'SEND_COMMENT';
@@ -14,7 +15,7 @@ export const TOGGLER_FROM_URL = 'TOGGLER_FROM_URL';
 export const SET_TOGGLER_GROUP = 'SET_TOGGLER_GROUP';
 export const TOGGLE_WELCOME_HERO = 'TOGGLE_WELCOME_HERO';
 export const SET_NUM_CHARS = 'SET_NUM_CHARS';
-export const SET_SNACKBAR = 'SET_SNACKBAR'
+export const SET_SNACKBAR = 'SET_SNACKBAR';
 
 export function addComponent(itemType, component, propTypes, order, configProps) {
   return {
@@ -38,6 +39,17 @@ export function removeComponent(itemType, component) {
 export function updateComponent(itemType, component, propTypes, order, configProps) {
   return {
     type: UPDATE_COMPONENT,
+    itemType,
+    component,
+    propTypes,
+    configProps,
+    order
+  };
+}
+
+export function upsertComponent(itemType, component, propTypes, order, configProps) {
+  return {
+    type: UPSERT_COMPONENT,
     itemType,
     component,
     propTypes,

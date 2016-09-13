@@ -150,11 +150,11 @@ describe('PlaygroundReducer', () => {
     });
   });
 
-  describe('UPDATE_COMPONENT', () => {
+  describe('UPSERT_COMPONENT', () => {
     let action;
     beforeEach(() => {
       action = {
-        type: 'UPDATE_COMPONENT',
+        type: 'UPSERT_COMPONENT',
         itemType:'comments',
         component: 'UpdateMe',
         propTypes: ['changed']
@@ -229,6 +229,144 @@ describe('PlaygroundReducer', () => {
             {
               component:'UpdateMe',
               propTypes:['changed']
+            }
+          ]
+        }
+      });
+    });
+
+    it('should update configProps if no propTypes are sent', () => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      action.propTypes = null,
+      action.configProps = {test:true};
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config.comments[0]).to.have.property('propTypes')
+        .and.to.deep.equal(['content']);
+      expect(newState.config.comments[0]).to.have.property('configProps')
+        .and.to.deep.equal({test:true});
+    });
+
+    it('should update configProps if propTypes are sent', () => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      action.configProps = {test:true};
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config.comments[0]).to.have.property('propTypes')
+        .and.to.deep.equal(['changed']);
+      expect(newState.config.comments[0]).to.have.property('configProps')
+        .and.to.deep.equal({test:true});
+    });
+
+    it('should update order if order is sent', () => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      action.order=0;
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config.comments[0]).to.have.property('order')
+        .and.to.equal(0);
+    });
+  });
+
+  describe('UPDATE_COMPONENT', () => {
+    let action;
+    beforeEach(() => {
+      action = {
+        type: 'UPDATE_COMPONENT',
+        itemType:'comments',
+        component: 'UpdateMe',
+        propTypes: ['changed']
+      };
+    });
+
+    it('should not morph state', () => {
+      let state = {
+        config:{},
+        donot:'changeme'
+      };
+      PlaygroundReducer(state, action);
+      expect(state).to.deep.equal({
+        config:{},
+        donot:'changeme'
+      });
+    });
+
+    it('should update the appropriate component', () => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState.config).to.have.property('comments')
+        .and.to.deep.equal([
+          {
+            component:'UpdateMe',
+            propTypes:['changed']
+          }]);
+    });
+
+    it('should take no action if the itemType does not exist',() => {
+      let state = {
+        config:{
+          authors:[
+            {
+              component:'UpdateMe',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal(state);
+    });
+    it('should take no action if component does not already exist',() => {
+      let state = {
+        config:{
+          comments:[
+            {
+              component:'KeepMeComponent',
+              propTypes:['content']
+            }
+          ]
+        }
+      };
+      let newState = PlaygroundReducer(state, action);
+      expect(newState).to.deep.equal({
+        config:{
+          comments:[
+            {
+              component:'KeepMeComponent',
+              propTypes:['content']
             }
           ]
         }
