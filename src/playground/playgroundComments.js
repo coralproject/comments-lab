@@ -36,6 +36,7 @@ const comments = {
     upvotes: 82,
     downvotes: 22,
     upvoted: false,
+    staffPick: true,
     pubdate: 7200000,
     replies: ['g','e']
   },
@@ -49,6 +50,7 @@ const comments = {
     upvotes: 84,
     downvotes: 23,
     upvoted: false,
+    staffPick: true,
     pubdate: 10000000
   },
   e:{
