@@ -32,6 +32,13 @@ let config = {
       order:0  
     }
   ],
+  flag:[
+    {
+      propTypes:['id', 'flagged'],
+      component:'DefaultFlag',
+      order:0
+    }
+  ],
   interactions:[],
   commentMenu:[],
   authorProfile:[],

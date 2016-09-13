@@ -69,7 +69,7 @@ const togglerGroups = {
         offLabel: 'Staff Picks is OFF',
         description: 'Shows a tab separating staff picks from other comments.',
         status: false,
-      topic: 'staffpicks',
+        topic: 'staffpicks',
         onFunction:addComponent('streamTabs','StaffTab',null,10),
         offFunction:[removeComponent('streamTabs','StaffTab'),removeComponent('stream','StaffFilter')]
       },
@@ -82,6 +82,16 @@ const togglerGroups = {
         pulseTarget: 'commentName',
         onFunction:[addComponent('commentMenu','Block',['id','user'],0)],
         offFunction:[removeComponent('commentMenu','Block'), removeComponent('stream','BlockFilter')]
+      },
+      'flag': {
+        label: 'Detailed Flags is ON',
+        offLabel: 'Detailed Flags is OFF',
+        description: 'When a user flags a comment they will be asked to provide information about why they have flagged it.',
+        status: false,
+        topic: 'flag',
+        onFunction:[addComponent('flag','DetailFlag',['id','flagged']), removeComponent('flag','DefaultFlag')],
+        offFunction:[removeComponent('flag','DetailFlag'),addComponent('flag','DefaultFlag',['id','flagged'])]
+
       }
     }
   },

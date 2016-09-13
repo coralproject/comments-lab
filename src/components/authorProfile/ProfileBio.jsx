@@ -21,7 +21,7 @@ class ProfileBio extends Component {
 
   toggleSnackbar() {
     this.props.dispatch(setSnackbar({
-      text:'Thanks for reporting.'
+      text:'Thank you for reporting this profile. Our moderation team has been notified and will review it shortly.'
     }));
   }
 
