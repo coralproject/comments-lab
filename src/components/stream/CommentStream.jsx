@@ -40,7 +40,7 @@ class CommentStream extends Component {
               <Flag id={id} />
               <Comment id={id} />
               <Interactions id={id}/>
-              <Replies id={id} replyIndex={[]} />
+              <Replies id={id} />
               <hr className="commentDivider" style={styles.commentDivider}/>
             </div>;
           })
