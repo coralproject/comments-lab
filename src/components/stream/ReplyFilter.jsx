@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {setStream} from '../../playground/PlaygroundActions';
 
-class TrollFilter extends Component {
+class ReplyFilter extends Component {
 
   static propTypes = {
     comments:PropTypes.object.isRequired,
@@ -29,4 +29,4 @@ class TrollFilter extends Component {
   }
 }
 
-export default TrollFilter;
+export default ReplyFilter;

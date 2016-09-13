@@ -6,6 +6,7 @@ import MentionsFilter from './MentionsFilter';
 import FollowFilter from './FollowFilter';
 import CommentCount from './CommentCount';
 import TrollFilter from './TrollFilter';
+import ReplyFilter from './ReplyFilter';
 
 export default {
   CommentStream,
@@ -15,5 +16,6 @@ export default {
   MentionsFilter,
   FollowFilter,
   CommentCount,
-  TrollFilter
+  TrollFilter,
+  ReplyFilter
 };
