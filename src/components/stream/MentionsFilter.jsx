@@ -12,7 +12,7 @@ class MentionsFilter extends Component {
   filterProps(props) {
     for (let i = 0; i < props.stream.length; i++) {
       let content = props.comments[props.stream[i]].content;
-      let newContent = content.replace(/(@[a-z1-9]+)(?![^<]*<\/a>)/gi,'<a href=#>$1</a>');
+      let newContent = content.replace(/(@[a-z0-9_-]+)(?![^<]*<\/a>)/gi,'<a href=#>$1</a>');
       props.dispatch(updateItem(props.stream[i],'comments','content',newContent));
     }
   }

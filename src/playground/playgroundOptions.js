@@ -1,4 +1,4 @@
-import {addComponent, removeComponent, updateComponent} from './PlaygroundActions';
+import {addComponent, removeComponent, upsertComponent} from './PlaygroundActions';
 
 const togglerGroups = {
   'content': {
@@ -105,8 +105,8 @@ const togglerGroups = {
         status: false,
         topic: 'anonymity',
         pulseTarget: 'commentName',
-        onFunction: updateComponent('authors','DefaultAuthor',null,null,{allowAnon:true}),
-        offFunction: updateComponent('authors','DefaultAuthor',null,null,{allowAnon:false})
+        onFunction: upsertComponent('authors','DefaultAuthor',null,null,{allowAnon:true}),
+        offFunction: upsertComponent('authors','DefaultAuthor',null,null,{allowAnon:false})
       },
       'pseudonyms': {
         label: 'Pseudonyms are ON',
@@ -115,8 +115,8 @@ const togglerGroups = {
         status: false,
         topic: 'pseudonyms',
         pulseTarget: 'commentName',
-        onFunction: updateComponent('authors','DefaultAuthor',['nickName','anonymous']),
-        offFunction: updateComponent('authors','DefaultAuthor',['realName','anonymous'])
+        onFunction: upsertComponent('authors','DefaultAuthor',['nickName','anonymous']),
+        offFunction: upsertComponent('authors','DefaultAuthor',['realName','anonymous'])
       },
       'public_profile': {
         label: 'Public Profile is ON',
@@ -216,15 +216,17 @@ const togglerGroups = {
         description: 'Allows nested replies on comments.',
         status: false,
         topic: 'replies',
-        onFunction:addComponent('replies','Replies',['id', 'replyIndex','comments']),
-        offFunction:removeComponent('replies','Replies')
+        onFunction:[addComponent('replies','Replies',['id', 'replyIndex','comments']),addComponent('stream','ReplyFilter',['stream','comments'])],
+        offFunction:[removeComponent('replies','Replies'), removeComponent('stream','ReplyFilter')]
       },
       'trolls': {
         label: 'Trolls are ON',
         offLabel: 'Trolls are OFF',
         description: 'Show sample troll-like content in the stream.',
         status: false,
-        topic: 'trolls'
+        topic: 'trolls',
+        onFunction:removeComponent('stream','TrollFilter'),
+        offFunction:addComponent('stream','TrollFilter',['stream','comments'])
       }
     }
   },

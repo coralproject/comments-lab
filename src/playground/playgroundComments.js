@@ -2,7 +2,7 @@ const comments = {
   a:{
     user: '1',
     id:'a',
-    content: "Hello, @nobeyonce. Clinton is a smart guy, but I only started to trust or like him was when he was no longer running. And here he is running for his wife, Hillary. For him to lecture Sanders, or the public about Sanders, on the subject of honesty or integrity, is too much. I don't buy it. :smile:",
+    content: "I think the new phone is another winner from Apple. Sure, it didn’t reinvent the wheel, but the new design is sleek, the new processor speed will be a game changer for me, the camera is like a real SLR in your pocket, and the whole headphone thing is about moving to a wireless future where everything is easier. I’m impressed! OK @jasmine_p_smith, your turn. :smile:",
     likes: 28,
     liked: false,
     reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
@@ -12,35 +12,12 @@ const comments = {
     staffPick: true,
     showProfile:true,
     pubdate: 3600000,
-    replies: [
-      {
-        user: '2',
-        content: 'This is a reply from another user.',
-        likes: 9,
-        liked: false,
-        reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
-        upvotes: 56,
-        upvoted: false,
-        pubdate: 4500000,
-        replies: [
-          {
-            user: '1',
-            content: 'This is a SECOND reply from another user.',
-            likes: 9,
-            liked: false,
-            reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
-            upvotes: 45,
-            upvoted: false,
-            pubdate: 6000000
-          }
-        ]
-      }
-    ]
+    replies: ['f','j']
   },
   b:{
     user: '1',
     id:'b',
-    content: 'Testing some emojis. :ok_woman: :heart: :hankey:  :horse_racing:',
+    content: 'Sure, Apple makes Bluetooth headphones, but this is about more than that. Apple’s focus for a long time has been on high-quality music. You just can’t get that from 40-year-old technology. :music_notes: :thumbs_up:',
     likes: 11,
     liked: false,
     reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
@@ -52,101 +29,113 @@ const comments = {
   c:{
     user: '2',
     id:'c',
-    content: "Hillary placed a bet a few years ago, that the system was corrupt, that SuperPAC's were the only way to go in the post-Citizens United era, and that she could get speaking fees from Wall St. and still come across as being less in-their-pocket than her Republican rivals.",
+    content: "This is one of the worst announcements I’ve seen from Apple. There’s just nothing new here. I use a Mac and was thinking about switching from Android, but after this announcement, I simply don’t see why I should.",
     likes: 4,
     liked: false,
     reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
     upvotes: 82,
     downvotes: 22,
     upvoted: false,
+    staffPick: true,
     pubdate: 7200000,
-    replies: [
-      {
-        user: '2',
-        content: "HILLARY - This is a reply from another user.",
-        likes: 9,
-        liked: false,
-        reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
-        upvotes: 56,
-        upvoted: false,
-        pubdate: 10000000,
-        replies: [
-          {
-            user: '1',
-            content: "HILLARY - This is a SECOND reply from another user.",
-            likes: 9,
-            liked: false,
-            reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
-            upvotes: 45,
-            upvoted: false,
-            staffPick: true,
-            pubdate: 12000000
-          }
-        ]
-      }
-    ]
+    replies: ['g','e']
   },
   d:{
-    user: '1',
+    user: '4',
     id:'d',
-    content: "Is it possible that Bill is going off script here? It would be hard to believe the campaign is encouraging this. Maybe he's become a difficult to control wildcard.",
+    content: "I’m a little underwhelmed, but I’ll probably buy it anyway. I’ve bought the last three iPhones, and this one seems a good enough upgrade on what I’m using now (6 plus). But I still don't see the value in the Watch.",
     likes: 7,
     liked: false,
     reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
     upvotes: 84,
     downvotes: 23,
     upvoted: false,
+    staffPick: true,
     pubdate: 10000000
   },
   e:{
-    user: '3',
+    user: '5',
     id:'e',
-    content: "Sanders will keep the high road because so many young people are supporting him. Ignore the side show!",
-    likes: 2,
+    content: "HAHAHAA You’re ridiculous. Android phones are a pile of $%^#& created for idiots to waste money on",
+    likes: 0,
     liked: false,
     reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
-    upvotes: 11,
-    downvotes: 5,
+    upvotes: 1,
+    downvotes: 15,
     upvoted: false,
+    troll: true,
     pubdate: 10200000
   },
   f:{
     user: '2',
     id:'f',
-    content: "Bill's petty and pathetic remarks should be enough to make any undecided voter vote for Bernie. It's sad to see Bill shilling for Hillary in such a vulgar way.",
+    content: ":laughing: I think we’ve been here before - it’s nothing that Android phones didn’t have two years ago, except for the no headphones thing. That’s the stupidest idea I’ve ever heard. Do you really think it makes sense?",
     likes: 9,
     liked: false,
     reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
     upvotes: 14,
     downvotes: 0,
     upvoted: false,
+    replies:['h'],
+    reply: true,
     pubdate: 15000000
   },
   g:{
+    user: '3',
+    id:'h',
+    content: "How is your Android at syncing with your Mac?",
+    likes: 24,
+    liked: false,
+    reactions: [{name: ':ok_woman:',count: 2}],
+    upvotes: 22,
+    downvotes: 0,
+    upvoted: false,
+    staffPick: true,
+    reply:true,
+    replies:['i'],
+    pubdate: 25000000
+  },
+  h:{
     user: '1',
     id:'g',
-    content: "What sickness that the Clintons think they can criticize anybody about anything. They are greedy, hypocritical, untruthful sociopaths who will take those qualities to the White House in less than a year. ",
+    content: "Yes! See my comment below. It’s not as stupid as you think.",
     likes: 1,
     liked: false,
     reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
     upvotes: 30,
     downvotes: 15,
+    reply: true,
     upvoted: false,
     pubdate: 20000000
   },
-  h:{
-    user: '3',
+  i:{
+    user: '2',
     id:'h',
-    content: "Anybody but Clinton. Heck, I would even vote for Sarah Palin before I would vote for Hillary Clinton. At least Palin appears to be honest, and she is not part of a corrupt political machine.",
+    content: "It’s great! Very easy. And doesn’t need to use iTunes - which is one of the best things about it :smile:",
     likes: 24,
     liked: false,
-    reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
+    reactions: [{name: ':heart:', count: 1}],
     upvotes: 22,
     downvotes: 0,
     upvoted: false,
     staffPick: true,
+    reply: true,
     pubdate: 25000000
-  }  
+  },
+  j:{
+    user: '6',
+    id: 'j',
+    content: "You f#$%*ing Apple fanboys are nothing but drones.",
+    likes: 0,
+    liked: false,
+    reactions: [{name: ':heart:', count: 1}],
+    upvotes: 10,
+    downvotes: 20,
+    upvoted: false,
+    troll: true,
+    reply: true,
+    pubdate: 28000000
+  }
 };
 
 export default comments;
