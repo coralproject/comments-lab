@@ -150,7 +150,7 @@ const topics = {
       {
         title: 'Mentions in Drupal',
         href: 'https://www.drupal.org/project/mentions'
-      },
+      }
     ]
   },
   'directmessages': {
@@ -168,7 +168,7 @@ const topics = {
       }
     ]
   },
-  'follow': {
+  'following': {
     title: 'Following',
     description: 'If another community member who you like posts a new contribution, you might want to know about it. You might also only want the option to follow someone for that particular conversation, but not across the site. ‘Follow’ options can also help in the creation of social network analysis to better map behaviors across the site.',
     hashtag: 'following',
@@ -181,7 +181,7 @@ const topics = {
   },
   'anonymity': {
     title: 'Anonymity',
-    description: 'Some people consider anonymity to be the single biggest enabler of bad behavior online. However, research doesn’t bear this out. It can empower a bully to be aggressive - or a shy person to share their true feelings. A 2016 study found that the more aggressive comments on social media came from people using their real names. Dr. Whitney Phillips argues that “anonymity isn't the culprit; it's just the backdrop.” More important than your name policy are your community norms, and how you enforce them.',
+    description: 'Some people consider anonymity to be the single biggest enabler of bad behavior online. However, research doesn’t bear this out. It can empower a bully to be aggressive - or a shy person to share their true feelings. A 2016 study found that the more aggressive comments on social media came from people using their real names. Dr. Whitney Phillips argues that “anonymity isn\'t the culprit; it\'s just the backdrop.” More important than your name policy are your community norms, and how you enforce them.',
     hashtag: 'Anonymity',
     links: [
       {
@@ -195,7 +195,7 @@ const topics = {
       {
         title: 'Interview about internet trolls',
         href: 'http://www.latimes.com/opinion/op-ed/la-oe-morrison-phillips-20150701-column.html'
-      }
+      },
       {
         title: 'Anonymity - Electronic Frontier Foundation',
         href: 'https://www.eff.org/es/issues/anonymity'
@@ -324,7 +324,7 @@ const topics = {
   'muting': {
     title: 'Muting Users',
     description: 'Muting someone means that you won’t see their comments when you’re logged in. Some sites also offer Block - your comments can’t be seen by them either. The danger of Block is that a recipient can log out and see the difference, leading to further conflict. While laws regarding free speech aren’t relevant in private spaces, some people are also concerned about the effects of blocking and muting on free expression. ',
-    hashtag: 'muting',
+    hashtag: 'muting'
   },
   'flags': {
     title: 'Flags',
