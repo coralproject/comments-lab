@@ -34,7 +34,7 @@ class InfoModal extends Component {
         open={this.props.modalTopic}
         style={styles.dialog}
         onCancel={this.handleCloseDialog}>
-        <DialogTitle>{ this.props.topics[this.props.modalTopic].title}</DialogTitle>
+        <DialogTitle style={styles.title}>{ this.props.topics[this.props.modalTopic].title}</DialogTitle>
         <DialogContent style={styles.dialogContent} dangerouslySetInnerHTML={ {__html:this.props.topics[this.props.modalTopic].description }}/>
         <DialogActions>
           <Button type='button' onClick={this.handleCloseDialog.bind(this)}>Got it!</Button>
@@ -49,7 +49,7 @@ export default InfoModal;
 
 const defaultStyles = {
   dialog:{
-    width:400,
+    width:600,
     [mediaQueries.tablet]: {
       width:'100%'
     }
@@ -57,5 +57,8 @@ const defaultStyles = {
   dialogContent:{
     fontSize:14,
     lineHeight:1.5
+  },
+  title:{
+    fontSize:34
   }
 };

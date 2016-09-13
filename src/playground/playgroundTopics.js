@@ -162,18 +162,17 @@ const topics = {
     ]
   },
   'about': {
-    title: 'Coral Playground',
-    description: 'This playground showcases the various elements you would usually find in commentary sections all over the web.' +
-                    '<br /><br />' +
-                    '<ul style={ styles.playgroundBullets }>' +
-                      '<li style={ styles.playgroundBullet }><strong>Use the controls</strong> to tweak the UI and explore how it affects the comment box and the stream. You can also try the features on the comment box and the stream itself.</li>' +
-                      '<li style={ styles.playgroundBullet }><strong>Learn more about online comments</strong>, the issues they are facing, and the purpose and history of the features we see everyday on comment streams,' + 
-                      'through the expandable panel below.</li>' +
-                    '<li style={ styles.playgroundBullet }><strong>Share your thoughts</strong> on the problems addressed by each solution.</li>' +
-                    '<li style={ styles.playgroundBullet }><strong>Interested in <span style={ styles.experimentsLabel }>experiments?</span></strong> For comments with a twist, check out the "Experimental" section of the customizer down below.</li>' +
-                    '</ul>' + 
-                    '<br/>' +
-                    '<em>Images from <a href="http://www.istockphoto.com" target="_blank">iStock</a> and <a href="https://www.flickr.com/photos/12836528@N00/" target="_blank">Kevin Dooley</a></em>'
+    title: 'Welcome to the Comments Lab',
+    description: 'This is a place to explore some of the different possible features of an online comment space. It will continue to grow and change as The Coral Project continues its work.' +
+      '<br /><br />' +
+      '<ul style={ styles.playgroundBullets }>' +
+        '<li style={ styles.playgroundBullet }><strong>Click on the names</strong> to reveal features. Switch them on and off to see how the comment box changes. Share your favorite comment settings by sharing the URL.</li>' +
+        '<li style={ styles.playgroundBullet }><strong>Click on the “i” buttons</strong> to learn about why and how you might use each feature.</li>' +
+      '<li style={ styles.playgroundBullet }><strong>Add features</strong> by submitting updates on <a href="https://github.com/coralproject/experiment-playground">GitHub</a>.</li>' +
+      '<li style={ styles.playgroundBullet }><strong>Share your thoughts</strong> on our <a href="https://coralproject.net/contribute.html#other-ideas-and-bug-reports">feedback form</a>.</li>' +
+      '</ul>' + 
+      '<br/>' +
+      '<em>Images from <a href="http://www.istockphoto.com" target="_blank">iStock</a> and <a href="https://www.flickr.com/photos/12836528@N00/" target="_blank">Kevin Dooley</a></em>'
   }
 };
 
