@@ -25,7 +25,7 @@ class HeaderNav extends Component {
                   <a href="#" onClick={this.onAboutClick.bind(this)}>About</a>
                   <a href="#"style={styles.share}>Share</a>                  
                   <a href={'https://www.facebook.com/sharer/sharer.php?u=' + window.location} style={styles.navLink}><img style={styles.shareIcon} src="/img/facebook.png"/></a>
-                  <a href={'https://twitter.com/home?status=Think%20you%20could%20build%20a%20better%20comment%20system?%20Try%20it%20out%20at%20' + encodeURIComponent(window.location)} style={styles.navLink}><img style={styles.shareIcon} src="/img/twitter.png"/></a>
+                  <a href={'https://twitter.com/home?status=Check%20out%20my%20comment%20box%20settings%20and%20build%20your%20own%20via%20%40coralproject' + encodeURIComponent(window.location)} style={styles.navLink}><img style={styles.shareIcon} src="/img/twitter.png"/></a>
                 </Navigation>
             </Header>
         </Layout>;

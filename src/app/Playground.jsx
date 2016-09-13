@@ -25,7 +25,7 @@ class Playground extends React.Component {
   render() {
 
     return (
-      <DocumentTitle title="Coral Playground">
+      <DocumentTitle title="The Coral Project - Comments Lab">
         <div>
 
           <div style={styles.playgroundContainer}>
