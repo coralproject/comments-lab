@@ -11,14 +11,18 @@ let newConfig = [
     propTypes:['content'],
     component:'DefaultComment',
     order: 0,
-    itemType:'comment'
+    itemPath:[
+      {
+        type:'comment',
+        id:'id'
+      }
+    ]
   },
   {
     container: 'Author',
     propTypes: ['realName','anonymous'],
     component: 'DefaultAuthor',
     order: 10,
-    itemType: 'user',
     itemPath: [
       {
         type:'comment',
@@ -32,18 +36,50 @@ let newConfig = [
   },
   {
     container:'Stream',
+    propTypes:['comments'],
+    iterateOver:'comments',
     mapChildren: true,
     order:0,
-    itemType:'stream',
     itemPath:[
       {
         type:'stream',
         id:'id'
-      },
-      {
-        type:'comment',
-        id:'comments'
       }
+    ]
+  },
+  {
+    container: 'UsersWhoLikeContainer',
+    proptypes: ['like_user','user_id', 'user_name'],
+    iterateOver: ['like_user'],
+    component: 'UsersWhoLike',
+    order:10,
+    itemPath:[
+      [
+        {
+          type: 'comment',
+          id:'id'
+        },
+        {
+          type: 'like',
+          id:'likes',
+          many: true
+        }
+      ],
+      [
+        {
+          type: 'comment',
+          id: 'id'
+        },
+        {
+          type: 'like',
+          id: 'likes',
+          many: true
+        },
+        {
+          type: 'user',
+          id: 'user'
+        }
+      ]
     ]
   }
 ];
