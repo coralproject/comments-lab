@@ -8,9 +8,6 @@ class DefaultAuthor extends Component {
     let displayName = <h4 style={ styles.userName} >
           {this.props.realName || this.props.nickName}
         </h4>;
-      if (this.props.allowAnon && this.props.anonymous) {
-        displayName = <h4 style={styles.anonymous}>Anonymous</h4>;
-      }
     return (
       <div className="author" style={styles.author}>
         {displayName}
@@ -21,9 +18,7 @@ class DefaultAuthor extends Component {
 
 DefaultAuthor.propTypes = {
   realName:PropTypes.string,
-  nickName:PropTypes.string,
-  allowAnon: PropTypes.bool,
-  anonymous: PropTypes.bool
+  nickName:PropTypes.string
 };
 
 export default DefaultAuthor;

@@ -13,9 +13,9 @@ class ProfileBio extends Component {
 
   static propTypes = {
     nickName:PropTypes.string.isRequired,
-    membershipAge: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    education: PropTypes.string.isRequired,
+    membershipAge: PropTypes.string,
+    location: PropTypes.string,
+    education: PropTypes.string,
     dispatch: PropTypes.func.isRequired
   }
 
@@ -29,11 +29,18 @@ class ProfileBio extends Component {
     const styles = this.props.styles || defaultStyle;
     return <Cell col={6} style={styles.profileName}>
       <strong>@{this.props.nickName}</strong>
-      <p style={styles.userInfo}>
-        Member for: {this.props.membershipAge}<br/>
-        Location: {this.props.location}<br/>
-        Education: {this.props.education}<br/>
-      </p>
+      <div style={styles.userInfo}>
+        {
+          this.props.membershipAge && <div>Member for: {this.props.membershipAge}</div>
+        }
+        {
+          this.props.location && <div>Location: {this.props.location}</div>
+
+        }
+        {
+          this.props.education && <div>Education: {this.props.education}</div>
+        }
+      </div>
       <div
         style={styles.reportLink}
         onClick={this.toggleSnackbar}>
