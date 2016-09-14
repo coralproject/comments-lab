@@ -51,13 +51,6 @@ export default Playground;
 
 const styles = {
   playgroundContainer: {
-    width: '100%',
-    height: '100%',
-    background:'white',
-    [mediaQueries.tablet]: {
-      position: 'relative',
-      height: 'auto',
-      overflowY: 'auto'
-    }
+    background:'white'
   }
 };

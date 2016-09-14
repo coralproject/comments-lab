@@ -136,7 +136,7 @@ const togglerGroups = {
       'stats': {
         label: 'Statistics are ON',
         offLabel: 'Statistics are OFF',
-        description: 'Reputation statistics...',
+        description: 'Display basic data about the commenters',
         status: false,
         topic: 'stats',
         onFunction:addComponent('authors','Statistics',['comments'],20),
@@ -154,7 +154,7 @@ const togglerGroups = {
       'privileges': {
         label: 'Moderation Privileges are ON',
         offLabel: 'Moderation Privileges are OFF',
-        description: 'Many reputation systems allow certain privileges (as moderating others) as you gain reputation.',
+        description: 'Many reputation systems allow certain privileges (such as moderating others) as you gain reputation.',
         status: false,
         topic: 'moderation',
         pulseTarget: 'commentTools',
@@ -243,7 +243,7 @@ const togglerGroups = {
       'mentions': {
         label: 'Mentions are ON',
         offLabel: 'Mentions are OFF',
-        description: 'Mentions are often used as...',
+        description: 'Inform users when they\'re mentioned in a comment, and highlight in the text.',
         status: false,
         topic: 'mentions',
         onFunction:addComponent('stream','MentionsFilter',['comments','stream']),
@@ -252,7 +252,7 @@ const togglerGroups = {
       'following': {
         label: 'Following is ON',
         offLabel: 'Following is OFF',
-        description: 'Allows following users and getting notified of new posts.',
+        description: 'Allow following of other users, separating their comments into another tab.',
         status: false,
         topic: 'following',
         onFunction:[
