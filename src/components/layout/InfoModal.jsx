@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Dialog, DialogTitle, DialogContent, DialogActions, Button} from 'react-mdl';
 import { connect } from 'react-redux';
 import {setTopic} from 'playground/PlaygroundActions';
+import { mediaQueries } from '../../playgroundSettings';
 
 @connect(
   (state) => {
@@ -28,10 +29,27 @@ class InfoModal extends Component {
   render() {
     let dialog = null;
     const styles = this.props.styles || defaultStyles;
-    if(this.props.modalTopic && this.props.topics[this.props.modalTopic]) {
-      dialog = <Dialog open={this.props.modalTopic} style={styles.dialog}>
-        <DialogTitle>{ this.props.topics[this.props.modalTopic].title}</DialogTitle>
-        <DialogContent style={styles.dialogContent} dangerouslySetInnerHTML={ {__html:this.props.topics[this.props.modalTopic].description }}/>
+    const topic =this.props.topics[this.props.modalTopic]
+    if(topic) {
+      dialog = <Dialog 
+        open={this.props.modalTopic}
+        style={styles.dialog}
+        onCancel={this.handleCloseDialog}>
+        <DialogTitle style={styles.title}>{ topic.title}</DialogTitle>
+        <DialogContent style={styles.dialogContent} dangerouslySetInnerHTML={ {__html:topic.description }}/>
+        {
+          topic.links &&
+            <DialogContent className='additionalReading'>
+              <h3>Additional Reading</h3>
+              <ul style={styles.links}>
+              {
+                topic.links.map((link) => 
+                <li style={styles.link}><a href={link.href} target="_blank">{link.title}</a></li>
+                )              
+              }
+              </ul>
+              </DialogContent>
+        }
         <DialogActions>
           <Button type='button' onClick={this.handleCloseDialog.bind(this)}>Got it!</Button>
         </DialogActions>
@@ -45,10 +63,24 @@ export default InfoModal;
 
 const defaultStyles = {
   dialog:{
-    width:600
+    width:600,
+    [mediaQueries.tablet]: {
+      width:'100%'
+    }
   },
   dialogContent:{
     fontSize:14,
     lineHeight:1.5
+  },
+  title:{
+    fontSize:34
+  },
+  links: {
+    marginTop: 10,
+    marginLeft: 10,
+    fontSize: 14
+  },
+  link: {
+    marginTop:5
   }
 };

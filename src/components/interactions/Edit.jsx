@@ -28,6 +28,7 @@ class Edit extends Component {
   onSaveClick() {
     this.props.dispatch(updateItem(this.props.id, 'comments', 'content', this.state.content));
     this.setState({showEdit:false});
+    this.props.dispatch(updateItem(this.props.id, 'comments', 'edited', true));
   }
 
   render() {
@@ -41,7 +42,7 @@ class Edit extends Component {
       style={styles.editModal}
       className="editDialog"
       open={this.state.showEdit}>
-      <DialogTitle className="editDialogTitle">Edit Comment</DialogTitle>
+      <DialogTitle className="editDialogTitle" style={styles.editDialogTitle}>Edit Comment</DialogTitle>
       <DialogContent>
         <Textfield
           onChange={(e) => {
@@ -67,6 +68,9 @@ const defaultStyles = {
   editIcon:{
     cursor:'pointer',
     fontSize:18
+  },
+  editDialogTitle:{
+    fontSize:28
   },
   editModal:{
     width:'50%'

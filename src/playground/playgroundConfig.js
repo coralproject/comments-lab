@@ -73,6 +73,11 @@ let config = {
       propTypes:['stream','comments'],
       component:'CommentStream',
       order:0
+    },
+    {
+      propTypes:['stream','comments'],
+      component:'TrollFilter',
+      order:10
     }
   ],
   streamTabs:[
@@ -80,6 +85,13 @@ let config = {
       component:'AllTab',
       propTypes:['activeTab'],
       order:0  
+    }
+  ],
+  flag:[
+    {
+      propTypes:['id', 'flagged'],
+      component:'DefaultFlag',
+      order:0
     }
   ],
   interactions:[],

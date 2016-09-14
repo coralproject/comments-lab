@@ -1,9 +1,14 @@
 import React, {Component, PropTypes} from 'react';
-import ReactDOMServer from 'react-dom/server'
+import ReactDOMServer from 'react-dom/server';
 import ReactEmoji from 'react-emoji';
 import {updateItem} from '../../playground/PlaygroundActions';
 
 class EmojiFilter extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {originalContent:null};
+  }
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -11,6 +16,9 @@ class EmojiFilter extends Component {
   }
 
   filterProps(props) {
+    if (!props.content) {
+      return;
+    }
     let emojiArray = ReactEmoji.emojify(props.content);
     // After running emojify, we get an array of strings (which may contain HTML)
     // and objects holding the Emojis

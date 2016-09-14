@@ -5,6 +5,9 @@ import UpDownVoteOrderFilter from './UpDownVoteOrderFilter';
 import MentionsFilter from './MentionsFilter';
 import FollowFilter from './FollowFilter';
 import CommentCount from './CommentCount';
+import TrollFilter from './TrollFilter';
+import ReplyFilter from './ReplyFilter';
+import AnonymousFilter from './AnonymousFilter';
 
 export default {
   CommentStream,
@@ -13,5 +16,8 @@ export default {
   UpDownVoteOrderFilter,
   MentionsFilter,
   FollowFilter,
-  CommentCount
+  CommentCount,
+  TrollFilter,
+  ReplyFilter,
+  AnonymousFilter
 };

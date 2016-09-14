@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Layout, Header, Navigation} from 'react-mdl';
+import {Layout, Header, Navigation, Drawer} from 'react-mdl';
 import {setTopic} from 'playground/PlaygroundActions';
 import { connect } from 'react-redux';
 @connect(state => state)
@@ -14,31 +14,39 @@ class HeaderNav extends Component {
   render() {
     const styles = this.props.styles || defaultStyles;
 
-    return <Layout fixedHeader style={styles.headerLayout}>
-            <Header title={
+    return <div style={styles.headerPadding}>
+        <Layout fixedHeader style={styles.headerLayout}>
+            <Header 
+              title={
               <span>
                 <img style={styles.logo} src="img/logo_white.png"/>
-                <strong>Coral Playground</strong>
+                <strong><a href="https://coralproject.net" target="_blank" style={styles.logoLink}>The Coral Project</a></strong>
               </span>
             } style={styles.header}>
                 <Navigation>
                   <a href="#" onClick={this.onAboutClick.bind(this)}>About</a>
-                  <a href="#"style={styles.share}>Share</a>                  
+                  <a href="#" >Share</a>
                   <a href={'https://www.facebook.com/sharer/sharer.php?u=' + window.location} style={styles.navLink}><img style={styles.shareIcon} src="/img/facebook.png"/></a>
-                  <a href={'https://twitter.com/home?status=Think%20you%20could%20build%20a%20better%20comment%20system?%20Try%20it%20out%20at%20' + encodeURIComponent(window.location)} style={styles.navLink}><img style={styles.shareIcon} src="/img/twitter.png"/></a>
+                  <a href={'https://twitter.com/home?status=Check%20out%20my%20comment%20box%20settings%20and%20build%20your%20own%20via%20%40coralproject' + encodeURIComponent(window.location)} style={styles.navLink}><img style={styles.shareIcon} src="/img/twitter.png"/></a>
                 </Navigation>
             </Header>
-        </Layout>;
+            <Drawer title="The Coral Project">
+              <Navigation>
+                  <a href="#" onClick={this.onAboutClick.bind(this)}>About</a>
+                  <a href="https://coralproject.net/contribute.html#other-ideas-and-bug-reports" target="_blank">Send us Feedback</a>
+                  <a href={'https://www.facebook.com/sharer/sharer.php?u=' + window.location}>Share on Facebook</a>
+                  <a href={'https://twitter.com/home?status=Check%20out%20my%20comment%20box%20settings%20and%20build%20your%20own%20via%20%40coralproject' + encodeURIComponent(window.location)}>Share on Twitter</a>
+                  <a href='https://coralproject.net' target='_blank'>Coral Project Homepage</a>
+              </Navigation>
+          </Drawer>
+        </Layout>
+        </div>;
   }
 }
 
 export default HeaderNav;
 
 const defaultStyles = {
-  headerLayout: {
-    height: 64,
-    position:'relative'
-  },
   header: {
     background: 'rgba(247,114,96,1)'
   },
@@ -60,5 +68,12 @@ const defaultStyles = {
     height:20,
     marginRight: 10,
     verticalAlign: 'bottom'
+  },
+  logoLink: {
+    color: '#fff',
+    textDecoration: 'none'
+  },
+  headerPadding:{
+    height:70
   }
 };

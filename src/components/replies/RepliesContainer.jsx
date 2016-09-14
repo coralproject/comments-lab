@@ -34,13 +34,11 @@ class RepliesContainer extends Component {
 
   static propTypes = {
     id: PropTypes.string.isRequired,
-    replyIndex: PropTypes.array.isRequired
   }
 
   getItem() {
     return {
       id: this.props.id,
-      replyIndex: this.props.replyIndex,
       comments: this.props.comments
     };
   }

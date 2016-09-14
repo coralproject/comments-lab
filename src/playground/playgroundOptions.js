@@ -1,4 +1,4 @@
-import {addComponent, removeComponent, updateComponent} from './PlaygroundActions';
+import {addComponent, removeComponent, upsertComponent} from './PlaygroundActions';
 
 const togglerGroups = {
   'content': {
@@ -9,7 +9,7 @@ const togglerGroups = {
         offLabel: 'Rich content is OFF',
         description: 'Using bold or italic typefaces, possibly adding images.',
         status: false,
-        topic: 'rich_content'
+        topic: 'richcontent'
       },
       'emoji': {
         label: 'Emojis are ON',
@@ -17,7 +17,7 @@ const togglerGroups = {
         description: 'Emojis and other types of emoticons are widely used to convey emotion.',
         status: false,
         topic: 'emoji',
-        onFunction:addComponent('comments','EmojiFilter',['id','content']),
+        onFunction:addComponent('comments','EmojiFilter',['id','content'], -100),
         offFunction:removeComponent('comments','EmojiFilter')
       },
       'editing': {
@@ -26,7 +26,7 @@ const togglerGroups = {
         description: 'Comment editing can be helpful to correct typos, can be abused. You can only edit comments that you post.',
         status: false,
         topic: 'editing',
-        onFunction:addComponent('interactions','Edit',['id','content', 'user']),
+        onFunction:[addComponent('interactions','Edit',['id','content', 'user']), addComponent('comments', 'Edited', ['edited'], -9)],
         offFunction:removeComponent('interactions','Edit')
       }
     }
@@ -69,7 +69,7 @@ const togglerGroups = {
         offLabel: 'Staff Picks is OFF',
         description: 'Shows a tab separating staff picks from other comments.',
         status: false,
-      topic: 'staffpicks',
+        topic: 'staffpicks',
         onFunction:addComponent('streamTabs','StaffTab',null,10),
         offFunction:[removeComponent('streamTabs','StaffTab'),removeComponent('stream','StaffFilter')]
       },
@@ -82,6 +82,16 @@ const togglerGroups = {
         pulseTarget: 'commentName',
         onFunction:[addComponent('commentMenu','Block',['id','user'],0)],
         offFunction:[removeComponent('commentMenu','Block'), removeComponent('stream','BlockFilter')]
+      },
+      'flag': {
+        label: 'Detailed Flags is ON',
+        offLabel: 'Detailed Flags is OFF',
+        description: 'When a user flags a comment they will be asked to provide information about why they have flagged it.',
+        status: false,
+        topic: 'flags',
+        onFunction:[addComponent('flag','DetailFlag',['id','flagged']), removeComponent('flag','DefaultFlag')],
+        offFunction:[removeComponent('flag','DetailFlag'),addComponent('flag','DefaultFlag',['id','flagged'])]
+
       }
     }
   },
@@ -95,8 +105,8 @@ const togglerGroups = {
         status: false,
         topic: 'anonymity',
         pulseTarget: 'commentName',
-        onFunction: updateComponent('authors','DefaultAuthor',null,null,{allowAnon:true}),
-        offFunction: updateComponent('authors','DefaultAuthor',null,null,{allowAnon:false})
+        onFunction: addComponent('stream','AnonymousFilter',['comments','users','stream']),
+        offFunction: removeComponent('stream','AnonymousFilter')
       },
       'pseudonyms': {
         label: 'Pseudonyms are ON',
@@ -105,15 +115,15 @@ const togglerGroups = {
         status: false,
         topic: 'pseudonyms',
         pulseTarget: 'commentName',
-        onFunction: updateComponent('authors','DefaultAuthor',['nickName','anonymous']),
-        offFunction: updateComponent('authors','DefaultAuthor',['realName','anonymous'])
+        onFunction: upsertComponent('authors','DefaultAuthor',['nickName','anonymous']),
+        offFunction: upsertComponent('authors','DefaultAuthor',['realName','anonymous'])
       },
       'public_profile': {
         label: 'Public Profile is ON',
         offLabel: 'Public Profile is OFF',
         description: 'Visitors are able click an author\'s name to see a public profile.',
         status: false,
-        topic: 'public_profile',
+        topic: 'publicprofile',
         pulseTarget: 'commentName',
         onFunction:[addComponent('authorProfile','BigProfilePicture',['id'],-10),addComponent('authorProfile','ProfileBio',['nickName','membershipAge','location','education'],0)],
         offFunction:[removeComponent('authorProfile','BigProfilePicture'),removeComponent('authorProfile','ProfileBio')]
@@ -126,7 +136,7 @@ const togglerGroups = {
       'stats': {
         label: 'Statistics are ON',
         offLabel: 'Statistics are OFF',
-        description: 'Reputation statistics...',
+        description: 'Display basic data about the commenters',
         status: false,
         topic: 'stats',
         onFunction:addComponent('authors','Statistics',['comments'],20),
@@ -144,9 +154,9 @@ const togglerGroups = {
       'privileges': {
         label: 'Moderation Privileges are ON',
         offLabel: 'Moderation Privileges are OFF',
-        description: 'Many reputation systems allow certain privileges (as moderating others) as you gain reputation.',
+        description: 'Many reputation systems allow certain privileges (such as moderating others) as you gain reputation.',
         status: false,
-        topic: 'privileges',
+        topic: 'moderation',
         pulseTarget: 'commentTools',
         onFunction:[addComponent('commentMenu','Warn',[],10), addComponent('commentMenu','Ban',[],20)],
         offFunction:[removeComponent('commentMenu','Warn'),removeComponent('commentMenu','Ban')]
@@ -206,15 +216,17 @@ const togglerGroups = {
         description: 'Allows nested replies on comments.',
         status: false,
         topic: 'replies',
-        onFunction:addComponent('replies','Replies',['id', 'replyIndex','comments']),
-        offFunction:removeComponent('replies','Replies')
+        onFunction:[addComponent('replies','Replies',['id', 'replyIndex','comments'],0,{showTrolls:true}),addComponent('stream','ReplyFilter',['stream','comments'])],
+        offFunction:[removeComponent('replies','Replies'), removeComponent('stream','ReplyFilter')]
       },
       'trolls': {
         label: 'Trolls are ON',
         offLabel: 'Trolls are OFF',
         description: 'Show sample troll-like content in the stream.',
         status: false,
-        topic: 'trolls'
+        topic: 'trolls',
+        onFunction:removeComponent('stream','TrollFilter'),
+        offFunction:addComponent('stream','TrollFilter',['stream','comments'])
       }
     }
   },
@@ -231,7 +243,7 @@ const togglerGroups = {
       'mentions': {
         label: 'Mentions are ON',
         offLabel: 'Mentions are OFF',
-        description: 'Mentions are often used as...',
+        description: 'Inform users when they\'re mentioned in a comment, and highlight in the text.',
         status: false,
         topic: 'mentions',
         onFunction:addComponent('stream','MentionsFilter',['comments','stream']),
@@ -240,7 +252,7 @@ const togglerGroups = {
       'following': {
         label: 'Following is ON',
         offLabel: 'Following is OFF',
-        description: 'Allows following users and getting notified of new posts.',
+        description: 'Allow following of other users, separating their comments into another tab.',
         status: false,
         topic: 'following',
         onFunction:[

@@ -19,8 +19,13 @@ const initialState = {
     ...stream
   },
   config:config,
+<<<<<<< HEAD:src/playground/PlayGroundReducer.js
+=======
+  stream:['a','b','c','d','e','f','g','h','i','j'],
+>>>>>>> master:src/playground/PlaygroundReducer.js
   showWelcome:true,
-  numChars:100
+  numChars:100,
+  snackbar:{}
 };
 
 initialState.togglerGroups = togglerGroups;
@@ -63,7 +68,7 @@ const removeComponent = (action, state) => {
   return Object.assign({}, state, {config:newConfig});
 };
 
-const updateComponent = (action, state) => {
+const upsertComponent = (action, state) => {
   if(!state.config[action.itemType]) {
     return state;
   }
@@ -93,6 +98,37 @@ const updateComponent = (action, state) => {
   }
   if (!exists) {
     newItemConfig.push(update(action, {component:action.component}));
+  }
+  let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
+  return Object.assign({}, state, {config:newConfig});
+};
+
+const updateComponent = (action, state) => {
+  if(!state.config[action.itemType]) {
+    return state;
+  }
+  let itemConfig = state.config[action.itemType];
+  let newItemConfig = itemConfig.slice();
+  let exists = false;
+  const update = (action, component) => {
+    let newComponentConfig = {};
+    if (action.propTypes) {
+      newComponentConfig = Object.assign({},component,{propTypes:action.propTypes});
+    }
+    if (action.configProps) {
+      let newConfigProps = Object.assign({}, component.configProps, action.configProps);
+      newComponentConfig = Object.assign({}, component,newComponentConfig, {configProps:newConfigProps});
+    }
+    if (action.order !== undefined && action.order !== null) {
+      newComponentConfig = Object.assign({}, component, newComponentConfig, {order:action.order});     
+    }
+    return newComponentConfig;
+  };
+  for(let i=0; i < itemConfig.length; i++) {
+    if (itemConfig[i].component === action.component) {
+      newItemConfig[i] = update(action, itemConfig[i]);
+      break;
+    }
   }
   let newConfig = Object.assign({},state.config, {[action.itemType]:newItemConfig});
   return Object.assign({}, state, {config:newConfig});
@@ -157,6 +193,8 @@ function sendComment(action, state) {
 
 function updateItem(action, state) {
   if (!state.items[action.itemType] || !state.items[action.itemType][action.id]) {
+    console.log('Item not found in updateItem');
+    console.log(action);
     return state;
   }
   let newItem = Object.assign({}, state.items[action.itemType][action.id],{[action.propType]:action.propVal});
@@ -167,7 +205,6 @@ function updateItem(action, state) {
 
 
 const playground = (state = initialState, action) => {
-
   switch (action.type) {
   case types.ADD_COMPONENT:
     return addComponent(action, state);
@@ -175,6 +212,8 @@ const playground = (state = initialState, action) => {
     return removeComponent(action, state);
   case types.UPDATE_COMPONENT:
     return updateComponent(action, state);
+  case types.UPSERT_COMPONENT:
+    return upsertComponent(action, state);
   case types.SET_TOGGLER:
     return setToggler(action, state);
   case types.SET_TOPIC:
@@ -197,6 +236,8 @@ const playground = (state = initialState, action) => {
     return Object.assign({}, state, {showWelcome:!state.showWelcome});
   case types.SET_NUM_CHARS:
     return Object.assign({}, state, {numChars:action.numChars});
+  case types.SET_SNACKBAR:
+    return Object.assign({}, state, {snackbar:action.snackbar});
   default:
     console.log('Not a Playground action:', action.type);
     return state;

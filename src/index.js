@@ -69,8 +69,7 @@ class Root extends React.Component {
       <div>
         <Provider store={store}>
           <Router history={browserHistory} onUpdate={ this.logPageView }>
-            <Redirect from="/" to="playground" />
-            <Route path="playground" component={Playground}/>
+            <Route path="/" component={Playground}/>
             <Route path="*" component={NoMatch} />
             {/*<Route path="explore" component={DataExplorer} />*/}
           </Router>

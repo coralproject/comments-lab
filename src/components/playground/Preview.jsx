@@ -30,7 +30,7 @@ class Preview extends React.Component {
   render() {
     var guidelines = this.props.togglerGroups['community'].togglers['guidelines'].status ?
       <div style={styles.guidelines}>
-        We aim to create a safe and sustainable environment for discussion.
+        We aim to create a safe and sustainable environment for discussions about technology news.
         <br/>
         <br/>
         That means:
@@ -38,15 +38,17 @@ class Preview extends React.Component {
           <li>Be supportive of each other</li>
           <li>Criticize ideas, not people</li>
           <li>Flag bad behavior</li>
-          <li>Follow the rules</li>
         </ul>
 
         <br/>
-        <p>The best contributions will be featured on the site and in our newsletter.</p>
+        <p>If we like your comment, we might feature it within a future article.</p>
         <a href="#">Click here to read our community guidelines and harassment policy.</a>
       </div>
       :
       null;
+
+    const hideComments = this.props.togglerGroups.layout.togglers.hiddenbydefault.status &&
+            !this.state.commentsAreVisible;
 
     return (
       <div style={ styles.preview } id="preview">
@@ -60,18 +62,17 @@ class Preview extends React.Component {
         </div>
 
         {
-          !this.props.togglerGroups.layout.togglers.hiddenbydefault.status ||
-            this.state.commentsAreVisible ?
 
-            <div style={ styles.sandBox }>
+            <div style={ [styles.sandBox, (hideComments ? {display:'none'}:{})] }>
               {guidelines}
               <CommentBox />
               <StreamTabs />
               <Stream />
             </div>
 
-          :
-
+        }
+        {
+            hideComments &&
             <Button style={styles.showComments} onClick={ this.onClickToReadClick.bind(this) }>
                 <Icon name="comment" /> Show Comments.
             </Button>
@@ -126,7 +127,11 @@ var styles = {
   hideComments: {
     position: 'absolute',
     right: '0px',
-    top: '0px'
+    top: '0px',
+    [mediaQueries.mobile]:{
+      position:'static',
+      float:'right'
+    }
   },
   guidelines: {
     width:'90%',

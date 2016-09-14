@@ -15,7 +15,7 @@ import components from './';
 @connect(
   (state) => {
     return {
-      config: state.playground.config.comments,
+      config: state.playground.config.flag,
       comments: state.playground.items.comments
     };
   },
@@ -30,7 +30,18 @@ import components from './';
 * Iterate through each component in config
 * and pass it the appropriate props from items
 */
-class CommentContainer extends Component {
+class FlagContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.mapComponentFromConfig = this.mapComponentFromConfig.bind(this);
+    this.getItem = this.getItem.bind(this);
+  }
+
+  static propTypes = {
+    id:PropTypes.string.isRequired,
+    config:PropTypes.array.isRequired,
+    comments: PropTypes.object.isRequired
+  }
 
   getItem() {
     return this.props.comments[this.props.id];
@@ -43,11 +54,10 @@ class CommentContainer extends Component {
       config.propTypes.reduce((props, propType) => {
         props[propType] = this.getItem()[propType];
         return props;
-      },props);    
+      },props);   
     }
     return <Component {...props} dispatch={this.props.dispatch} key={config.component}/>;
   }
-
 
   sortConfig(a,b) {
     if (a.order > b.order) {
@@ -60,17 +70,21 @@ class CommentContainer extends Component {
   }
 
   render() {
+    const styles = this.props.styles || defaultStyles;
     const sortedConfig = this.props.config.sort(this.sortConfig);
-    return <div>
-    {
-      sortedConfig.map(this.mapComponentFromConfig.bind(this))
-    }
+    return <div className="flag" style={styles.flag} >
+      {
+        sortedConfig.map(this.mapComponentFromConfig)
+      }
     </div>;
   }
 }
 
-CommentContainer.propTypes = {
-  id:PropTypes.string.isRequired
-};
+export default FlagContainer;
 
-export default CommentContainer;
+const defaultStyles = {
+  flag: {
+    float:'right',
+    display:'inline-block'
+  }
+}

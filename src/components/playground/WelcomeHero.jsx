@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import { connect } from 'react-redux';
-import {Card, CardText, CardTitle, Button} from 'react-mdl';
+import {Card, CardText, CardTitle, Button, Icon} from 'react-mdl';
 import {toggleWelcomeHero} from 'playground/PlaygroundActions';
 
 @connect(
@@ -25,16 +25,15 @@ class WelcomeHero extends Component {
     let styles = this.props.styles || defaultStyles;
     let welcome = this.props.show ?
       <Card className='heroCard' shadow={0} style={styles.heroCard}>
-        <CardTitle className='heroCardTitle' style={styles.heroCardTitle}>Welcome to the Coral Playground</CardTitle>
+        <CardTitle className='heroCardTitle' style={styles.heroCardTitle}>Welcome to the Comments Lab</CardTitle>
         <CardText className='heroCardText' style={styles.heroCardText}>
           <div style={ styles.playgroundDescription }>
-            This playground showcases the various elements you would usually find in commentary sections all over the web.
-            <br />
+            This is a place to explore some of the different possible features of an online comment space. It will continue to grow and change as <a href="https://coralproject.net" target="_blank">The Coral Project</a> continues its work.
+            <br /><br />
             <ul style={ styles.playgroundBullets }>
-              <li style={ styles.playgroundBullet }><strong>Use the controls</strong> to tweak the UI and explore how it affects the comment box and the stream. You can also try the features on the comment box and the stream itself.</li>
-              <li style={ styles.playgroundBullet }><strong>Learn more about online comments</strong>, the issues they are facing, and the purpose and history of the features we see everyday on comment streams,
-              through the expandable panel below.</li>
-            <li style={ styles.playgroundBullet }><strong>Share your thoughts</strong> on the problems addressed by each solution.</li>
+              <li style={ styles.playgroundBullet }><strong>Click on the names</strong> to reveal features. Switch them on and off to see how the comment box changes. Share your favorite comment settings by sharing the URL.</li>
+              <li style={ styles.playgroundBullet }><strong>Click on the <Icon name="info_outline" style={styles.infoIcon}/> buttons</strong> to learn about why and how you might use each feature.</li>
+            <li style={ styles.playgroundBullet }><strong>Add features</strong> by submitting updates to our <a href="https://github.com/coralproject/experiment-playground" target="_blank">GitHub</a>.</li>
             </ul>
           </div>
           <Button
@@ -63,9 +62,16 @@ const defaultStyles = {
   },
   playgroundBullet: {
     marginLeft:20,
-    marginTop:5
+    marginTop:5,
+    marginBottom:10
   },
   heroButton: {
     float:'right'
+  },
+  infoIcon: {
+    fontSize:16,
+    opacity:.75,
+    marginLeft:5,
+    cursor: 'default'
   }
 };
