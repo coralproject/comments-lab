@@ -16,6 +16,9 @@ class EmojiFilter extends Component {
   }
 
   filterProps(props) {
+    if (!props.content) {
+      return;
+    }
     let emojiArray = ReactEmoji.emojify(props.content);
     // After running emojify, we get an array of strings (which may contain HTML)
     // and objects holding the Emojis

@@ -62,7 +62,8 @@ const defaultStyles = {
   },
   playgroundBullet: {
     marginLeft:20,
-    marginTop:5
+    marginTop:5,
+    marginBottom:10
   },
   heroButton: {
     float:'right'

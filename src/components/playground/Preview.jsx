@@ -128,7 +128,11 @@ var styles = {
   hideComments: {
     position: 'absolute',
     right: '0px',
-    top: '0px'
+    top: '0px',
+    [mediaQueries.mobile]:{
+      position:'static',
+      float:'right'
+    }
   },
   guidelines: {
     width:'90%',
