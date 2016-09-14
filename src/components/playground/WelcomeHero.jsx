@@ -57,7 +57,7 @@ const defaultStyles = {
   heroCard: {
     margin: 20,
     padding: 10,
-    width: 'fit-content',
+    width: '90%',
     minHeight: 0
   },
   playgroundBullet: {

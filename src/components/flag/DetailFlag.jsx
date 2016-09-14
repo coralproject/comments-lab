@@ -17,6 +17,12 @@ class DetailFlag extends Component {
     }
   }
 
+  componentDidMount() {
+    // Handles dialog display in Firefox and Safari
+    dialogPolyfill.registerDialog(document.querySelector('#detailFlag'+this.props.id));
+  }
+
+
   onReportClick() {
     this.props.dispatch(setSnackbar({
       text:'Thank you for reporting this comment. Our moderation team has been notified and will review it shortly.'
@@ -41,6 +47,7 @@ class DetailFlag extends Component {
         style={this.props.flagged ? styles.flagged : styles.unflagged}
         onClick={this.toggleDialog} />
       <Dialog
+        id={'detailFlag'+this.props.id}
         open={this.state.showDialog}
         onCancel={this.toggleDialog}
         style={styles.dialog}>

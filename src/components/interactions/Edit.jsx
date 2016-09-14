@@ -20,6 +20,11 @@ class Edit extends Component {
     dispatch: PropTypes.func.isRequired
   }
 
+  componentDidMount() {
+    // Handles dialog display in Firefox and Safari
+    dialogPolyfill.registerDialog(document.querySelector('#editDialog'+this.props.id));
+  }
+
   toggleEdit(e) {
     e.preventDefault();
     this.setState({showEdit:!this.state.showEdit});
@@ -40,7 +45,7 @@ class Edit extends Component {
     }
     <Dialog
       style={styles.editModal}
-      className="editDialog"
+      id={'editDialog'+this.props.id}
       open={this.state.showEdit}>
       <DialogTitle className="editDialogTitle" style={styles.editDialogTitle}>Edit Comment</DialogTitle>
       <DialogContent>
