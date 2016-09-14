@@ -91,7 +91,6 @@ const comments = {
     upvotes: 22,
     downvotes: 0,
     upvoted: false,
-    staffPick: true,
     reply:true,
     replies:['i'],
     pubdate: 25000000
@@ -119,7 +118,6 @@ const comments = {
     upvotes: 22,
     downvotes: 0,
     upvoted: false,
-    staffPick: true,
     reply: true,
     pubdate: 25000000
   },
