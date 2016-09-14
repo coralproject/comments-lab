@@ -28,8 +28,8 @@ class WelcomeHero extends Component {
         <CardTitle className='heroCardTitle' style={styles.heroCardTitle}>Welcome to the Comments Lab</CardTitle>
         <CardText className='heroCardText' style={styles.heroCardText}>
           <div style={ styles.playgroundDescription }>
-            This is a place to explore some of the different possible features of an online comment space. It will continue to grow and change as The Coral Project continues its work.
-            <br />
+            This is a place to explore some of the different possible features of an online comment space. It will continue to grow and change as <a href="https://coralproject.net" target="_blank">The Coral Project</a> continues its work.
+            <br /><br />
             <ul style={ styles.playgroundBullets }>
               <li style={ styles.playgroundBullet }><strong>Click on the names</strong> to reveal features. Switch them on and off to see how the comment box changes. Share your favorite comment settings by sharing the URL.</li>
               <li style={ styles.playgroundBullet }><strong>Click on the <Icon name="info_outline" style={styles.infoIcon}/> buttons</strong> to learn about why and how you might use each feature.</li>

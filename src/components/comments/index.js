@@ -4,6 +4,7 @@ import CommentDivider from './CommentDivider';
 import CommentMenu from 'components/commentMenu/CommentMenuContainer';
 import PubDate from './PubDate';
 import Permalink from './Permalink';
+import Edited from './Edited';
 
 export default {
   DefaultComment,
@@ -11,5 +12,6 @@ export default {
   CommentDivider,
   CommentMenu,
   PubDate,
-  Permalink
+  Permalink,
+  Edited
 };

@@ -28,6 +28,7 @@ class Edit extends Component {
   onSaveClick() {
     this.props.dispatch(updateItem(this.props.id, 'comments', 'content', this.state.content));
     this.setState({showEdit:false});
+    this.props.dispatch(updateItem(this.props.id, 'comments', 'edited', true));
   }
 
   render() {

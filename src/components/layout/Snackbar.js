@@ -23,11 +23,12 @@ class Snack extends Component {
   }
   
   render() {
+    let active = this.props.text ? true:false;
     return <div>
       {
         this.props.action ?
         <Snackbar
-          active={this.props.text}
+          active={active}
           onTimeout={()=>this.props.dispatch(setSnackbar({}))}
           onActionClick={this.props.action}
           action={this.props.actionName}>
@@ -35,7 +36,7 @@ class Snack extends Component {
         </Snackbar>
         :
         <Snackbar
-          active={this.props.text}
+          active={active}
           onTimeout={()=>this.props.dispatch(setSnackbar({}))}>
           {this.props.text}
         </Snackbar>     

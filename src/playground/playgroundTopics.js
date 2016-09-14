@@ -358,7 +358,7 @@ const topics = {
   },
   'about': {
     title: 'Welcome to the Comments Lab',
-    description: 'This is a place to explore some of the different possible features of an online comment space. It will continue to grow and change as The Coral Project continues its work.' +
+    description: 'This is a place to explore some of the different possible features of an online comment space. It will continue to grow and change as <a href="https://coralproject.net" target="_blank">The Coral Project</a> continues its work.' +
       '<br /><br />' +
       '<ul style={ styles.playgroundBullets }>' +
         '<li style={ styles.playgroundBullet }><strong>Click on the names</strong> to reveal features. Switch them on and off to see how the comment box changes. Share your favorite comment settings by sharing the URL.</li>' +

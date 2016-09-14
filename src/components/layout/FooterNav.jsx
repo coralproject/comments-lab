@@ -17,9 +17,10 @@ class FooterNav extends Component {
   render() {
     const styles = this.props.styles || defaultStyles;
     return <Footer size="mini" style={styles.footer}>
-        <FooterSection type="left" logo="Coral Playground">
-                  <a href={'https://www.facebook.com/sharer/sharer.php?u=' + window.location} style={styles.navLink}><img style={styles.shareIcon} src="/img/facebook.png"/></a>
-                  <a href={'https://twitter.com/home?status=Think%20you%20could%20build%20a%20better%20comment%20system?%20Try%20it%20out%20at%20' + encodeURIComponent(window.location)} style={styles.navLink}><img style={styles.shareIcon} src="/img/twitter.png"/></a>
+        <FooterSection type="left">
+          <a href='https://coralproject.net' style={styles.titleLink}><strong>The Coral Poject</strong></a>
+          <a href={'https://www.facebook.com/sharer/sharer.php?u=' + window.location} style={styles.navLink}><img style={styles.shareIcon} src="/img/facebook.png"/></a>
+          <a href={'https://twitter.com/home?status=Check%20out%20my%20comment%20box%20settings%20and%20build%20your%20own%20via%20%40coralproject' + encodeURIComponent(window.location)} style={styles.navLink}><img style={styles.shareIcon} src="/img/twitter.png"/></a>
         </FooterSection>
         <FooterSection type="right">
           <FooterLinkList>
@@ -45,5 +46,11 @@ const defaultStyles = {
   navLink:{
     margin:'25px 5px 0px 5px',
     padding:0
+  },
+  titleLink: {
+    position: 'relative',
+    top: -8,
+    color: '#fff',
+    textDecoration: 'none'
   }
 };

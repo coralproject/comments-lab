@@ -18,7 +18,7 @@ class HeaderNav extends Component {
             <Header title={
               <span>
                 <img style={styles.logo} src="img/logo_white.png"/>
-                <strong>Coral Playground</strong>
+                <strong><a href="https://coralproject.net" target="_blank" style={styles.logoLink}>The Coral Project</a></strong>
               </span>
             } style={styles.header}>
                 <Navigation>
@@ -60,5 +60,9 @@ const defaultStyles = {
     height:20,
     marginRight: 10,
     verticalAlign: 'bottom'
+  },
+  logoLink: {
+    color: '#fff',
+    textDecoration: 'none'
   }
 };

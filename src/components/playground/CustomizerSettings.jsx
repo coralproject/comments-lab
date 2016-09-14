@@ -4,7 +4,7 @@ import Radium from 'radium';
 
 import CustomizerToggle from './CustomizerToggle';
 import {togglerFromURL, setTogglerGroup} from '../../playground/PlaygroundActions';
-import {Card, CardText} from 'react-mdl';
+import {Card, CardText, Icon} from 'react-mdl';
 
 import { mediaQueries } from '../../playgroundSettings';
 
@@ -13,6 +13,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 @connect(state => state.playground)
 @Radium
 class CustomizerSettings extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.setURL = this.setURL.bind(this);
+  }
 
   componentWillMount() {
     console.log('Retreiving URL:' + document.location.hash);
@@ -80,6 +85,9 @@ class CustomizerSettings extends React.Component {
                 <div style={styles.cardTitle}
                   onClick={this.onTogglerGroupClick(togglerGroupIndex).bind(this)}>
                   { this.props.togglerGroups[togglerGroupIndex].name }
+                  <Icon
+                    style={ styles.chevronIcon }
+                    name={this.props.selectedTogglerGroup != togglerGroupIndex ? 'chevron_right' : 'expand_more'}/>
                 </div>
                 <ReactCSSTransitionGroup
                   transitionName='togglerGroup'
@@ -97,7 +105,7 @@ class CustomizerSettings extends React.Component {
                               groupIndex={ togglerGroupIndex }
                               togglerIndex={ togglerKey }
                               toggler={ this.props.togglerGroups[togglerGroupIndex].togglers[togglerKey] }
-                              setURL={this.setURL.bind(this)}
+                              setURL={this.setURL}
                               dispatch={this.props.dispatch}
                               key={ togglerKey }
                               topics={this.props.topics}/>
@@ -152,5 +160,9 @@ var styles = {
   },
   line: {
     margin:0
+  },
+  chevronIcon: {
+    float: 'right',
+    fontSize: 22
   }
 };

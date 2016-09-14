@@ -17,7 +17,7 @@ const comments = {
   b:{
     user: '1',
     id:'b',
-    content: 'Sure, Apple makes Bluetooth headphones, but this is about more than that. Apple’s focus for a long time has been on high-quality music. You just can’t get that from 40-year-old technology. :music_notes: :thumbs_up:',
+    content: 'Sure, Apple makes Bluetooth headphones, but this is about more than that. Apple’s focus for a long time has been on high-quality music. You just can’t get that from 40-year-old technology. :musical_note: :+1:',
     likes: 11,
     liked: false,
     reactions: [{name: ':heart:', count: 1}, {name: ':ok_woman:',count: 2}],
@@ -91,7 +91,6 @@ const comments = {
     upvotes: 22,
     downvotes: 0,
     upvoted: false,
-    staffPick: true,
     reply:true,
     replies:['i'],
     pubdate: 25000000
@@ -119,7 +118,6 @@ const comments = {
     upvotes: 22,
     downvotes: 0,
     upvoted: false,
-    staffPick: true,
     reply: true,
     pubdate: 25000000
   },
