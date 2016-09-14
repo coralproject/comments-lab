@@ -105,8 +105,8 @@ const togglerGroups = {
         status: false,
         topic: 'anonymity',
         pulseTarget: 'commentName',
-        onFunction: upsertComponent('authors','DefaultAuthor',null,null,{allowAnon:true}),
-        offFunction: upsertComponent('authors','DefaultAuthor',null,null,{allowAnon:false})
+        onFunction: addComponent('stream','AnonymousFilter',['comments','users','stream']),
+        offFunction: removeComponent('stream','AnonymousFilter')
       },
       'pseudonyms': {
         label: 'Pseudonyms are ON',
