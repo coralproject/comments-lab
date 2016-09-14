@@ -32,13 +32,13 @@ export default {
     upvoteBalance: 42,
     badges: [
       {
-        name: 'Author',
-        icon: 'author',
+        name: '3 Year Commenter',
+        icon: '3_yr',
         color: '#777'
       },
       {
-        name: 'Expert moderator',
-        icon: 'moderator',
+        name: 'Mentor For New Comenters',
+        icon: 'mentor',
         color: '#777'
       }
     ]
@@ -58,8 +58,8 @@ export default {
     upvoteBalance: 22,
     badges: [
       {
-        name: 'Expert moderator',
-        icon: 'moderator',
+        name: '1 Year Commenter',
+        icon: '1_yr',
         color: '#777'
       }
     ]
@@ -77,8 +77,12 @@ export default {
     upvoteBalance: 42,
     badges: [
       {
-        name: 'Expert moderator',
-        icon: 'moderator',
+        name: 'Staff Member',
+        icon: 'staff',
+        color: '#777'
+      }, {
+        name: 'Article Author',
+        icon: 'author',
         color: '#777'
       }
     ]
@@ -94,13 +98,7 @@ export default {
     location: 'Portland, OR',
     education: 'MFA',
     upvoteBalance: 42,
-    badges: [
-      {
-        name: 'Expert moderator',
-        icon: 'moderator',
-        color: '#777'
-      }
-    ]
+    badges: []
   },
   '5': {
     id:'5',
@@ -113,13 +111,7 @@ export default {
     location: 'Austin, TX',
     education: 'B.A. Economics',
     upvoteBalance: 42,
-    badges: [
-      {
-        name: 'Expert moderator',
-        icon: 'moderator',
-        color: '#777'
-      }
-    ]
+    badges: []
   },
   '6': {
     id:'6',
@@ -132,12 +124,6 @@ export default {
     location: 'New York, NY',
     education: 'B.A. Marine Biology',
     upvoteBalance: 42,
-    badges: [
-      {
-        name: 'Expert moderator',
-        icon: 'moderator',
-        color: '#777'
-      }
-    ]
+    badges: []
   }
 };

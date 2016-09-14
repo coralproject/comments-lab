@@ -11,7 +11,7 @@ class Badges extends Component {
   getIcon(name) {
     switch (name) {
     case 'author':
-      return 'assignment_ind';
+      return 'perm_identity';
      case 'favorite':
       return 'star';
     case 'liked':
@@ -20,7 +20,14 @@ class Badges extends Component {
       return 'local_library';
     case 'poweruser':
       return 'flash on';
-
+    case '3_yr':
+      return 'filter_3';
+    case '1_yr':
+      return 'filter_1';
+    case 'mentor':
+      return 'group';
+    case 'staff':
+      return 'verified_user';
     }
   }
 
@@ -49,6 +56,7 @@ const defaultStyles = {
     cursor:'default'
   },
   badgeIcon: {
-    fontSize:18
+    fontSize:18,
+    paddingRight: 5
   }
 };
