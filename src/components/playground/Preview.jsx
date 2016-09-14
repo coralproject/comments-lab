@@ -48,6 +48,9 @@ class Preview extends React.Component {
       :
       null;
 
+    const hideComments = this.props.togglerGroups.layout.togglers.hiddenbydefault.status &&
+            !this.state.commentsAreVisible;
+
     return (
       <div style={ styles.preview } id="preview">
         <div style={ styles.previewBar }>
@@ -60,18 +63,17 @@ class Preview extends React.Component {
         </div>
 
         {
-          !this.props.togglerGroups.layout.togglers.hiddenbydefault.status ||
-            this.state.commentsAreVisible ?
 
-            <div style={ styles.sandBox }>
+            <div style={ [styles.sandBox, (hideComments ? {display:'none'}:{})] }>
               {guidelines}
               <CommentBox />
               <StreamTabs />
               <Stream />
             </div>
 
-          :
-
+        }
+        {
+            hideComments &&
             <Button style={styles.showComments} onClick={ this.onClickToReadClick.bind(this) }>
                 <Icon name="comment" /> Show Comments.
             </Button>
