@@ -17,7 +17,7 @@ const togglerGroups = {
         description: 'Emojis and other types of emoticons are widely used to convey emotion.',
         status: false,
         topic: 'emoji',
-        onFunction:addComponent('comments','EmojiFilter',['id','content']),
+        onFunction:addComponent('comments','EmojiFilter',['id','content'], -100),
         offFunction:removeComponent('comments','EmojiFilter')
       },
       'editing': {
@@ -26,7 +26,7 @@ const togglerGroups = {
         description: 'Comment editing can be helpful to correct typos, can be abused. You can only edit comments that you post.',
         status: false,
         topic: 'editing',
-        onFunction:addComponent('interactions','Edit',['id','content', 'user']),
+        onFunction:[addComponent('interactions','Edit',['id','content', 'user']), addComponent('comments', 'Edited', ['edited'], -9)],
         offFunction:removeComponent('interactions','Edit')
       }
     }
