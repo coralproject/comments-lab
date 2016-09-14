@@ -83,7 +83,7 @@ const comments = {
   },
   g:{
     user: '3',
-    id:'h',
+    id:'g',
     content: "How is your Android at syncing with your Mac?",
     likes: 24,
     liked: false,
@@ -97,7 +97,7 @@ const comments = {
   },
   h:{
     user: '1',
-    id:'g',
+    id:'h',
     content: "Yes! See my comment below. It’s not as stupid as you think.",
     likes: 1,
     liked: false,
@@ -110,7 +110,7 @@ const comments = {
   },
   i:{
     user: '2',
-    id:'h',
+    id:'i',
     content: "It’s great! Very easy. And doesn’t need to use iTunes - which is one of the best things about it :smile:",
     likes: 24,
     liked: false,
