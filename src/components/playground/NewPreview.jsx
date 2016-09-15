@@ -2,148 +2,72 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
 
-import CommentBox from './CommentBox';
-import Stream from '../stream/StreamContainer';
-import StreamTabs from '../streamTabs/StreamTabsContainer';
-
-import { themes, mediaQueries } from '../../playgroundSettings';
-
-import {Card, CardText, Icon, Button} from 'react-mdl';
+import {RootContainer, Container, MapContainer} from 'react-dynamic-containers';
 
 @connect(state => state.playground)
 @Radium
 class Preview extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { commentsAreVisible: this.props.togglerGroups.layout.togglers.hiddenbydefault.status };
-  }
-
-  onClickToReadClick() {
-    this.setState({ commentsAreVisible: true });
-  }
-
-  onHideCommentsClick() {
-    this.setState({ commentsAreVisible: false });
-  }
-
   render() {
-    var guidelines = this.props.togglerGroups['community'].togglers['guidelines'].status ?
-      <div style={styles.guidelines}>
-        We aim to create a safe and sustainable environment for discussion.
-        <br/>
-        <br/>
-        That means:
-        <ul style={styles.communityNorms}>
-          <li>Be supportive of each other</li>
-          <li>Criticize ideas, not people</li>
-          <li>Flag bad behavior</li>
-          <li>Follow the rules</li>
-        </ul>
-
-        <br/>
-        <p>The best contributions will be featured on the site and in our newsletter.</p>
-        <a href="#">Click here to read our community guidelines and harassment policy.</a>
-      </div>
-      :
-      null;
 
     return (
-      <div style={ styles.preview } id="preview">
-        <div style={ styles.previewBar }>
-          {
-            this.props.togglerGroups.layout.togglers.hiddenbydefault.status &&
-            this.state.commentsAreVisible ?
-              <Button style={ styles.hideComments } onClick={ this.onHideCommentsClick.bind(this) }>Hide comments</Button>
-            : null
-          }
-        </div>
-
+        <div>
         {
-          !this.props.togglerGroups.layout.togglers.hiddenbydefault.status ||
-            this.state.commentsAreVisible ?
-
-            <div style={ styles.sandBox }>
-              {guidelines}
-              <Container name='CommentBox' />
-              <Container name='StreamTabs' />
-              <Container name='Stream'>
-                <Container name='Author' />
-                <Container name='Profile' />
-                <Container name='CommentMenu' />
-                <Container name='Comment' />
-                <Container name='Interactions' />
-                <Container name='Replies' replyIndex={[]} />
-                <hr className="commentDivider" style={styles.commentDivider}/>
-              </Container>
-            </div>
-
-          :
-
-            <Button style={styles.showComments} onClick={ this.onClickToReadClick.bind(this) }>
-                <Icon name="comment" /> Show Comments.
-            </Button>
+          /*
+          * RootContainer takes an ID of a root component used to kick off a query
+          * for the view.
+          */
         }
+        <RootContainer type="stream" id={this.props.params.streamId}>
+          {
+            /*
+            * These components are then each passed the id of the stream object.
+            * That id is used as a starting place for graphQL queries for that container.
+            */
+          }
+          <Container name='Guidelines' />
+          <Container name='CommentBox' />
+          {
+            /*
+            * This component has children, which can be rendered in config along with
+            * other components.
+            */
+          }
+          <Container name='Stream'>
+            {
+              /*
+              * MapContainer looks for an array in props (in this case "comments")
+              * and maps its children to that array.
+              * 
+              *  If MapContainer is passed props like so:
+              *  
+              *   this.props === {
+              *     comments:[
+              *         {
+              *           id:1
+              *         },
+              *         {
+              *           id:2
+              *         }
+              *      ]
+              *   }
+              * Then it will render an Author and Comment container with id=1, then with id=2, etc.
+              */
+            }
+            <MapContainer array="comments">
+              {
+                /*
+                * These containers will be passed an ID for a item of type comment.
+                */
+              }
+              <Container name='Author'/>
+              <Container name='Comment' />
+            </MapContainer>
+          </Container>
+        </RootContainer>
       </div>
     );
   }
 }
 
-// same as the @connect decorator above
 export default Preview;
-
-var styles = {
-  preview: {
-    background: 'white',
-    padding: '0px 40px 40px 40px',
-    color: '#3d3d3d',
-    minHeight: '500px',
-    width:'65%',
-    display:'inline-block',
-    overflowY: 'auto',
-    [mediaQueries.tablet]: {
-      'float': 'none',
-      width: '100%',
-      height: 'auto',
-      padding: '20px 20px 120px 20px'
-    }
-  },
-  previewIcon: {
-    marginTop: '-10px',
-    marginRight: '10px'
-  },
-  showComments: {
-    float:'right'
-  },
-  sandBoxIntro: {
-    padding: '20px',
-    color: '#AAA',
-    textAlign: 'center',
-    fontSize: '11pt'
-  },
-  previewBar: {
-    position: 'relative',
-    fontSize: '16pt',
-    paddingBottom: '10px'
-  },
-  previewTitleSpan: {
-    fontFamily: themes.default.fontFamily,
-    fontWeight: '300',
-    fontSize: '24pt'
-  },
-  hideComments: {
-    position: 'absolute',
-    right: '0px',
-    top: '0px'
-  },
-  guidelines: {
-    width:'90%',
-    padding: 10,
-    lineHeight: '1.1',
-    color: '#222',
-    marginBottom: '20px'
-  },
-  communityNorms: {
-    marginLeft:20
-  }
-};
