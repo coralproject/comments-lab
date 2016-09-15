@@ -35,9 +35,10 @@ class InfoModal extends Component {
     let dialog = null;
     const styles = this.props.styles || defaultStyles;
     const topic =this.props.topics[this.props.modalTopic] || {};
+    const open = this.props.modalTopic ? true : false;
     return <Dialog 
-        open={this.props.modalTopic}
-        style={styles.dialog}
+        open={open}
+        style={window.innerWidth < 600 ? styles.mobileDialog : styles.dialog}
         id='infoModal'
         onCancel={this.handleCloseDialog}>
         <DialogTitle style={styles.title}>{ topic.title}</DialogTitle>
@@ -67,6 +68,9 @@ export default InfoModal;
 const defaultStyles = {
   dialog:{
     width:600
+  },
+  mobileDialog:{
+    width:'100%'
   },
   dialogContent:{
     fontSize:14,
