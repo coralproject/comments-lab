@@ -26,14 +26,20 @@ class InfoModal extends Component {
     this.props.dispatch(setTopic(null));
   }
 
+  componentDidMount() {
+      // Handles dialog display in Firefox and Safari
+      dialogPolyfill.registerDialog(document.querySelector('#infoModal'));
+  }
+
   render() {
     let dialog = null;
     const styles = this.props.styles || defaultStyles;
-    const topic =this.props.topics[this.props.modalTopic]
-    if(topic) {
-      dialog = <Dialog 
-        open={this.props.modalTopic}
-        style={styles.dialog}
+    const topic =this.props.topics[this.props.modalTopic] || {};
+    const open = this.props.modalTopic ? true : false;
+    return <Dialog 
+        open={open}
+        style={window.innerWidth < 600 ? styles.mobileDialog : styles.dialog}
+        id='infoModal'
         onCancel={this.handleCloseDialog}>
         <DialogTitle style={styles.title}>{ topic.title}</DialogTitle>
         <DialogContent style={styles.dialogContent} dangerouslySetInnerHTML={ {__html:topic.description }}/>
@@ -54,8 +60,6 @@ class InfoModal extends Component {
           <Button type='button' onClick={this.handleCloseDialog.bind(this)}>Got it!</Button>
         </DialogActions>
       </Dialog>;
-    }
-    return dialog;
   }
 }
 
@@ -63,10 +67,10 @@ export default InfoModal;
 
 const defaultStyles = {
   dialog:{
-    width:600,
-    [mediaQueries.tablet]: {
-      width:'100%'
-    }
+    width:600
+  },
+  mobileDialog:{
+    width:'100%'
   },
   dialogContent:{
     fontSize:14,
