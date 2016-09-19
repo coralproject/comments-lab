@@ -70,7 +70,8 @@ const defaultStyles = {
     width:600
   },
   mobileDialog:{
-    width:'100%'
+    width:'100%',
+    maxHeight: '100vh'
   },
   dialogContent:{
     fontSize:14,
