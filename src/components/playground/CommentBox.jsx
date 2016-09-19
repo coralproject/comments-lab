@@ -19,7 +19,7 @@ import MdLink from 'react-icons/lib/md/link';
 import MdFormatQuote from 'react-icons/lib/md/format-quote';
 import FaHeart from 'react-icons/lib/fa/heart';
 
-import { Button, Icon } from 'react-mdl';
+import { Button, IconButton } from 'react-mdl';
 
 import { themes } from 'playgroundSettings';
 
@@ -109,18 +109,16 @@ class CommentBox extends React.Component {
           {
             this.props.togglerGroups['content'].togglers['rich_content'].status ?
               <span>
-                <button
+                <IconButton
                   onClick={ this.onToolBarClick.bind(this, 'BOLD') }
-                  style={ [ styles.toolBarButton, inlineStyles.indexOf('BOLD') >= 0 ? styles.toolBarActive : "" ] }>
-                  <MdFormatBold />
-                </button>
-                <button
+                  style={ Object.assign({}, styles.toolBarButton, inlineStyles.indexOf('BOLD') >= 0 ? styles.toolBarActive : {}) }
+                  name='format_bold' />
+                <IconButton
                   onClick={ this.onToolBarClick.bind(this, 'ITALIC') }
-                  style={ [ styles.toolBarButton, inlineStyles.indexOf('ITALIC') >= 0 ? styles.toolBarActive : "" ] }>
-                  <MdFormatItalic />
-                </button>
-                <button style={ styles.toolBarButton }><MdLink /></button>
-                <button style={ styles.toolBarButton }><MdFormatQuote /></button>
+                  style={ Object.assign({}, styles.toolBarButton, inlineStyles.indexOf('ITALIC') >= 0 ? styles.toolBarActive : {}) }
+                  name='format_italic'/>
+                <IconButton style={ styles.toolBarButton } name='link'/>
+                <IconButton style={ styles.toolBarButton } name='format_quote' />
               </span>
             :
               ''
@@ -128,7 +126,7 @@ class CommentBox extends React.Component {
           {
             this.props.togglerGroups['content'].togglers['emoji'].status ?
               <span>
-                <button onClick={ this.toggleEmojiPicker.bind(this) } style={ styles.toolBarButton }><Icon name="insert_emoticon" /></button>
+                <IconButton onClick={ this.toggleEmojiPicker.bind(this) } style={ styles.toolBarButton } name='insert_emoticon' />
               </span>
             :
               ''
@@ -271,10 +269,7 @@ var styles = {
   toolBarButton: {
     cursor: 'pointer',
     padding: '10px',
-    borderRight: '1px solid #eee',
-    borderTop: '0',
-    borderLeft: '0',
-    borderBottom: '0',
+    border: 0,
     background: 'white',
     fontSize: '12pt',
     outline: 'none'
