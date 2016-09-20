@@ -1,10 +1,12 @@
 import React, {Component, PropTypes} from 'react';
+import components from '../components';
 
 class DynamicContainer extends Component {
 
   constructor(props) {
     super(props);
     this.getPropsFromItems = this.getPropsFromItems.bind(this);
+    this.mapComponents = this.mapComponents.bind(this);
   }
 
   static propTypes = {
@@ -88,9 +90,36 @@ class DynamicContainer extends Component {
     return result;
   }
 
+  mapComponents(config) {
+    let Component = components[config.component];
+    let props = this.getPropsFromItems(config.graphQL, this.props.id);
+    return <Component {...props} {...config.props}/>;
+  }
+
+  sortConfig(a,b) {
+    if (a.order > b.order) {
+      return 1;
+    }
+    if (a.order < b.order) {
+      return -1;
+    }
+    return 0;
+  }
+
+  filterConfig(name) {
+    return (configObj) => configObj.container === name;
+  }
+
 
   render() {
-
+    let config = this.props.config
+      .filter(this.filterConfig(this.props.name))
+      .sort(this.sortConfig);
+    return <div className={this.props.name}>
+      {
+        config.map(this.mapComponents)
+      }
+    </div>;
   }
 }
 
