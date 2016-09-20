@@ -16,7 +16,7 @@ const MapContainer = (props) => {
   return <div className={'map' + props.array}>
     {
       itemArray.map((item) => {
-        Children.map(props.children, (ChildComponent) => {
+        return Children.map(props.children, (ChildComponent) => {
           return <ChildComponent
             id={item}
             config={props.config}
