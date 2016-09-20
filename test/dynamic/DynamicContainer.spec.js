@@ -8,25 +8,31 @@ describe('DynamicContainer', () => {
       id: 1,
       items: {
         1: {
+          id: 1,
           type: 'comment',
           content: 'stuff',
-          author: 2
+          author: 2,
+          likes: [4,5]
         },
         2: {
+          id: 2,
           type: 'user',
           name: 'Janice',
           likes: [4,5],
           employer: 3
         },
         3: {
+          id: 3,
           type: 'employer',
           name: 'Coral'
         },
         4: {
+          id: 4,
           type: 'like',
           name: 'Regina'
         },
         5: {
+          id: 5,
           type: 'like',
           name: 'Fatima'
         }
@@ -77,6 +83,35 @@ describe('DynamicContainer', () => {
           }
         ]
       }
+    });
+  });
+  it('should traverse complex one to many relationships', () => {
+    const query = '{author{employer{name},likes{name},name},content,likes{id}}';
+    const output = new DynamicContainer(props).getPropsFromItems(query, 1);
+    expect(output).to.deep.equal({
+      author:{
+        employer: {
+          name:'Coral'
+        },
+        likes: [
+          {
+            name: 'Regina'
+          },
+          {
+            name: 'Fatima'
+          }
+        ],
+        name: 'Janice'
+      },
+      content: 'stuff',
+      likes: [
+        {
+          id: 4
+        },
+        {
+          id: 5
+        }
+      ]
     });
   });
 });
