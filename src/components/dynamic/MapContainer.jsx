@@ -1,4 +1,4 @@
-import React, {Children} from 'react';
+import {Children} from 'react';
 
 const MapContainer = (props) => {
   const itemArray = props.items[props.id][props.array];
