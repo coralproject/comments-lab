@@ -1,4 +1,4 @@
-import {Children} from 'react';
+import React, {Children} from 'react';
 
 /*
 * Maps a set of children onto an array of item ids
@@ -16,12 +16,16 @@ const MapContainer = (props) => {
   return <div className={'map' + props.array}>
     {
       itemArray.map((item) => {
-        return Children.map(props.children, (ChildComponent) => {
-          return <ChildComponent
-            id={item}
-            config={props.config}
-            items={props.items}/>;
-        });
+        return <div key={item}>
+        {
+          Children.map(props.children, (ChildComponent) => {
+            return <ChildComponent
+              id={item}
+              config={props.config}
+              items={props.items}/>;
+          })
+        }
+        </div>;
       })
     }
   </div>;
