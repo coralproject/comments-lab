@@ -150,8 +150,8 @@ describe('DynamicContainer', () => {
       const render = shallow(<DynamicContainer {...props} config={config}/>);
       expect(render.node.props.children[0].props).to.have.property('content')
         .and.to.equal('stuff');
-    expect(render.node.props.children[1].props).to.have.property('author')
-        .and.to.deep.equal({name:'Janice'});
+      expect(render.node.props.children[1].props).to.have.property('author')
+          .and.to.deep.equal({name:'Janice'});
     });
   });
 });
