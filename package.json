@@ -49,6 +49,7 @@
     "dialog-polyfill": "^0.4.4",
     "draft-js": "^0.2.2",
     "exports-loader": "^0.6.3",
+    "fetch": "^1.1.0",
     "file-loader": "^0.8.4",
     "history": "1.13.x",
     "imports-loader": "^0.6.5",
