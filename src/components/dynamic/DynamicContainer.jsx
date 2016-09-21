@@ -93,7 +93,7 @@ class DynamicContainer extends Component {
   mapComponents(config) {
     let Component = components[config.component];
     let props = this.getPropsFromItems(config.graphQL, this.props.id);
-    return <Component {...props} {...config.props}/>;
+    return <Component {...props} {...config.props} key={config.component}/>;
   }
 
   sortConfig(a,b) {
