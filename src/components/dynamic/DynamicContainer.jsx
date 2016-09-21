@@ -51,7 +51,7 @@ class DynamicContainer extends Component {
       let object = relationshipStack.reduce((object, relationship) => {
         return object[relationship];
       }, result);
-      if (/[a-z0-9]/i.test(char)) {
+      if (/[a-z0-9: /'/"/(/)']/i.test(char)) {
         return string + char;
       }
       switch (char) {
@@ -59,15 +59,32 @@ class DynamicContainer extends Component {
         if (!string) {
           return string;
         }
-        idStack.push(this.props.items[id][string]);
-        relationshipStack.push(string);
-        let val = this.props.items[id][string]; 
-        if (val.constructor === Array) {
-          object[string] = this.traverseEdges(val, i, q);
-          idStack.pop();
-          relationshipStack.pop();
+        const rgx = /(.*)\(type:\s?(\'|\")(.+)(\'|\")\)/.exec(string);
+        if (!rgx) {
+          console.warn('Invalid graphQL: ' + string + ' in ' + query);
+          return '';
+        }
+
+        const edge = rgx[1];
+        const type = rgx[3];
+        let typetest;
+        if (edge) {
+          idStack.push(this.props.items[id][edge]);
+          relationshipStack.push(edge);
+          let val = this.props.items[id][edge];
+          if (val.constructor === Array) {
+            object[edge] = this.traverseEdges(val, i, q);
+            idStack.pop();
+            relationshipStack.pop();
+          } else {
+            object[edge] = {};          
+          }
+          typetest = this.props.items[val];
         } else {
-          object[string] = {};          
+          typetest = this.props.items[id];
+        }
+        if (typetest && typetest.type !== type) {
+          console.warn('Received unexpected type when getting props, expected ' + edge + ' of type ' + type + ' but found ' + typetest.type + '.');
         }
         break;
       case '}':

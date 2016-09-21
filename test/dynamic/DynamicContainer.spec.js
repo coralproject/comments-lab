@@ -38,19 +38,29 @@ describe('DynamicContainer', () => {
           type: 'like',
           name: 'Fatima'
         }
-      }
+      },
+      config: [
+        {
+          component: 'DefaultComment',
+          graphQL: '(type: "comment"){content}'
+        },
+        {
+          component: 'DefaultAuthor',
+          graphQL: '(type: "comment"){author(type: "user"){name}}'
+        }
+      ]
     };
   });
   describe('mapPropsFromItems', () => {
     it('should retrieve objects based on a simple graphQL query', () => {
-      let query = '{content}';
+      let query = '(type: \'comment\'){content}';
       let output = new DynamicContainer(props).getPropsFromItems(query, 1);
       expect(output).to.deep.equal({
         content: 'stuff'
       });
     });
     it('should traverse the graph and return an appropriately formatted set of properties', () => {
-      let query = '{content,author{name}}';
+      let query = '(type: \'comment\'){content,author(type: \'user\'){name}}';
       let output = new DynamicContainer(props).getPropsFromItems(query, 1);
       expect(output).to.deep.equal({
         content: 'stuff',
@@ -60,7 +70,7 @@ describe('DynamicContainer', () => {
       });
     });
     it('should traverse a deeply nested query', () => {
-      let query = '{content,author{employer{name}}}';
+      let query = '(type: \'comment\'){content,author(type:"user"){employer(type:"employer"){name}}}';
       let output = new DynamicContainer(props).getPropsFromItems(query, 1);
       expect(output).to.deep.equal({
         content: 'stuff',
@@ -71,8 +81,8 @@ describe('DynamicContainer', () => {
         }
       });
     });
-    it('should traverse a one to may relationship', ()=> {
-      const query = '{author{likes{name}},content}';
+    it('should traverse a one to many relationship', ()=> {
+      const query = '(type: \'comment\'){author(type: \'user\'){likes(type: \'like\'){name}},content}';
       const output = new DynamicContainer(props).getPropsFromItems(query, 1);
       expect(output).to.deep.equal({
         content: 'stuff',
@@ -89,7 +99,7 @@ describe('DynamicContainer', () => {
       });
     });
     it('should traverse complex one to many relationships', () => {
-      const query = '{author{employer{name},likes{name},name},content,likes{id}}';
+      const query = '(type: "comment"){author(type: "user"){employer(type: "employer"){name},likes(type: "likes"){name},name},content,likes(type: "likes"){id}}';
       const output = new DynamicContainer(props).getPropsFromItems(query, 1);
       expect(output).to.deep.equal({
         author:{
@@ -123,7 +133,7 @@ describe('DynamicContainer', () => {
     it ('should return a component with the appropriate props', () => {
       let config = {
         component: 'DefaultComment',
-        graphQL: '{content}'
+        graphQL: '(type: "comment"){content}'
       };
       let output = new DynamicContainer(props).mapComponents(config);
       expect(output).to.have.property('props').
@@ -137,17 +147,7 @@ describe('DynamicContainer', () => {
 
   describe('render', () => {
     it('should render a set of components based on the config object', () => {
-      let config = [
-        {
-          component: 'DefaultComment',
-          graphQL: '{content}'
-        },
-        {
-          component: 'DefaultAuthor',
-          graphQL: '{author{name}}'
-        }
-      ];
-      const render = shallow(<DynamicContainer {...props} config={config}/>);
+      const render = shallow(<DynamicContainer {...props}/>);
       expect(render.node.props.children[0].props).to.have.property('content')
         .and.to.equal('stuff');
       expect(render.node.props.children[1].props).to.have.property('author')
