@@ -103,20 +103,20 @@ export function getItemArray(ids) {
 
 export function putItem(item) {
   return (dispatch) => {
-    return new Promise((resolve, reject) => {
-      let options = {
-        method: 'POST',
-        payload: JSON.stringify(item) 
-      };
-      fetchURL('http://item.post/', options, (result) => {
-        if (result.statusCode != 200) {
-          reject(result);
-        } else {
-          dispatch(addItem(Object.assign({}, item, {id: result.id})));
-          resolve(result.id);
+    let options = {
+      method: 'PUT',
+      body: JSON.stringify(item) 
+    };
+    return fetch('http://item.post/', options)
+      .then(
+        response => {
+          return response.ok ? response.json() : Promise.reject(response.status + ' ' + response.statusText);
         }
+      )
+      .then((json) => {
+        dispatch(addItem(Object.assign({}, item, {id: json.id})));
+        return json.id;
       });
-    });
   };
 }
 
