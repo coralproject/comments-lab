@@ -1,5 +1,4 @@
 import uuid from 'uuid';
-import {fetchURL} from 'fetch';
 
 export const ADD_COMPONENT = 'ADD_COMPONENT';
 export const REMOVE_COMPONENT = 'REMOVE_COMPONENT';
@@ -41,18 +40,19 @@ export function addItem(item) {
 */
 export function getItemsFromQuery(query) {
   return (dispatch) => {
-    return new Promise((resolve, reject) => {
-      fetchURL(query, (result) => {
-        if (result.statusCode != 200) {
-          reject(result);
-        } else {
-          for (var i = 0; i < result.items.length; i++) {
-            dispatch(addItem(result.items[i]));
-          }
-          resolve(result.items);
+    //Only 61% of browsers support window.fetch, we should have a polyfill
+    return fetch(query)
+      .then(
+        response => {
+          return response.ok ? response.json() : Promise.reject(response.status + ' ' + response.statusText);
         }
+      )
+      .then((json) => {
+        for (var i = 0; i < json.items.length; i++) {
+          dispatch(addItem(json.items[i]));
+        }
+        return (json.items);
       });
-    });
   };
 }
 
@@ -72,18 +72,18 @@ export function getItemsFromQuery(query) {
 
 export function getItemArray(ids) {
   return (dispatch) => {
-    return new Promise((resolve, reject) => {
-      fetchURL('http://item.ids.query/' + ids, (result) => {
-        if (result.statusCode != 200) {
-          reject(result);
-        } else {
-          for (var i = 0; i < result.items.length; i++) {
-            dispatch(addItem(result.items[i]));
-          }
-          resolve(result.items);
+    return fetch('http://item.ids.query/' + ids)
+      .then(
+        response => {
+          return response.ok ? response.json() : Promise.reject(response.status + ' ' + response.statusText);
         }
+      )
+      .then((json) => {
+        for (var i = 0; i < json.items.length; i++) {
+          dispatch(addItem(json.items[i]));
+        }
+        return json.items;
       });
-    });
   };
 }
 
