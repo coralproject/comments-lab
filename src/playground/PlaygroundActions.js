@@ -38,10 +38,10 @@ export function addItem(item) {
 * @dispatches
 *   A set of items to the item store  
 */
-export function getItemsFromQuery(query) {
+export function getItemsFromQuery(queryName, viewId, rootId) {
   return (dispatch) => {
     //Only 61% of browsers support window.fetch, we should have a polyfill
-    return fetch(query)
+    return fetch('http://get.item.endpoint/?query=' + queryName + '&view=' + viewId + '&root=' + rootId)
       .then(
         response => {
           return response.ok ? response.json() : Promise.reject(response.status + ' ' + response.statusText);

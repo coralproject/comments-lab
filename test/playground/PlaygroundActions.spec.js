@@ -16,13 +16,16 @@ describe('PlaygroundActions', () => {
   });
 
   describe('getItemsFromQuery', () => {
-    const query = 'http://a.test.query';
+    const query = 'all';
+    const view = 'abcd';
+    const rootId = '1234';
     const response = {items:['item1', 'item2']};
 
     it('should get an item from a query and send the appropriate dispatches', () => {
-      fetchMock.get(query, JSON.stringify(response));
-      return actions.getItemsFromQuery(query)(store.dispatch)
+      fetchMock.get('*', JSON.stringify(response));
+      return actions.getItemsFromQuery(query, view, rootId)(store.dispatch)
         .then((res) => {
+          expect(fetchMock.calls().matched[0][0]).to.equal('http://get.item.endpoint/?query=all&view=abcd&root=1234');
           expect(res).to.deep.equal(response.items);
           expect(store.getActions()[0]).to.deep.equal({
             type: actions.ADD_ITEM,
@@ -35,8 +38,8 @@ describe('PlaygroundActions', () => {
         });
     });
     it('should handle an error', () => {
-      fetchMock.get(query, 404);
-      return actions.getItemsFromQuery(query)(store.dispatch)
+      fetchMock.get('*', 404);
+      return actions.getItemsFromQuery(query, view, rootId)(store.dispatch)
         .catch((err) => {
           expect(err).to.be.truthy;
         });
