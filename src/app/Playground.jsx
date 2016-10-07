@@ -26,7 +26,7 @@ class Playground extends React.Component {
 
     return (
       <DocumentTitle title="The Coral Project - Comments Lab">
-        <div>
+        <div id='playground'>
 
           <div style={styles.playgroundContainer}>
             <HeaderNav />
