@@ -71,7 +71,9 @@ const defaultStyles = {
   },
   mobileDialog:{
     width:'100%',
-    maxHeight: '100vh'
+    maxHeight: '100vh',
+    overflowY: 'scroll',
+    marginTop: 0
   },
   dialogContent:{
     fontSize:14,
