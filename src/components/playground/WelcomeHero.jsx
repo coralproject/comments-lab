@@ -25,14 +25,14 @@ class WelcomeHero extends Component {
     let styles = this.props.styles || defaultStyles;
     let welcome = this.props.show ?
       <Card className='heroCard' shadow={0} style={styles.heroCard}>
-        <CardTitle className='heroCardTitle' style={styles.heroCardTitle}>Welcome to the Comments Lab</CardTitle>
+        <CardTitle className='heroCardTitle' style={styles.heroCardTitle}>ARCHIVED - The Comments Lab (2016)</CardTitle>
         <CardText className='heroCardText' style={styles.heroCardText}>
           <div style={ styles.playgroundDescription }>
-            This is a place to explore some of the different possible features of an online comment space. It will continue to grow and change as <a href="https://coralproject.net" target="_blank">The Coral Project</a> continues its work.
+            We created this page in 2016 as an interactive way to share our research, during the early development stage of our open-source community platform <a href="https://coralproject.net/talk">Talk</a>. This is an artifact of our research, and does not represent the current feature set of Talk. We no longer update this page. To learn more about Talk, contact us at <a href="mailto:support@coralproject.net">support@coralproject.net</a>.
             <br /><br />
             <ul style={ styles.playgroundBullets }>
-              <li style={ styles.playgroundBullet }><strong>Click on the names</strong> to reveal features. Switch them on and off to see how the comment box changes. Share your favorite comment settings by sharing the URL.</li>
-              <li style={ styles.playgroundBullet }><strong>Click on the <Icon name="info_outline" style={styles.infoIcon}/> buttons</strong> to learn about why and how you might use each feature.</li>
+              <li style={ styles.playgroundBullet }><strong>Click on the names</strong> to reveal features. Switch them on and off to see how the comment box changes. Share your prefered comment settings with others by sharing the URL of your page.</li>
+              <li style={ styles.playgroundBullet }><strong>Click on the <Icon name="info_outline" style={styles.infoIcon}/> buttons</strong> to read research and links about each feature.</li>
             <li style={ styles.playgroundBullet }><strong>Add features</strong> by submitting updates to our <a href="https://github.com/coralproject/experiment-playground" target="_blank">GitHub</a>.</li>
             </ul>
           </div>
